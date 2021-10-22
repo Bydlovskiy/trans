@@ -1,0 +1,58 @@
+{
+  "truckers-list": [
+      {
+      "userInfo": {
+        "name": "",
+        "surname": "",
+        "dateOfBirth": ""
+      },
+      "companyInfo" : {
+        "country":"",
+        "addres" : {
+            "country" : "",
+            "city" : "",
+            "street" : ""
+        },
+        "name":"",
+        "IPN":""
+      },
+      "carsInfo": [
+        {
+          "car": {
+            "mark": "",
+            "model": "",
+            "VIN": "",
+            "EURO": "",
+            "graduationYear": "",
+            "weight":"",
+            "number":""
+          },
+          "trailer": {
+            "mark": "",
+            "model": "",
+            "VIN": "",
+            "type": "",
+            "graduationYear": "",
+            "number" : ""
+          }
+        }
+      ]
+    },
+    {
+      "id" : "1",
+      "status" : "company",
+      "companyInfo" : {
+        "addres" : {
+            "country" : "Ukraine",
+            "city" : "Lviv",
+            "street" : "Shevcenka 12"
+        },
+        "name":"'dsadasdas'",
+        "сompanyСode":"12345678",
+        "phoneNumber":"0800200212",
+        "email": "dsa@gmail.com",
+        "password" : "qwerty123"
+      }
+    }
+  ]
+}
