@@ -1,7 +1,7 @@
 <div class="choose-login-type-container">
-    <form [formGroup]="loginForm" class="small-container">
+    <form [formGroup]="loginForm" (ngSubmit)="loginConsignor()" class="small-container">
       <input formControlName="email" type="text" placeholder="email">
       <input formControlName="password" type="password" placeholder="password">
-      <button (click)="login()" type="button">увійти</button>
+      <button  type="submit">увійти</button>
     </form>
   </div>

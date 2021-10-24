@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Auth, createUserWithEmailAndPassword } from '@angular/fire/auth';
+import { doc, Firestore, setDoc } from '@angular/fire/firestore';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
@@ -7,29 +9,41 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
   styleUrls: ['./consignor-register.component.scss']
 })
 export class ConsignorRegisterComponent implements OnInit {
-
-  public signInForm !: FormGroup;
-  constructor(private fb : FormBuilder) { }
+  public registerForm !: FormGroup;
+  constructor(private fb : FormBuilder,
+              private auth : Auth,
+              private firestore: Firestore,) { }
 
   ngOnInit(): void {
     this.initSignForm();
   }
   initSignForm():void{
-    this.signInForm = this.fb.group({
-      name : [null,Validators.required],
-      country : [null,Validators.required],
-      city : [null,Validators.required],
-      street : [null,Validators.required],
-      сompanyСode : [null,Validators.required],
-      phoneNumber : [null,Validators.required],
+    this.registerForm = this.fb.group({
       email : [null,Validators.required],
       password : [null,Validators.required],
+      phoneNumber : [null,Validators.required],
+      role : ['consignor']
     })
   }
 
   registerConsignor(): void{
-    console.log(this.signInForm.value);
+    const email = this.registerForm.controls['email'].value;
+    const password = this.registerForm.controls['password'].value;
+     this.emailSignUp(email, password).then(() => {
+    }).catch(err => {
+      console.log(err);
+    })
   }
 
+  async emailSignUp(email: string, password: string): Promise<any> {
+    createUserWithEmailAndPassword(this.auth, email, password)
+    .then(data => {
+      const {phoneNumber,email,role} = this.registerForm.value;
+      this.registerForm.reset()
+     setDoc(doc(this.firestore, "users", data.user.uid),{phoneNumber,email,role})
+    }).catch(err => {
+      console.log(err,'register error');
+    })
+  }
 
 }

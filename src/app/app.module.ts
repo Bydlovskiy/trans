@@ -30,6 +30,12 @@ import { TruckerLoginComponent } from './pages/trucker-login/trucker-login.compo
 import { UserSettingsComponent } from './pages/cabinet/user-settings/user-settings.component';
 import { UserBurgerComponent } from './pages/cabinet/user-burger/user-burger.component';
 
+import { provideFirebaseApp, getApp, initializeApp } from '@angular/fire/app';
+import { getFirestore, provideFirestore } from '@angular/fire/firestore';
+import { getStorage, provideStorage } from '@angular/fire/storage';
+import { getAuth, provideAuth } from '@angular/fire/auth'
+import { environment } from 'src/environments/environment';
+
 
 
 
@@ -39,7 +45,6 @@ import { UserBurgerComponent } from './pages/cabinet/user-burger/user-burger.com
     HeaderComponent,
     BurgerComponent,
     FooterComponent,
-
     HomeComponent,
     AdminComponent,
     AdminBlogComponent,
@@ -69,7 +74,11 @@ import { UserBurgerComponent } from './pages/cabinet/user-burger/user-burger.com
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    provideFirebaseApp(() => initializeApp( environment.firebaseConfig )),
+    provideFirestore(() => getFirestore()),
+    provideStorage(()=> getStorage()),
+    provideAuth(() => getAuth()),
   ],
   providers: [],
   bootstrap: [AppComponent]
