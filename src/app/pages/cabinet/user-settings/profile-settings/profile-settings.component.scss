@@ -1,0 +1,26 @@
+.profile-settings-container {
+  padding: 30px;
+
+  .foto {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    cursor: pointer;
+    border: 1px solid grey;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    input {
+      width: 70px;
+      height: 70px;
+      border-radius: 50%;
+      opacity: 0;
+      cursor: pointer;
+    }
+    form{
+        display: flex;
+        flex-direction: column;
+    }
+  }
+}

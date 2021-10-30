@@ -41,10 +41,13 @@ export class TruckerLoginComponent implements OnInit {
     });
   }
 
+ 
+
+
   loginTrucker(): void {
     const { email, password } = this.loginForm.value;
     this.login(email,password).then(data => {
-      console.log(data);
+
     })
   }
 }

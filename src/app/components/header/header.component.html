@@ -1,8 +1,9 @@
-<div class="header-container">
+<div class="header-container" *ngIf="false">
   <header >
         <div class="logo-container" [routerLink]="[ '/' ]">
             <img class="logo" src="/assets/icons/logo-tfx-white.svg" >
         </div>
+        
         <form class="buttons-container">
             <button type="button" class="login" [routerLink]="[ '/login' ]" >login</button>
             <button type="button" class="registrer" [routerLink]="[ '/register' ]" >registrer</button>

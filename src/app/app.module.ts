@@ -35,6 +35,14 @@ import { getFirestore, provideFirestore } from '@angular/fire/firestore';
 import { getStorage, provideStorage } from '@angular/fire/storage';
 import { getAuth, provideAuth } from '@angular/fire/auth'
 import { environment } from 'src/environments/environment';
+import { UserActionsComponent } from './pages/cabinet/user-actions/user-actions.component';
+import { ExchangeComponent } from './pages/cabinet/exchange/exchange.component';
+import { MessagesComponent } from './pages/cabinet/messages/messages.component';
+import { UserInfoComponent } from './pages/cabinet/user-info/user-info.component';
+import { CarsSettingsComponent } from './pages/cabinet/user-settings/cars-settings/cars-settings.component';
+import { ProfileSettingsComponent } from './pages/cabinet/user-settings/profile-settings/profile-settings.component';
+import { CompanySettingsComponent } from './pages/cabinet/user-settings/company-settings/company-settings.component';
+import { AddCarComponent } from './pages/cabinet/user-settings/add-car/add-car.component';
 
 
 
@@ -67,6 +75,14 @@ import { environment } from 'src/environments/environment';
     TruckerLoginComponent,
     UserSettingsComponent,
     UserBurgerComponent,
+    UserActionsComponent,
+    ExchangeComponent,
+    MessagesComponent,
+    UserInfoComponent,
+    CarsSettingsComponent,
+    ProfileSettingsComponent,
+    CompanySettingsComponent,
+    AddCarComponent,
 
 
   ],

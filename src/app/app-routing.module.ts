@@ -20,31 +20,60 @@ import { TruckerRegisterComponent } from './pages/trucker-register/trucker-regis
 import { ConsignorRegisterComponent } from './pages/consignor-register/consignor-register.component';
 import { TruckerLoginComponent } from './pages/trucker-login/trucker-login.component';
 import { ConsignorLoginComponent } from './pages/consignor-login/consignor-login.component';
+import { UserSettingsComponent } from './pages/cabinet/user-settings/user-settings.component';
+import { UserActionsComponent } from './pages/cabinet/user-actions/user-actions.component';
+import { ExchangeComponent } from './pages/cabinet/exchange/exchange.component';
+import { MessagesComponent } from './pages/cabinet/messages/messages.component';
+import { UserInfoComponent } from './pages/cabinet/user-info/user-info.component';
+import { CarsSettingsComponent } from './pages/cabinet/user-settings/cars-settings/cars-settings.component';
+import { ProfileSettingsComponent } from './pages/cabinet/user-settings/profile-settings/profile-settings.component';
+import { CompanySettingsComponent } from './pages/cabinet/user-settings/company-settings/company-settings.component';
+import { AddCarComponent } from './pages/cabinet/user-settings/add-car/add-car.component';
+
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'trucker', component: TruckerComponent },
   { path: 'consignor', component: ConsignorComponent },
   { path: 'blog', component: BlogComponent },
-  { path: 'blog/:id',component : BlogDetailsComponent},
-  { path: 'register',component :RegisterComponent },
-  {path:'trucker-register',component : TruckerRegisterComponent},
-  {path:'consignor-register',component:ConsignorRegisterComponent},
-  { path: 'login',component : LoginComponent },
-  {path: 'trucker-login',component: TruckerLoginComponent},
-  {path: 'consignor-login',component:ConsignorLoginComponent},
-  { path: 'help' , component : HelpComponent },
-  { path: 'contacts' , component : KontaktyComponent},
-  { path:'cabinet' , component : CabinetComponent,children : [
-    {'path' : '' , component : UserBlogComponent}
-  ]},
-  {path :'admin' ,component :AdminComponent ,children : [
-    {path :'admin-blog' , component : AdminBlogComponent},
-    {path : 'admin-accounts',component :AdminAccountsComponent,children:[
-      {path : 'trucker',component: AdminTruckerAccountsComponent},
-      {path : 'consignor',component:AdminConsignorAccountsComponent}
-    ]}
-  ]},
+  { path: 'blog/:id', component: BlogDetailsComponent },
+  { path: 'register', component: RegisterComponent },
+  { path: 'trucker-register', component: TruckerRegisterComponent },
+  { path: 'consignor-register', component: ConsignorRegisterComponent },
+  { path: 'login', component: LoginComponent },
+  { path: 'trucker-login', component: TruckerLoginComponent },
+  { path: 'consignor-login', component: ConsignorLoginComponent },
+  { path: 'help', component: HelpComponent },
+  { path: 'contacts', component: KontaktyComponent },
+  {
+    path: 'cabinet', component: CabinetComponent, children: [
+      { path: '', component: UserBlogComponent },
+      {
+        path: 'settings', component: UserSettingsComponent, children: [
+          { path: '', pathMatch: 'full', redirectTo: 'profile' },
+          { path: 'cars', component: CarsSettingsComponent },
+          { path: 'profile', component: ProfileSettingsComponent },
+          { path : 'company' ,component : CompanySettingsComponent },
+          { path : 'add-car' ,component : AddCarComponent }
+        ]
+      },
+      { path: 'user-actions', component: UserActionsComponent },
+      { path: 'exchange', component: ExchangeComponent },
+      { path: 'messages', component: MessagesComponent },
+      { path: 'info', component: UserInfoComponent }
+    ]
+  },
+  {
+    path: 'admin', component: AdminComponent, children: [
+      { path: 'admin-blog', component: AdminBlogComponent },
+      {
+        path: 'admin-accounts', component: AdminAccountsComponent, children: [
+          { path: 'trucker', component: AdminTruckerAccountsComponent },
+          { path: 'consignor', component: AdminConsignorAccountsComponent }
+        ]
+      }
+    ]
+  },
 
 ];
 

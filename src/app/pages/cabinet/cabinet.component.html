@@ -1,22 +1,45 @@
-<header>
-  <div class="container-route">
-    <div class="burger-icon">
-      <img src="" alt="">
+<div class="main-cabinet-container">
+  <header>
+    <div class="container-route">
+      <div class="burger-icon">
+        <img src="" alt="">
+      </div>
+      <div class="logo-icon">
+        <img src="" alt="">
+      </div>
     </div>
-    <div class="logo-icon">
-      <img src="" alt="">
+    <div class="header-buttons-container">
+      <div class="button-container">
+        <button type="button" class="header-button" [routerLink]="[ '/cabinet/user-actions' ]">Ваші пропозиції</button>
+      </div>
+      <div class="button-container">
+        <button type="button" class="header-button" [routerLink]="[ '/cabinet/exchange' ]">Біржа</button>
+      </div>
+      <div class="button-container">
+        <button type="button" class="header-button" [routerLink]="[ '/cabinet/messages' ]">повідомлення</button>
+      </div>
+      <div class="button-container">
+        <button type="button" class="header-button user-panel-button" (click)="isUserPanel = true">
+          <span>Панель користувача</span>
+        </button>
+      </div>
+      <div class="user-panel" *ngIf="isUserPanel">
+        <div class="user-title">
+          <span class="name"></span>
+          <span class="email"></span>
+        </div>
+        <div class="panel-element" [routerLink]="[ '/cabinet/info' ]" (click)="isUserPanel = false">
+          <span>Моя компанія</span>
+        </div>
+        <div class="panel-element" [routerLink]="[ '/cabinet/settings' ]" (click)="isUserPanel = false">
+          <span>Налаштування</span>
+        </div>
+        <div class="panel-element" (click)="isUserPanel = false">
+          <span>Вийти</span>
+        </div>
+      </div>
     </div>
-    <div>
-      <button type="button">Ваші пропозиції</button>
-    </div>
-    <div>
-      <button type="button">Біржа</button>
-    </div>
-  </div>
-  <div>
-    <button type="button">події</button>
-  </div>
-  <div>
-    <button type="button">профіль</button>
-  </div>
-</header>
+  </header>
+  <router-outlet></router-outlet>
+</div>
+

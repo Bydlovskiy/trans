@@ -1,0 +1,32 @@
+<div class="cars-settings-container">
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Марка</th>
+        <th scope="col">Модель</th>
+        <th scope="col">Рік випуску</th>
+        <th scope="col">Тип Кузова</th>
+        <th scope="col">Євро стандарт</th>
+        <th scope="col">Детальніше</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let car of carList;let i = index">
+        <th scope="row">{{ i + 1 }}</th>
+        <td scope="col">{{ car.mark }}</td>
+        <td scope="col">{{ car.model }}</td>
+        <td scope="col">{{ car.year }}</td>
+        <td scope="col">{{ car.type }}</td>
+        <td scope="col">{{ car.EURO }}</td>
+        <td scope="col">
+            <div class="details">
+                <button  [routerLink]="[ '/cabinet/settings/add-car' ]" (click)="updateCar(i)"  type="button" class="btn btn-warning ">Редагувати</button>
+                <button (click)="deleteCar(i)"  type="button" class="btn btn-danger">Видалити</button>
+            </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <button type="button"  [routerLink]="[ '/cabinet/settings/add-car' ]">Додати автомобіль</button>
+</div>

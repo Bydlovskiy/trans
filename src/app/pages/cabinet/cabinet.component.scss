@@ -1,3 +1,8 @@
+.main-cabinet-container{
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
 header{
     width: 100%;
     height: 80px;
@@ -6,4 +11,43 @@ header{
 }
 .container-route{
     display: flex;
+}
+.header-buttons-container{
+    display: flex;
+}
+.button-container{
+    width: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.header-button{
+    height: 70px;
+    width: 70px;
+    cursor: pointer;
+}
+
+.user-panel{
+    width: 250px;
+    height: 200px;
+    position: absolute;
+    top: 100px;
+    right: 20px;
+    border-radius: 10px;
+    border: 1px solid grey;
+    color: #333;
+    font-size: 17px;
+    .user-title,.panel-element{
+        height: 50px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+    }
+    .panel-element:hover{
+        background-color: rgba(78,134,166,.6);
+    }
+    
+    
+
 }

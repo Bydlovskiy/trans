@@ -1,0 +1,32 @@
+<div class="profile-settings-container">
+  <form [formGroup]="profileSettingsForm" (ngSubmit)="saveData()">
+    <div class="profile-title">
+      <div class="foto">
+        <img [src]="imagePathCurentUser" style="height: 40px;position: absolute;" alt="">
+        <input type="file" (change)="uploadImage($event)">
+      </div>
+      <div>
+        <span>email</span>
+      </div>
+    </div>
+    <label for="name">Ім'я
+      <input formControlName="name" id="name" type="text">
+    </label>
+    <label for="surname">Прізвище
+      <input formControlName="surname" id="surname" type="text">
+    </label>
+    <label for="dateOfBirth">Дата народження
+      <input formControlName="dateOfBirth" id="dateOfBirth" type="date">
+    </label>
+    <label for="sex">
+      <input formControlName="sex" name="sex" type="radio" value="man">Чоловік
+      <input formControlName="sex" name="sex" id="sex" type="radio" value="woman">Жінка
+    </label>
+    <div class="profile-buttons">
+      <button type="submit">Зберегти</button>
+      <button type="button">Скасувати</button>
+    </div>
+  </form>
+
+
+</div>

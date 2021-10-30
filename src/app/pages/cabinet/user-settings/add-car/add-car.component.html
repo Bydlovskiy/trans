@@ -1,0 +1,34 @@
+<div class="container">
+  <form [formGroup]="carSettingsForm"  (ngSubmit)="editStatus ? saveCar() : addCar()">
+    <label for="mark">Марка
+      <input formControlName="mark"  id="mark" type="text">
+    </label>
+    <label for="model">Модель
+      <input formControlName="model" id="model" type="text">
+    </label>
+    <label for="year">Рік випуску
+      <input formControlName="year" id="year" type="text">
+    </label>
+    <label for="type">Тип автомобіля
+      <select formControlName="type" id="type" placeholder="Виберіть тип">
+        <option value="Напівпричіп Тент">Напівпричіп Тент</option>
+        <option value="Рефрижератор">Рефрижератор</option>
+        <option value="Ізотерм">Ізотерм</option>
+        <option value="Автопоїзд">Автопоїзд</option>
+        <option value="Контейнеровіз">Контейнеровіз</option>
+        <option value="Відкритий бортовий">Відкритий бортовий</option>
+        <option value="Автоцистерна">Автоцистерна</option>
+        <option value="Автовоз">Автовоз</option>
+        <option value="Зерновоз">Зерновоз</option>
+        <option value="Самоскид">Самоскид</option>
+        <option value="Лісовоз">Лісовоз</option>
+        <option value="Газель">Газель тент</option>
+        <option value="Бортова Газель">Бортова Газель</option>
+      </select>
+    </label>
+    <label for="EURO">Євро стандарт
+        <input formControlName="EURO" type="number" id="EURO">
+    </label>
+    <button   type="submit">{{ editStatus ? 'редагувати' : 'створити' }}</button>
+  </form>
+</div>
