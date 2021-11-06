@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { AddCarComponent } from './add-car.component';
+import { ArchiveOffersComponent } from './archive-offers.component';
 
-describe('AddCarComponent', () => {
-  let component: AddCarComponent;
-  let fixture: ComponentFixture<AddCarComponent>;
+describe('ArchiveOffersComponent', () => {
+  let component: ArchiveOffersComponent;
+  let fixture: ComponentFixture<ArchiveOffersComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ AddCarComponent ]
+      declarations: [ ArchiveOffersComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(AddCarComponent);
+    fixture = TestBed.createComponent(ArchiveOffersComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from 'src/app/shared/services/auth/auth.service';
 
 @Component({
   selector: 'app-cabinet',
@@ -7,9 +8,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CabinetComponent implements OnInit {
   public isUserPanel = false;
-  constructor() { }
+  constructor(private authService : AuthService) { }
 
   ngOnInit(): void {
+  }
+
+  logOut(): void {
+    this.authService.logOut();
   }
 
 }

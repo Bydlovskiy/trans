@@ -1,4 +1,4 @@
-<div class="cars-settings-container">
+<div class="cars-settings-container" *ngIf="!isAddCar">
   <table class="table table-hover">
     <thead>
       <tr>
@@ -21,12 +21,47 @@
         <td scope="col">{{ car.EURO }}</td>
         <td scope="col">
             <div class="details">
-                <button  [routerLink]="[ '/cabinet/settings/add-car' ]" (click)="updateCar(i)"  type="button" class="btn btn-warning ">Редагувати</button>
-                <button (click)="deleteCar(i)"  type="button" class="btn btn-danger">Видалити</button>
+                <button  (click)="updateCar(car)"  type="button" class="btn btn-warning ">Редагувати</button>
+                <button (click)="deleteCar(car.id)"  type="button" class="btn btn-danger">Видалити</button>
             </div>
         </td>
       </tr>
     </tbody>
   </table>
-  <button type="button"  [routerLink]="[ '/cabinet/settings/add-car' ]">Додати автомобіль</button>
+  <button type="button"  (click)="isAddCar = !isAddCar">Додати автомобіль</button>
+</div>
+
+<div class="container" *ngIf="isAddCar">
+  <form [formGroup]="carSettingsForm"  (ngSubmit)="editStatus ? saveCar() : addCar()">
+    <label for="mark">Марка
+      <input formControlName="mark"  id="mark" type="text">
+    </label>
+    <label for="model">Модель
+      <input formControlName="model" id="model" type="text">
+    </label>
+    <label for="year">Рік випуску
+      <input formControlName="year" id="year" type="text">
+    </label>
+    <label for="type">Тип автомобіля
+      <select formControlName="type" id="type" placeholder="Виберіть тип">
+        <option value="Напівпричіп Тент">Напівпричіп Тент</option>
+        <option value="Рефрижератор">Рефрижератор</option>
+        <option value="Ізотерм">Ізотерм</option>
+        <option value="Автопоїзд">Автопоїзд</option>
+        <option value="Контейнеровіз">Контейнеровіз</option>
+        <option value="Відкритий бортовий">Відкритий бортовий</option>
+        <option value="Автоцистерна">Автоцистерна</option>
+        <option value="Автовоз">Автовоз</option>
+        <option value="Зерновоз">Зерновоз</option>
+        <option value="Самоскид">Самоскид</option>
+        <option value="Лісовоз">Лісовоз</option>
+        <option value="Газель">Газель тент</option>
+        <option value="Бортова Газель">Бортова Газель</option>
+      </select>
+    </label>
+    <label for="EURO">Євро стандарт
+        <input formControlName="EURO" type="number" id="EURO">
+    </label>
+    <button   type="submit">{{ editStatus ? 'редагувати' : 'створити' }}</button>
+  </form>
 </div>

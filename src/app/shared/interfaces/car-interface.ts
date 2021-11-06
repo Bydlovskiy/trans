@@ -3,5 +3,7 @@ export interface ICar {
     model : string,
     type: string,
     year : string,
-    EURO : number
+    EURO : number,
+    userid : string,
+    id : string
 }

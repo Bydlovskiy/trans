@@ -19,7 +19,7 @@
         <button type="button" class="header-button" [routerLink]="[ '/cabinet/messages' ]">повідомлення</button>
       </div>
       <div class="button-container">
-        <button type="button" class="header-button user-panel-button" (click)="isUserPanel = true">
+        <button type="button" class="header-button user-panel-button" (click)="isUserPanel = !isUserPanel">
           <span>Панель користувача</span>
         </button>
       </div>
@@ -34,7 +34,7 @@
         <div class="panel-element" [routerLink]="[ '/cabinet/settings' ]" (click)="isUserPanel = false">
           <span>Налаштування</span>
         </div>
-        <div class="panel-element" (click)="isUserPanel = false">
+        <div class="panel-element" (click)="logOut()">
           <span>Вийти</span>
         </div>
       </div>

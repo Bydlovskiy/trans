@@ -33,7 +33,12 @@ export class ConsignorLoginComponent implements OnInit {
   async login(email: string, password: string): Promise<any> {
     const credential = await signInWithEmailAndPassword(this.auth, email, password);
     this.loginSubscription = docData(doc(this.afs, 'users', credential.user.uid)).subscribe(user => {
-      localStorage.setItem('user', JSON.stringify(user));
+      const userLocal = {
+        id : user.id,
+        role : user.role
+      }
+      console.log(userLocal);
+      localStorage.setItem('user', JSON.stringify(userLocal));
       if(user && user.role === 'consignor'){
         this.router.navigate(['/cabinet']);
       }

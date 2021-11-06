@@ -42,12 +42,14 @@ import { UserInfoComponent } from './pages/cabinet/user-info/user-info.component
 import { CarsSettingsComponent } from './pages/cabinet/user-settings/cars-settings/cars-settings.component';
 import { ProfileSettingsComponent } from './pages/cabinet/user-settings/profile-settings/profile-settings.component';
 import { CompanySettingsComponent } from './pages/cabinet/user-settings/company-settings/company-settings.component';
-import { AddCarComponent } from './pages/cabinet/user-settings/add-car/add-car.component';
-
-
+import { CreateOfferComponent } from './pages/cabinet/user-actions/create-offer/create-offer.component';
+import { ActiveOffersComponent } from './pages/cabinet/user-actions/active-offers/active-offers.component';
+import { ArchiveOffersComponent } from './pages/cabinet/user-actions/archive-offers/archive-offers.component';
+import { GooglePlaceModule } from 'ngx-google-places-autocomplete';
 
 
 @NgModule({
+ 
   declarations: [
     AppComponent,
     HeaderComponent,
@@ -82,8 +84,9 @@ import { AddCarComponent } from './pages/cabinet/user-settings/add-car/add-car.c
     CarsSettingsComponent,
     ProfileSettingsComponent,
     CompanySettingsComponent,
-    AddCarComponent,
-
+    CreateOfferComponent,
+    ActiveOffersComponent,
+    ArchiveOffersComponent,
 
   ],
   imports: [
@@ -95,8 +98,12 @@ import { AddCarComponent } from './pages/cabinet/user-settings/add-car/add-car.c
     provideFirestore(() => getFirestore()),
     provideStorage(()=> getStorage()),
     provideAuth(() => getAuth()),
+    GooglePlaceModule,
+    
+    
   ],
   providers: [],
   bootstrap: [AppComponent]
+ 
 })
 export class AppModule { }

@@ -1,1 +1,19 @@
-<p>user-actions works!</p>
+<div class="container-main">
+  <div class="title-container">
+    <b>Додати пропозицію</b>
+  </div>
+  <div class="buttons-container">
+    <div class="button" [routerLink]="[ '/cabinet/user-actions/create-offer' ]">
+      <span>Додати</span>
+    </div>
+    <div class="button" [routerLink]="[ '/cabinet/user-actions/active-offers' ]">
+      <span>Активні</span>
+    </div>
+    <div class="button" [routerLink]="[ '/cabinet/user-actions/archive-offers' ]">
+      <span>Архів</span>
+    </div>
+  </div>
+  <div>
+    <router-outlet></router-outlet>
+  </div>
+</div>

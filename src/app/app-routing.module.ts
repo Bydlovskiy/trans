@@ -28,7 +28,9 @@ import { UserInfoComponent } from './pages/cabinet/user-info/user-info.component
 import { CarsSettingsComponent } from './pages/cabinet/user-settings/cars-settings/cars-settings.component';
 import { ProfileSettingsComponent } from './pages/cabinet/user-settings/profile-settings/profile-settings.component';
 import { CompanySettingsComponent } from './pages/cabinet/user-settings/company-settings/company-settings.component';
-import { AddCarComponent } from './pages/cabinet/user-settings/add-car/add-car.component';
+import { ActiveOffersComponent } from './pages/cabinet/user-actions/active-offers/active-offers.component';
+import { ArchiveOffersComponent } from './pages/cabinet/user-actions/archive-offers/archive-offers.component';
+import { CreateOfferComponent } from './pages/cabinet/user-actions/create-offer/create-offer.component';
 
 
 const routes: Routes = [
@@ -53,11 +55,14 @@ const routes: Routes = [
           { path: '', pathMatch: 'full', redirectTo: 'profile' },
           { path: 'cars', component: CarsSettingsComponent },
           { path: 'profile', component: ProfileSettingsComponent },
-          { path : 'company' ,component : CompanySettingsComponent },
-          { path : 'add-car' ,component : AddCarComponent }
+          { path : 'company' ,component : CompanySettingsComponent }
         ]
       },
-      { path: 'user-actions', component: UserActionsComponent },
+      { path: 'user-actions', component: UserActionsComponent ,children :[
+        {path : 'active-offers' , component : ActiveOffersComponent},
+        {path : 'archive-offers' , component : ArchiveOffersComponent},
+        {path : 'create-offer', component : CreateOfferComponent}
+      ]},
       { path: 'exchange', component: ExchangeComponent },
       { path: 'messages', component: MessagesComponent },
       { path: 'info', component: UserInfoComponent }

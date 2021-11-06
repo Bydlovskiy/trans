@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { deleteDoc, doc } from '@angular/fire/firestore';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Subscription } from 'rxjs';
 import { ICar } from 'src/app/shared/interfaces/car-interface';
 import { CarsSettingsService } from 'src/app/shared/services/settings/cars-settings/cars-settings.service';
@@ -11,46 +13,70 @@ import { CarsSettingsService } from 'src/app/shared/services/settings/cars-setti
 })
 export class CarsSettingsComponent implements OnInit {
   public carList: ICar[] = [];
-  public editIndex !: number;
+  public carSettingsForm !: FormGroup;
+  public editStatus = false;
+  public isAddCar = false;
   private currentUserid = JSON.parse(localStorage.getItem('user') as string).id;
 
-  constructor(private carService : CarsSettingsService ) { }
+  constructor(private carService: CarsSettingsService,
+    private fb: FormBuilder,) { }
 
   ngOnInit(): void {
+    this.initForm();
     this.getCarsList();
   }
 
+  initForm(): void {
+    this.carSettingsForm = this.fb.group({
+      mark: [null, Validators.required],
+      model: [null, Validators.required],
+      year: [null, Validators.required],
+      type: [null, Validators.required],
+      EURO: [null, Validators.required],
+      userid: [this.currentUserid],
+      id : [null]
+    })
+  }
 
-  getCarsList() : void {
+  getCarsList(): void {
     const user = JSON.parse(localStorage.getItem('user') as string);
     this.carService.getCars(user.id).then(data => {
-        data.forEach(user => {
-        this.carList = user.data().cars ;
+      this.carList = []
+      data.forEach(el => {
+        this.carList.push(el.data() as ICar)
       });
     })
   }
 
-  updateCar(index: number): void {
-    const user = JSON.parse(localStorage.getItem('user') as string);
-    this.carService.getCars(user.id).then(data => {
-      data.forEach(user => {
-        this.editIndex = index
-        this.carService.editCar.next(user.data().cars[index]);
-        this.carService.saveEditIndex(index);
-      });
-    });
+  addCar() {
+    this.carService.setCar(this.carSettingsForm.value).then(() => {
+      this.getCarsList();
+      this.isAddCar = false;
+      this.carSettingsForm.reset();
+    }).catch(err => {
+      console.log(err);
+    })
   }
 
-  deleteCar(index : number ) : void {
-   this.carList.splice(index,1);
-   this.carService.setCarsList(this.currentUserid,this.carList).then(data => {
-     console.log(data);
-     
-   })
-   
+  updateCar(car: ICar): void {
+    console.log(car);
+    this.carSettingsForm.patchValue(car);
+    this.isAddCar = true;
+    this.editStatus = true;
   }
 
+  saveCar(): void {
+    this.carService.updateCar(this.carSettingsForm.value).then(() => {
+      this.carSettingsForm.reset();
+      this.getCarsList();
+      this.isAddCar = false;
+      this.editStatus = false;
+    })
+  }
 
-
- 
+  deleteCar(id : string): void {
+    this.carService.deleteCar(id).then(() => {
+      this.getCarsList();
+    })
+  }
 }

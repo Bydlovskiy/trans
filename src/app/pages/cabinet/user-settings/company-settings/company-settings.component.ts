@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CompanySettingsService } from 'src/app/shared/services/settings/company-settings/company-settings.service';
-import { ProfileSettingsService } from 'src/app/shared/services/settings/profile-settings/profile-settings.service';
+
 
 @Component({
   selector: 'app-company-settings',
@@ -9,7 +9,8 @@ import { ProfileSettingsService } from 'src/app/shared/services/settings/profile
   styleUrls: ['./company-settings.component.scss']
 })
 export class CompanySettingsComponent implements OnInit {
-  public companySettingsForm !:FormGroup
+  public companySettingsForm !:FormGroup;
+  private currentUserId = JSON.parse(localStorage.getItem('user') as string).id;
   constructor(private fb : FormBuilder,
               private companyService : CompanySettingsService) { }
 
@@ -29,8 +30,8 @@ export class CompanySettingsComponent implements OnInit {
   }
   saveData():void {
     if(this.companySettingsForm.valid){
-      const user = JSON.parse(localStorage.getItem('user') as string);
-      this.companyService.setcompanyData(this.companySettingsForm.value,user.id).then(() => {
+      
+      this.companyService.setcompanyData(this.companySettingsForm.value,this.currentUserId).then(() => {
         this.companySettingsForm.reset();
       }) 
     } else {
