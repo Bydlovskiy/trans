@@ -8,13 +8,27 @@ import { AuthService } from 'src/app/shared/services/auth/auth.service';
 })
 export class CabinetComponent implements OnInit {
   public isUserPanel = false;
+  public exchangePath !:string;
+  public userRole = JSON.parse(localStorage.getItem('user') as string).role
+   
   constructor(private authService : AuthService) { }
 
   ngOnInit(): void {
+    this.checkRole();
   }
 
   logOut(): void {
+  
+    
     this.authService.logOut();
+  }
+
+  checkRole(){
+    if(this.userRole == 'trucker'){
+      this.exchangePath = 'trucker-exchange';
+    } else if (this.userRole == 'consignor'){
+      this.exchangePath = 'consignor-exchange';
+    }
   }
 
 }

@@ -1,0 +1,59 @@
+.container-main {
+  display: flex;
+  justify-content: center;
+
+  form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+
+    .block-container {
+      width: 90%;
+      height: 50vh;
+      display: flex;
+      flex-direction: column;
+
+      .title {
+        height: 50px;
+        display: flex;
+        justify-content: center;
+        margin-top: 30px;
+        font-size: 25px;
+      }
+    }
+
+    label {
+      font-size: 20px;
+      display: flex;
+      flex-direction: column;
+      margin: 10px 0;
+    }
+
+    input {
+      margin: 4px;
+      width: 100%;
+    }
+
+    .other-info {
+      height: 25vh;
+    }
+
+    button {
+      margin: 10px;
+      width: 200px;
+      height: 40px;
+      border-radius: 5px;
+      border: 1px solid #5c93b2;
+      font-size: 17px;
+      transition: all 0.5s;
+      color: #5c93b2;
+
+      &:hover {
+        font-size: 20px;
+        font-weight: 700;
+        background-color: #b9d7e9;
+      }
+    }
+  }
+}

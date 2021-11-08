@@ -1,14 +1,14 @@
-import { Timestamp } from "@firebase/firestore";
-import { ICar } from "./car-interface";
+import { Timestamp } from "@angular/fire/firestore";
 
-export interface ITruckerOffer {
+export interface  IConsignorOffer {
     loadingCountry: String,
     loadingCity: String,
     loadingDate: Date,
     unloadingCountry:String,
     unloadingCity: String,
     unloadingDate: Date,
-    car: ICar,
+    weight : Number,
+    cargo : String,
     date : Timestamp,
     price: String,
     userId : String,

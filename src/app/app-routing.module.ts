@@ -22,15 +22,19 @@ import { TruckerLoginComponent } from './pages/trucker-login/trucker-login.compo
 import { ConsignorLoginComponent } from './pages/consignor-login/consignor-login.component';
 import { UserSettingsComponent } from './pages/cabinet/user-settings/user-settings.component';
 import { UserActionsComponent } from './pages/cabinet/user-actions/user-actions.component';
-import { ExchangeComponent } from './pages/cabinet/exchange/exchange.component';
+import { ExchangeComponent } from './pages/cabinet/consignor-exchange/consignor-exchange.component';
 import { MessagesComponent } from './pages/cabinet/messages/messages.component';
 import { UserInfoComponent } from './pages/cabinet/user-info/user-info.component';
 import { CarsSettingsComponent } from './pages/cabinet/user-settings/cars-settings/cars-settings.component';
 import { ProfileSettingsComponent } from './pages/cabinet/user-settings/profile-settings/profile-settings.component';
 import { CompanySettingsComponent } from './pages/cabinet/user-settings/company-settings/company-settings.component';
-import { ActiveOffersComponent } from './pages/cabinet/user-actions/active-offers/active-offers.component';
-import { ArchiveOffersComponent } from './pages/cabinet/user-actions/archive-offers/archive-offers.component';
-import { CreateOfferComponent } from './pages/cabinet/user-actions/create-offer/create-offer.component';
+import { ActiveOffersComponent } from './pages/cabinet/user-actions/active-trucker-offers/active-trucker-offers.component';
+import { ArchiveOffersComponent } from './pages/cabinet/user-actions/archive-trucker-offers/archive-trucker-offers.component';
+import { CreateOfferComponent } from './pages/cabinet/user-actions/create-trucker-offer/create-trucker-offer.component';
+import { CreateConsignorOfferComponent } from './pages/cabinet/user-actions/create-consignor-offer/create-consignor-offer.component';
+import { ActiveConsignorOffersComponent } from './pages/cabinet/user-actions/active-consignor-offers/active-consignor-offers.component';
+import { ArchiveConsignorOffersComponent } from './pages/cabinet/user-actions/archive-consignor-offers/archive-consignor-offers.component';
+import { TruckerExchangeComponent } from './pages/cabinet/trucker-exchange/trucker-exchange.component';
 
 
 const routes: Routes = [
@@ -59,11 +63,16 @@ const routes: Routes = [
         ]
       },
       { path: 'user-actions', component: UserActionsComponent ,children :[
-        {path : 'active-offers' , component : ActiveOffersComponent},
-        {path : 'archive-offers' , component : ArchiveOffersComponent},
-        {path : 'create-offer', component : CreateOfferComponent}
+        {path :'' , pathMatch : 'full' , redirectTo : 'active-offers'},
+        {path : 'active-trucker-offers' , component : ActiveOffersComponent},
+        {path : 'archive-trucker-offers' , component : ArchiveOffersComponent},
+        {path : 'create-trucker-offers', component : CreateOfferComponent},
+        {path : 'create-consignor-offers' , component : CreateConsignorOfferComponent},
+        {path : 'active-consignor-offers', component : ActiveConsignorOffersComponent},
+        {path : 'archive-consignor-offers', component : ArchiveConsignorOffersComponent},
       ]},
-      { path: 'exchange', component: ExchangeComponent },
+      { path: 'trucker-exchange' ,component : TruckerExchangeComponent},
+      { path: 'consignor-exchange', component: ExchangeComponent },
       { path: 'messages', component: MessagesComponent },
       { path: 'info', component: UserInfoComponent }
     ]

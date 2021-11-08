@@ -26,6 +26,8 @@
 
     label {
       font-size: 20px;
+      display: flex;
+      flex-direction: column;
       margin: 10px 0;
     }
 
@@ -34,7 +36,7 @@
       width: 100%;
     }
 
-    .other-info {
+    .other-info{
       height: 25vh;
     }
 

@@ -35,6 +35,11 @@
             Розміщено
           </span>
         </th>
+        <th>
+          <span>
+            Статус
+          </span>
+        </th>
       </tr>
     </thead>
     <tbody>
@@ -43,13 +48,11 @@
           <span class="country">{{offer.loadingCountry}}</span>
           <span class="city">{{offer.loadingCity}}</span>
           <span class="data">{{offer.loadingDate}}</span>
-          <span class="time">{{offer.loadingTime}}</span>
         </td>
         <td>
           <span class="country">{{offer.unloadingCountry}}</span>
           <span class="city">{{offer.unloadingCity}}</span>
           <span class="data">{{offer.unloadingDate}}</span>
-          <span class="time">{{offer.uploadingTime}}</span>
         </td>
         <td>
           <span class="car">{{ offer.car.mark }}{{ offer.car.model }}</span>
@@ -59,6 +62,9 @@
         </td>
         <td>
           <span class="data">{{ offer.date.toDate()	| date: 'short'}}</span>
+        </td>
+        <td>
+          <span>{{ offer.status == 'generated' ? 'Очікує на замовлення' : 'В роботі' }}</span>
         </td>
       </tr>
     </tbody>

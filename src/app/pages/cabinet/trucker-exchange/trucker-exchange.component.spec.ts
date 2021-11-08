@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ActiveOffersComponent } from './active-offers.component';
+import { TruckerExchangeComponent } from './trucker-exchange.component';
 
-describe('ActiveOffersComponent', () => {
-  let component: ActiveOffersComponent;
-  let fixture: ComponentFixture<ActiveOffersComponent>;
+describe('TruckerExchangeComponent', () => {
+  let component: TruckerExchangeComponent;
+  let fixture: ComponentFixture<TruckerExchangeComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ActiveOffersComponent ]
+      declarations: [ TruckerExchangeComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ActiveOffersComponent);
+    fixture = TestBed.createComponent(TruckerExchangeComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

@@ -15,10 +15,8 @@
       </div>
     </header>
     <section>
-      <div class="settings-menu">
-        <span [routerLink]="[ '/cabinet/settings/profile' ]" routerLinkActive="active">Мій обліковий запис</span>
-        <span [routerLink]="[ '/cabinet/settings/company' ]" routerLinkActive="active">Компанія</span>
-        <span [routerLink]="[ '/cabinet/settings/cars' ]" routerLinkActive="active">Автомобілі</span>
+      <div class="settings-menu" >
+        <span *ngFor="let point of points" [routerLink]="[ '/cabinet/settings' , point.path ]" routerLinkActive="active">{{ point.name }}</span>
       </div>
       <div class="settings-info">
         <router-outlet></router-outlet>

@@ -1,4 +1,4 @@
-<div class="main-cabinet-container">
+<div class="main-cabinet-container" >
   <header>
     <div class="container-route">
       <div class="burger-icon">
@@ -10,10 +10,10 @@
     </div>
     <div class="header-buttons-container">
       <div class="button-container">
-        <button type="button" class="header-button" [routerLink]="[ '/cabinet/user-actions' ]">Ваші пропозиції</button>
+        <button type="button" class="header-button" [routerLink]="[ '/cabinet/user-actions' ]">Ваші пропозиції1</button>
       </div>
       <div class="button-container">
-        <button type="button" class="header-button" [routerLink]="[ '/cabinet/exchange' ]">Біржа</button>
+        <button type="button" class="header-button" [routerLink]="[ '/cabinet',exchangePath  ]">Біржа</button>
       </div>
       <div class="button-container">
         <button type="button" class="header-button" [routerLink]="[ '/cabinet/messages' ]">повідомлення</button>
@@ -42,4 +42,5 @@
   </header>
   <router-outlet></router-outlet>
 </div>
+
 

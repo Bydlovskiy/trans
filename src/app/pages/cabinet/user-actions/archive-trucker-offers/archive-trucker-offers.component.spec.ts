@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ExchangeComponent } from './exchange.component';
+import { ArchiveOffersComponent } from './archive-trucker-offers.component';
 
-describe('ExchangeComponent', () => {
-  let component: ExchangeComponent;
-  let fixture: ComponentFixture<ExchangeComponent>;
+describe('ArchiveOffersComponent', () => {
+  let component: ArchiveOffersComponent;
+  let fixture: ComponentFixture<ArchiveOffersComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ExchangeComponent ]
+      declarations: [ ArchiveOffersComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ExchangeComponent);
+    fixture = TestBed.createComponent(ArchiveOffersComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

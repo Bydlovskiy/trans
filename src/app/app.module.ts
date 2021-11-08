@@ -36,16 +36,22 @@ import { getStorage, provideStorage } from '@angular/fire/storage';
 import { getAuth, provideAuth } from '@angular/fire/auth'
 import { environment } from 'src/environments/environment';
 import { UserActionsComponent } from './pages/cabinet/user-actions/user-actions.component';
-import { ExchangeComponent } from './pages/cabinet/exchange/exchange.component';
+import { ExchangeComponent } from './pages/cabinet/consignor-exchange/consignor-exchange.component';
 import { MessagesComponent } from './pages/cabinet/messages/messages.component';
 import { UserInfoComponent } from './pages/cabinet/user-info/user-info.component';
 import { CarsSettingsComponent } from './pages/cabinet/user-settings/cars-settings/cars-settings.component';
 import { ProfileSettingsComponent } from './pages/cabinet/user-settings/profile-settings/profile-settings.component';
 import { CompanySettingsComponent } from './pages/cabinet/user-settings/company-settings/company-settings.component';
-import { CreateOfferComponent } from './pages/cabinet/user-actions/create-offer/create-offer.component';
-import { ActiveOffersComponent } from './pages/cabinet/user-actions/active-offers/active-offers.component';
-import { ArchiveOffersComponent } from './pages/cabinet/user-actions/archive-offers/archive-offers.component';
+import { CreateOfferComponent } from './pages/cabinet/user-actions/create-trucker-offer/create-trucker-offer.component';
+import { ActiveOffersComponent } from './pages/cabinet/user-actions/active-trucker-offers/active-trucker-offers.component';
+import { ArchiveOffersComponent } from './pages/cabinet/user-actions/archive-trucker-offers/archive-trucker-offers.component';
 import { GooglePlaceModule } from 'ngx-google-places-autocomplete';
+import { CreateConsignorOfferComponent } from './pages/cabinet/user-actions/create-consignor-offer/create-consignor-offer.component';
+import { ActiveConsignorOffersComponent } from './pages/cabinet/user-actions/active-consignor-offers/active-consignor-offers.component';
+import { ArchiveConsignorOffersComponent } from './pages/cabinet/user-actions/archive-consignor-offers/archive-consignor-offers.component';
+import { TruckerExchangeComponent } from './pages/cabinet/trucker-exchange/trucker-exchange.component';
+
+
 
 
 @NgModule({
@@ -87,7 +93,10 @@ import { GooglePlaceModule } from 'ngx-google-places-autocomplete';
     CreateOfferComponent,
     ActiveOffersComponent,
     ArchiveOffersComponent,
-
+    CreateConsignorOfferComponent,
+    ActiveConsignorOffersComponent,
+    ArchiveConsignorOffersComponent,
+    TruckerExchangeComponent,
   ],
   imports: [
     BrowserModule,
@@ -99,8 +108,6 @@ import { GooglePlaceModule } from 'ngx-google-places-autocomplete';
     provideStorage(()=> getStorage()),
     provideAuth(() => getAuth()),
     GooglePlaceModule,
-    
-    
   ],
   providers: [],
   bootstrap: [AppComponent]
