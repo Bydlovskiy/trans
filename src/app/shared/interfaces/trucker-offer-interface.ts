@@ -12,7 +12,7 @@ export interface ITruckerOffer {
     date : Timestamp,
     price: String,
     userId : String,
-    id : String,
+    id : string,
     status : String,
     respondedUsersId : String[]
 }

@@ -13,12 +13,8 @@ export class TruckerOffersService {
   constructor(private firestore: Firestore) { }
 
 
-  getAllforCurrentUser(userId : string) : Promise<QuerySnapshot<DocumentData>>{
+  getAllforCurrentUser(userId: string): Promise<QuerySnapshot<DocumentData>> {
     return getDocs(query(collection(this.firestore, "trucker-offers"), where("userId", "==", userId)));
-  }
-
-  getUserInfo(userId: String): Promise<QuerySnapshot<DocumentData>> {
-    return getDocs(query(collection(this.firestore, "users"), where("userId", "==", userId)));
   }
 
   saveOffer(offer: ITruckerOffer): Promise<void> {
@@ -28,22 +24,26 @@ export class TruckerOffersService {
       })
     })
   }
-  getConsignorOfferById (offerId : String) : Promise<QuerySnapshot<DocumentData>> {
+
+  getConsignorOfferById(offerId: String): Promise<QuerySnapshot<DocumentData>> {
     return getDocs(query(collection(this.firestore, "consignor-offers"), where("id", "==", offerId)));
   }
 
-  updateResponsedUser(offerId : string,respondedUsersId : IConsignorOffer):Promise<void>{
-    return updateDoc(doc(this.firestore, "consignor-offers", offerId),{ respondedUsersId : respondedUsersId })
+  updateResponsedUser(offerId: string, respondedUsersId: IConsignorOffer): Promise<void> {
+    return updateDoc(doc(this.firestore, "consignor-offers", offerId), { respondedUsersId: respondedUsersId })
   }
 
 
-
-  getConsignorOffers() : Observable<DocumentData[]> {
-     return collectionData(collection(this.firestore, "consignor-offers"))
+  getConsignorOffers(): Observable<DocumentData[]> {
+    return collectionData(collection(this.firestore, "consignor-offers"))
   }
-  
-  getUserFromId(userId : String) : Promise<QuerySnapshot<DocumentData>> {
+
+  getUserFromId(userId: String): Promise<QuerySnapshot<DocumentData>> {
     return getDocs(query(collection(this.firestore, "users"), where("id", "==", userId)));
+  }
+
+  changeOfferStatus(offerId : string) : Promise<void> {
+    return updateDoc(doc(this.firestore, "trucker-offers", offerId),{ status :  'archive' })
   }
 
 

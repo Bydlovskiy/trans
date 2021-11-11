@@ -38,4 +38,8 @@ export class ConsignorOffersService {
   getUserFromId(userId : String) : Promise<QuerySnapshot<DocumentData>> {
     return getDocs(query(collection(this.firestore, "users"), where("id", "==", userId)));
   }
+
+  changeOfferStatus(offerId : string) : Promise<void> {
+    return updateDoc(doc(this.firestore, "consignor-offers", offerId),{ status :  'archive' })
+  }
 }

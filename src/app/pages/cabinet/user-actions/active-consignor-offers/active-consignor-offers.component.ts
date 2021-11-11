@@ -19,9 +19,17 @@ export class ActiveConsignorOffersComponent implements OnInit {
   loadOfferList(): void {
     this.consignorOffersService.getAllforCurrentUser(this.currentUserid).then(data => {
       this.activeOffersList = [];
+      let offerList : any[] = [];
       data.forEach(offer => {
-        this.activeOffersList.push(offer.data() as IConsignorOffer)
+        offerList.push(offer.data() as IConsignorOffer);
       });
+      this.activeOffersList = offerList.filter(offer => offer.status == "generated" || offer.status == "in-work")
+    })
+  }
+
+  addToArchive(offerId : string): void {
+    this.consignorOffersService.changeOfferStatus(offerId).then(() => {
+      this.loadOfferList();
     })
   }
 

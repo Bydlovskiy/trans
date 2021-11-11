@@ -74,6 +74,11 @@
         <td>
           <span>{{ offer.status == 'generated' ? 'Очікує на замовлення' : 'В роботі' }}</span>
         </td>
+        <td>
+          <button class="btn btn-warning" (click)="addToArchive(offer.id)">
+            Виконано
+          </button>
+        </td>
       </tr>
     </tbody>
   </table>
