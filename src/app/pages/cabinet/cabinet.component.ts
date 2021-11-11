@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { AuthService } from 'src/app/shared/services/auth/auth.service';
 
 @Component({
@@ -11,15 +12,20 @@ export class CabinetComponent implements OnInit {
   public exchangePath !:string;
   public userRole = JSON.parse(localStorage.getItem('user') as string).role
    
-  constructor(private authService : AuthService) { }
+  constructor(private authService : AuthService,
+    private router: Router
+    ) { }
 
   ngOnInit(): void {
     this.checkRole();
   }
 
   logOut(): void {
-
-    this.authService.logOut();
+    this.authService.logOut().then(() => {
+      localStorage.removeItem('user');
+      // this.currentUser$.next(false);
+      this.router.navigate([''])
+    });
   }
 
   checkRole(){

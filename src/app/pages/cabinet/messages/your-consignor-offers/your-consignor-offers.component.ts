@@ -36,12 +36,12 @@ export class YourConsignorOffersComponent implements OnInit {
 
   getYourNotifications(): void {
     this.CommunicationService.getNotificationsforCustomerUser(this.currentUserId).then(data => {
+      let list : any[] = [];
       data.forEach(notification => {
-        let list = [];
         list.push(notification.data() as IOfferResponde)
-        const activeList = list.filter(ell => ell.status == "not-confirmed");
-        this.notificationsIdList = activeList;
       })
+      const activeList = list.filter(ell => ell.status == "not-confirmed");
+      this.notificationsIdList = activeList;
     }).then(() => {
       this.initList()
     })

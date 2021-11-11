@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { addDoc, arrayUnion, collection, collectionData, deleteDoc, doc, DocumentData, DocumentReference, Firestore, getDocs, query, QuerySnapshot, setDoc, updateDoc } from '@angular/fire/firestore';
 import { where } from '@firebase/firestore';
-import { Observable, Subject } from 'rxjs';
 import { ICar } from 'src/app/shared/interfaces/car-interface';
 
 @Injectable({

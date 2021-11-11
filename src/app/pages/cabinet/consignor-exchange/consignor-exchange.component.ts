@@ -65,6 +65,8 @@ export class ExchangeComponent implements OnInit {
     })
     this.truckerUsersData = truckerUsersData
     this.truckerOffersList = arr;
+    console.log(this.truckerOffersList);
+    
   }
 
   public createRespondOffer(userId: String, offerId: String): void {
@@ -91,6 +93,7 @@ export class ExchangeComponent implements OnInit {
       })
     })
     this.communicationService.saveOffer(this.respondToOfferForm.value).then(() => {
+      this.getConsignorOffersList();
     })
   }
 }

@@ -7,23 +7,23 @@ import { CommunicationsService } from 'src/app/shared/services/communications/co
   templateUrl: './others-trucker-offers.component.html',
   styleUrls: ['./others-trucker-offers.component.scss']
 })
-export class OthersTruckerOffersComponent implements OnInit{
+export class OthersTruckerOffersComponent implements OnInit {
   private currentUserId = JSON.parse(localStorage.getItem('user') as string).id;
   private notificationsIdList !: Array<any>;
   public notificationsList !: Array<any>;
-  constructor(private CommunicationService : CommunicationsService) { }
+  constructor(private CommunicationService: CommunicationsService) { }
 
   ngOnInit(): void {
     this.getYourNotifications()
   }
   getYourNotifications(): void {
     this.CommunicationService.getNotificationsforPerformerUser(this.currentUserId).then(data => {
+      let list : any[] = [];
       data.forEach(notification => {
-        let list = [];
         list.push(notification.data() as IOfferResponde)
-        const activeList = list.filter(ell => ell.status == "confirmed" || ell.status == "rejected");
-        this.notificationsIdList = activeList;
       })
+      let activeList = list.filter(ell => ell.status == "confirmed" || ell.status == "rejected");
+      this.notificationsIdList = activeList;
     }).then(() => {
       this.initList()
     })
@@ -44,15 +44,19 @@ export class OthersTruckerOffersComponent implements OnInit{
             list[index].customerData = customer.data()
           })
         })
-        this.CommunicationService.getTruckerOfferFromId(notification.offerId).then(data => {
+        this.CommunicationService.getConsignorOfferFromId(notification.offerId).then(data => {
           data.forEach(offer => {
             list[index].offerData = (offer.data());
             list[index].date = (notification.date);
             list[index].id = notification.id;
             list[index].status = notification.status
+            console.log(notification.status);
+
           })
         }).then(() => {
-          list[index].message = notification.message
+          list[index].message = notification.message;
+          console.log(list);
+
           this.notificationsList = list;
           console.log(this.notificationsList);
         })

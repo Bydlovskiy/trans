@@ -62,7 +62,7 @@
         <div class="modal-content">
           <div class="modal-header">
             <h5 class="modal-title" id="exampleModalLabel">Введіть коментар</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="modalToggle = false">
                 <span aria-hidden="true">&times;</span>
               </button>
           </div>
@@ -72,7 +72,7 @@
             </form>
               </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Відмінити</button>
+            <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="modalToggle = false">Відмінити</button>
             <button type="button" class="btn btn-primary" (click)="sendRespond()">Надіслати заявку</button>
           </div>
         </div>

@@ -7,18 +7,14 @@ import { Subject } from 'rxjs';
   providedIn: 'root'
 })
 export class AuthService {
-  public currentUser$ = new Subject<boolean>();
+  // public currentUser$ = new Subject<boolean>();
 
   constructor(
     private auth: Auth,
     private router: Router
   ) { }
 
-  logOut(): void {
-    signOut(this.auth).then(() => {
-      localStorage.removeItem('user');
-      this.currentUser$.next(false);
-      this.router.navigate([''])
-    })
+  logOut(): Promise<void> {
+    return signOut(this.auth)
   }
 }

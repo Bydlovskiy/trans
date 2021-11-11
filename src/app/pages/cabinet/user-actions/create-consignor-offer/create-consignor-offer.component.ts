@@ -99,7 +99,7 @@ export class CreateConsignorOfferComponent implements OnInit {
       status: [null, Validators.required],
       date: [null, Validators.required],
       id : [null,Validators.required],
-      respondedUsersId : [null]
+      respondedUsersId : [[]]
     })
   }
 
@@ -110,7 +110,7 @@ export class CreateConsignorOfferComponent implements OnInit {
       id : ''
     })
     this.consignorOfferService.saveOffer(this.offerConsignorForm.value).then(() => {
-      
+      this.offerConsignorForm.reset()
     })
   }
 

@@ -104,7 +104,7 @@ export class CreateOfferComponent implements OnInit {
       status: [null, Validators.required],
       date: [null, Validators.required],
       id : [null,Validators.required],
-      respondedUsersId : [null]
+      respondedUsersId : [[]]
     })
   }
 
