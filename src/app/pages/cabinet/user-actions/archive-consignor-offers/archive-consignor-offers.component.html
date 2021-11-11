@@ -1,1 +1,62 @@
-<p>archive-consignor-offers works!</p>
+<div class="table-settings">
+    <div class="find-count">
+      <span></span>
+    </div>
+  </div>
+  <div class="table-container">
+    <table>
+      <thead>
+        <tr>
+          <th>
+            <span>
+              Місце завантаження
+            </span>
+          </th>
+          <th>
+            <span>
+              Місце розвантаження
+            </span>
+          </th>
+          <th>
+            <span>
+              Вантаж
+            </span>
+          </th>
+          <th>
+            <span>
+              Ціна
+            </span>
+          </th>
+          <th>
+            <span>
+              Розміщено
+            </span>
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let offer of activeOffersList ;let i = index">
+          <td>
+            <span class="country">{{offer.loadingCountry}}</span>
+            <span class="city">{{offer.loadingCity}}</span>
+            <span class="data">{{offer.loadingDate}}</span>
+          </td>
+          <td>
+            <span class="country">{{offer.unloadingCountry}}</span>
+            <span class="city">{{offer.unloadingCity}}</span>
+            <span class="data">{{offer.unloadingDate}}</span>
+          </td>
+          <td>
+              <span>{{ offer.cargo }}</span>
+          </td>
+          <td>
+            <span class="price">{{offer.price}}</span>
+          </td>
+          <td>
+            <span class="data">{{ offer.date.toDate()	| date: 'short'}}</span>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  
