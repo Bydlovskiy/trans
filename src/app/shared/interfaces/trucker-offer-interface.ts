@@ -13,5 +13,6 @@ export interface ITruckerOffer {
     price: String,
     userId : String,
     id : String,
-    status : String
+    status : String,
+    respondedUsersId : String[]
 }

@@ -1,1 +1,16 @@
-<p>messages works!</p>
+<div class="container-main" >
+    <div class="title-container">
+      <b>Сповіщення</b>
+    </div>
+    <div class="buttons-container">
+      <div class="button" [routerLink]="[ '/cabinet/messages', path[0] ]">
+        <span>Ваші пропозиції</span>
+      </div>
+      <div class="button" [routerLink]="[ '/cabinet/messages', path[1] ]">
+        <span>Інші пропозиції</span>
+      </div>
+    </div>
+    <div>
+      <router-outlet></router-outlet>
+    </div>
+  </div>

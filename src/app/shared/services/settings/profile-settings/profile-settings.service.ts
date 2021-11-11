@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { collection, collectionData, doc, DocumentData, Firestore, setDoc, updateDoc } from '@angular/fire/firestore';
+import { collection, collectionData, doc, DocumentData, Firestore, getDocs, query, QuerySnapshot, setDoc, updateDoc, where } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
 import { IuserRequest } from '../../../interfaces/user-interface';
 
@@ -16,4 +16,6 @@ export class ProfileSettingsService {
       user: user
     });
   }
+
+
 }

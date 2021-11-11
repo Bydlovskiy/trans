@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "AAAA,AAAA,wBAAwB,CAAA;EACpB,OAAO,EAAE,IAAI;CAahB;;AAdD,AAEI,wBAFoB,CAEpB,MAAM,CAAA;EACF,OAAO,EAAE,IAAI;EACb,KAAK,EAAE,IAAI;CASd;;AAbL,AAKQ,wBALgB,CAEpB,MAAM,CAGF,IAAI,CAAA;EACA,KAAK,EAAE,IAAI;EACX,SAAS,EAAE,IAAI;EACf,MAAM,EAAE,IAAI;EACZ,OAAO,EAAE,IAAI;EACb,WAAW,EAAE,MAAM;EACnB,eAAe,EAAE,MAAM;CAC1B",
+    "sources": [
+        "cars-settings.component.scss"
+    ],
+    "names": [],
+    "file": "cars-settings.component.css"
+}

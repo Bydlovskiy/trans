@@ -1,0 +1,50 @@
+.container-main {
+    width: 100vw;
+    height: 100vh;
+  //   background-color: black;
+    padding: 0;
+    margin: 0;
+  
+    .title-container {
+      height: 100px;
+      padding: 38px;
+      border-bottom: 1px solid #5c93b2;
+  
+      b {
+        font-size: 20px;
+        width: 200px;
+      }
+    }
+  
+    .buttons-container {
+      height: 100px;
+      display: flex;
+  
+      .button {
+        height: 90%;
+        width: 25%;
+        background-color: white;
+        margin: 10px 0 0 20px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: all 0.5s;
+        border: 1px solid #5c93b2;
+        span {
+          font-size: 17px;
+          transition: all 0.5s;
+          color: #5c93b2;
+        }
+        &:hover {
+          span {
+            font-size: 20px;
+            font-weight: 700;
+          }
+          background-color: #b9d7e9;
+        }
+      }
+    }
+  }
+  

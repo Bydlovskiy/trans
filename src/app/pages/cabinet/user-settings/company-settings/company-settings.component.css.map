@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "",
+    "sources": [
+        "company-settings.component.scss"
+    ],
+    "names": [],
+    "file": "company-settings.component.css"
+}

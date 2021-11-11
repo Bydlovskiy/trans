@@ -1,17 +1,10 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './pages/home/home.component';
-import { AdminComponent } from './pages/admin/admin.component';
-import { AdminBlogComponent } from './pages/admin/admin-blog/admin-blog.component';
-import { AdminAccountsComponent } from './pages/admin/admin-accounts/admin-accounts.component';
-import { AdminTruckerAccountsComponent } from './pages/admin/admin-accounts/admin-trucker-accounts/admin-trucker-accounts.component';
-import { AdminConsignorAccountsComponent } from './pages/admin/admin-accounts/admin-consignor-accounts/admin-consignor-accounts.component';
 import { HelpComponent } from './pages/help/help.component';
 import { KontaktyComponent } from './pages/kontakty/kontakty.component';
 import { LoginComponent } from './pages/login/login.component';
 import { RegisterComponent } from './pages/register/register.component';
-import { BlogComponent } from './pages/blog/blog.component';
-import { BlogDetailsComponent } from './pages/blog-details/blog-details.component';
 import { CabinetComponent } from './pages/cabinet/cabinet.component';
 import { TruckerComponent } from './pages/home/trucker/trucker.component';
 import { ConsignorComponent } from './pages/home/consignor/consignor.component';
@@ -35,14 +28,16 @@ import { CreateConsignorOfferComponent } from './pages/cabinet/user-actions/crea
 import { ActiveConsignorOffersComponent } from './pages/cabinet/user-actions/active-consignor-offers/active-consignor-offers.component';
 import { ArchiveConsignorOffersComponent } from './pages/cabinet/user-actions/archive-consignor-offers/archive-consignor-offers.component';
 import { TruckerExchangeComponent } from './pages/cabinet/trucker-exchange/trucker-exchange.component';
+import { YouTruckerOffersComponent } from './pages/cabinet/messages/you-trucker-offers/you-trucker-offers.component';
+import { YourConsignorOffersComponent } from './pages/cabinet/messages/your-consignor-offers/your-consignor-offers.component';
+import { OthersTruckerOffersComponent } from './pages/cabinet/messages/others-trucker-offers/others-trucker-offers.component';
+import { OthersConsignorOffersComponent } from './pages/cabinet/messages/others-consignor-offers/others-consignor-offers.component';
 
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'trucker', component: TruckerComponent },
   { path: 'consignor', component: ConsignorComponent },
-  { path: 'blog', component: BlogComponent },
-  { path: 'blog/:id', component: BlogDetailsComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'trucker-register', component: TruckerRegisterComponent },
   { path: 'consignor-register', component: ConsignorRegisterComponent },
@@ -73,22 +68,15 @@ const routes: Routes = [
       ]},
       { path: 'trucker-exchange' ,component : TruckerExchangeComponent},
       { path: 'consignor-exchange', component: ExchangeComponent },
-      { path: 'messages', component: MessagesComponent },
+      { path: 'messages', component: MessagesComponent ,children : [
+        {path : 'your-trucker-offers' , component : YouTruckerOffersComponent },
+        {path : 'your-consignor-offers' , component : YourConsignorOffersComponent},
+        {path : 'others-trucker-offers' , component :  OthersTruckerOffersComponent},
+        {path : 'others-consignor-offers' , component : OthersConsignorOffersComponent},
+      ]},
       { path: 'info', component: UserInfoComponent }
     ]
-  },
-  {
-    path: 'admin', component: AdminComponent, children: [
-      { path: 'admin-blog', component: AdminBlogComponent },
-      {
-        path: 'admin-accounts', component: AdminAccountsComponent, children: [
-          { path: 'trucker', component: AdminTruckerAccountsComponent },
-          { path: 'consignor', component: AdminConsignorAccountsComponent }
-        ]
-      }
-    ]
-  },
-
+  }
 ];
 
 @NgModule({

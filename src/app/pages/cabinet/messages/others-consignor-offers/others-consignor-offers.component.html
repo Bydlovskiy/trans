@@ -1,0 +1,25 @@
+<div class="container-all">
+    <table>
+        <thead>
+            <tr>
+                <th>Користувач</th>
+                <th>Замовлення</th>
+                <th>Статус</th>
+            </tr>    
+        </thead>
+        <tbody>
+            <tr *ngFor="let notification of notificationsList">
+                <td>
+                    <span>Назва компанії : </span>
+                    "{{ notification.customerData.company.name }}"
+                </td>
+                <td>
+                    <button class="btn btn-success btn-sm">Деталі замовлення</button>
+                </td>
+                <td>
+                    {{ notification.status == 'confirmed' ? 'Ваша заявка прийнята' : 'Ваша заявка відхилена' }}
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

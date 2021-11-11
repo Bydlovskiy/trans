@@ -1,0 +1,24 @@
+.cars-settings-container {
+  padding: 20px;
+}
+
+.cars-settings-container .table {
+  padding: 20px;
+  width: 100%;
+}
+
+.cars-settings-container .table .btn {
+  width: 50px;
+  font-size: 10px;
+  height: 20px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+/*# sourceMappingURL=cars-settings.component.css.map */

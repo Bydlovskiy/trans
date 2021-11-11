@@ -18,8 +18,7 @@ export class CabinetComponent implements OnInit {
   }
 
   logOut(): void {
-  
-    
+
     this.authService.logOut();
   }
 

@@ -98,7 +98,8 @@ export class CreateConsignorOfferComponent implements OnInit {
       userId: [this.currentUserId],
       status: [null, Validators.required],
       date: [null, Validators.required],
-      id : [null,Validators.required]
+      id : [null,Validators.required],
+      respondedUsersId : [null]
     })
   }
 

@@ -1,0 +1,22 @@
+<div class="container-main">
+    <table>
+        <thead>
+            <tr>
+                <th>Дані про фірму</th>
+                <th>Пропозиція</th>
+                <th>Статус</th>
+                <th>Повідомлення</th>
+                <th>Дата</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let notification of notificationsList">
+               <td>
+                   <span>
+                       {{notification.customerData}}
+                    </span>
+               </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

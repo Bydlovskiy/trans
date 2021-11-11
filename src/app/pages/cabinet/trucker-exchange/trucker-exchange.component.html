@@ -1,1 +1,95 @@
-<p>trucker-exchange works!</p>
+<div class="main-container">
+  <table>
+    <thead>
+      <tr>
+        <th>
+          <span>
+            Місце завантаження
+          </span>
+        </th>
+        <th>
+          <span>
+            Місце розвантаження
+          </span>
+        </th>
+        <th>
+          <span>
+            Вантаж
+          </span>
+        </th>
+        <th>
+          <span>
+            Вага
+          </span>
+        </th>
+        <th>
+          <span>
+            Ціна
+          </span>
+        </th>
+        <th>
+          <span>
+            Розміщено
+          </span>
+        </th>
+        <th>
+          <span>
+            Інформація про замовника
+          </span>
+        </th>
+        <th>
+          <span>
+            Відкликнутися
+          </span>
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let offer of consignorOffersList;let i = index" >
+        <td>{{ offer.loadingCountry}} {{ offer.loadingCity}} {{ offer.loadingDate}}</td>
+        <td>
+          {{ offer.unloadingCountry}} {{ offer.unloadingCity}} {{ offer.unloadingDate}}
+        </td>
+        <td>
+          {{ offer.cargo}}
+        </td>
+        <td>
+          {{offer.weight}}
+        </td>
+        <td>
+          {{offer.price}}
+        </td>
+        <td>
+          {{offer.date.toDate()	| date: 'short'}}
+        </td>
+        <td>{{ consignorUsersData[i]?.email }}{{ consignorUsersData[i]?.phoneNumber }}</td>
+        <td>
+          <button  type="button" class="btn btn-warning" (click)="createRespondOffer(offer.userId,offer.id)" [disabled]="offer.respondedUsersId.includes(currentUserId)">Вікликнутися</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+<ng-container *ngIf="modalToggle">
+  <div class="container-main">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Введіть коментар</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+          </div>
+          <div class="modal-body">
+            <form [formGroup]="messageGroup" class="form-group">
+                <textarea formControlName="message" class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+            </form>
+              </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal" >Відмінити</button>
+            <button type="button" class="btn btn-primary" (click)="sendRespond()">Надіслати заявку</button>
+          </div>
+        </div>
+      </div>
+</div>
+</ng-container>
+

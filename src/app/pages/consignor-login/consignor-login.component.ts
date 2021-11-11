@@ -23,6 +23,7 @@ export class ConsignorLoginComponent implements OnInit {
   ngOnInit(): void {
     this.initLoginForm()
   }
+  
   initLoginForm(): void {
     this.loginForm = this.fb.group({
       email: [null, Validators.required],
@@ -37,7 +38,6 @@ export class ConsignorLoginComponent implements OnInit {
         id : user.id,
         role : user.role
       }
-      console.log(userLocal);
       localStorage.setItem('user', JSON.stringify(userLocal));
       if(user && user.role === 'consignor'){
         this.router.navigate(['/cabinet']);
@@ -47,8 +47,7 @@ export class ConsignorLoginComponent implements OnInit {
 
   loginConsignor(): void {
     const { email, password } = this.loginForm.value;
-    this.login(email,password).then(data => {
-      console.log(data);
+    this.login(email,password).then(() => {
     })
   }
 }

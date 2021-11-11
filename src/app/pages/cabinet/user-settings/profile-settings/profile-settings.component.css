@@ -1,0 +1,40 @@
+.profile-settings-container {
+  padding: 30px;
+}
+
+.profile-settings-container .foto {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  cursor: pointer;
+  border: 1px solid grey;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  overflow: hidden;
+}
+
+.profile-settings-container .foto input {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.profile-settings-container .foto form {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+/*# sourceMappingURL=profile-settings.component.css.map */

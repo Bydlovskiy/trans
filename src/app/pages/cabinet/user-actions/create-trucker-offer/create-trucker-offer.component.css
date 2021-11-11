@@ -1,0 +1,86 @@
+.container-main {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.container-main form {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: 100%;
+}
+
+.container-main form .block-container {
+  width: 90%;
+  height: 50vh;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.container-main form .block-container .title {
+  height: 50px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  margin-top: 30px;
+  font-size: 25px;
+}
+
+.container-main form label {
+  font-size: 20px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  margin: 10px 0;
+}
+
+.container-main form input {
+  margin: 4px;
+  width: 100%;
+}
+
+.container-main form .other-info {
+  height: 25vh;
+}
+
+.container-main form button {
+  margin: 10px;
+  width: 200px;
+  height: 40px;
+  border-radius: 5px;
+  border: 1px solid #5c93b2;
+  font-size: 17px;
+  -webkit-transition: all 0.5s;
+  transition: all 0.5s;
+  color: #5c93b2;
+}
+
+.container-main form button:hover {
+  font-size: 20px;
+  font-weight: 700;
+  background-color: #b9d7e9;
+}
+/*# sourceMappingURL=create-trucker-offer.component.css.map */
