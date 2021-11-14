@@ -1,23 +1,145 @@
-.header-container{
-    position: fixed;
-    top: 0;
-    left: 0;
+.header-container {
+  z-index: 20;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 150px;
+  
+  .header-background{
+    background: #033857
+  }
+
+  .container-main {
+    width: 40%;
+  }
+
+  .buttons-container {
     width: 100%;
-    height: 150px;
+    height: 40px;
+    display: flex;
+    justify-content: space-between;
+
+    .button {
+      font-size: 23px;
+      border: none;
+      outline: none;
+      background-color: Transparent;
+      color: #fff;
+      cursor: pointer;
+    }
+
+    .register {
+      border: 1px solid #fff;
+    }
+  }
+
+  header {
+    transition: all 0.3s;
+    position: relative;
+    height: 60%;
+    padding: 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .logo {
+    cursor: pointer;
+    height: 50px;
+  }
+
+  .burger-icon {
+    position: relative;
+    display: none;
+    vertical-align: middle;
+    width: 40px;
+    height: 20px;
+    cursor: pointer;
+
+    &::after {
+      position: absolute;
+      top: 0;
+      left: 0;
+      display: block;
+      width: 100%;
+      height: 0.1875rem;
+      background: #fff;
+      box-shadow: 0 0.6875rem 0 #fff, 0 1.375rem 0 #fff;
+      content: '';
+    }
+  }
+}
+
+@media screen and (max-width: 1440px) {
+  .header-container {
+    header {
+      .container-main {
+        width: 50%;
+      }
+
+    }
+  }
+}
+
+
+@media screen and (max-width: 1024px) {
+  .header-container {
+    header {
+      .container-main {
+        display: none;
+
+        .buttons-container {
+          flex-direction: column;
+          background-color: #033857;
+          border: 1px solid #fff;
+          position: absolute;
+          top: 90px;
+          right: 20px;
+          transition: all 0.7s;
+          flex-direction: column;
+          width: 150px !important;
+          height: 150px !important;
+
+          .button {
+            font-size: 15px;
+            border: none;
+            outline: none;
+            background-color: Transparent;
+            color: #fff;
+            cursor: pointer;
+            height: 25%;
+          }
+
+          .register {
+            border: 2px solid #fff;
+          }
+        }
+      }
+    }
+  }
+
+
+
+
+  .burger-icon {
+    display: inline-block !important;
+  }
+
+}
+
+@media screen and (max-width : 575px) {
+  .header-container {
 
     header {
-        height: 60%;
-        padding: 30px;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
+
+      // justify-content: flex-end;
+      .logo-container {
+        .logo {
+          height: 35px;
+
+        }
+      }
     }
-    .burger-icon{
-        height: 50px;
-    }
-    .logo{
-        cursor: pointer;
-        height: 50px;
-    }
-    
+  }
 }

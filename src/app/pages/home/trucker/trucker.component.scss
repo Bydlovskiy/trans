@@ -1,0 +1,194 @@
+.top-container {
+  width: 100%;
+  min-height: 70vh;
+  background: transparent url(/assets/images/hero-carriers.jpg) 25% 0 no-repeat;
+  background-size: cover;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  border-bottom: 0.75rem solid #149fe0;
+}
+
+.bot-container {
+  background: #033857;
+  height: 250px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 20px;
+  color: #fff;
+
+  .exchange-included {
+    background-color: #149fe0;
+    padding: 0.625rem 3.125rem;
+  }
+
+  .title {
+    font-size: 275%;
+    font-weight: 900;
+  }
+
+  .note {
+    text-align: center;
+    font-size: 125%;
+    font-weight: 300;
+  }
+}
+
+.register-container {
+  height: 200px;
+  background-color: #149fe0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
+
+  .title-container {
+    width: 70%;
+    height: 100px;
+    display: flex;
+    justify-content: space-between;
+
+    .title {
+      width: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 175%;
+      font-weight: 300;
+
+      strong {
+        font-weight: 700;
+      }
+    }
+
+    .button {
+      width: 50%;
+      height: 100px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      span {
+        color: #fff;
+        font-size: 175%;
+        font-weight: 800;
+        border: 2px solid #fff;
+        padding: 1.25rem 4.25rem;
+      }
+    }
+  }
+}
+
+@media screen and (max-width : 1400px) {
+  .bot-container {
+    .title {
+      font-size: 200%;
+    }
+  }
+
+  .register-container {
+    .title-container {
+      .title {
+        font-size: 150%;
+      }
+
+      .button {
+        span {
+          padding: 10px 10px;
+        }
+      }
+    }
+  }
+}
+
+
+@media screen and (max-width : 1196px) {
+  .bot-container {
+    .title {
+      font-size: 135%;
+    }
+
+    .note {
+      padding: 0 20px;
+      text-align: center;
+    }
+  }
+
+  .register-container {
+    .title-container {
+      justify-content: center;
+      width: 90%;
+
+      .title {
+        width: 60%;
+        align-content: center;
+        flex-wrap: wrap;
+        font-size: 130%;
+      }
+
+
+
+      .button {
+        width: 30%;
+
+        span {
+          font-size: 150%;
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width : 768px) {
+  .bot-container {
+    .exchange-included {
+      font-size: 12px;
+    }
+
+    .title {
+      padding: 0 20px;
+      text-align: center;
+      font-size: 120%;
+    }
+
+    .note {
+      font-size: 100%;
+    }
+  }
+}
+
+@media screen and (max-width : 576px) {
+  .register-container {
+    .title-container {
+      width: 90%;
+
+      .title {
+        font-size: 110%;
+      }
+
+      .button {
+        span {
+          font-size: 110%
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width : 480px) {
+  .register-container {
+    .title-container {
+      .title {
+        font-size: 95%;
+      }
+
+      .button {
+        span {
+          font-size: 95%;
+        }
+      }
+    }
+  }
+}

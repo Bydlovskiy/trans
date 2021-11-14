@@ -1,0 +1,265 @@
+.top-container {
+  width: 100%;
+  min-height: 70vh;
+  background: transparent url(/assets/images/hero-shippers2.jpg) 25% 0 no-repeat;
+  background-size: cover;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+
+  .top-info {
+    margin-top: 150px;
+    min-height: 60vh;
+    width: 50%;
+
+    .title {
+      color: #fff;
+      font-size: 40px;
+      font-weight: 900;
+      line-height: 50px;
+      padding-bottom: 0;
+      text-transform: uppercase;
+
+      small {
+        font-size: 20px;
+        line-height: 20px;
+        margin: 20px 0 30px
+      }
+    }
+
+    .exchange-included {
+      color: #fff;
+      position: relative;
+      width: 100%;
+      background: #5fa70e;
+      white-space: normal;
+      display: inline-block;
+      height: 100px;
+
+
+      header {
+        font-size: 140%;
+        padding: 17px
+      }
+
+      footer {
+        display: block;
+        position: relative;
+        padding: 5px 25px;
+        background: #6cb619;
+        font-size: 120%;
+        height: 40px;
+      }
+    }
+
+  }
+}
+
+.bot-container {
+  background: #033857;
+  border-top: 15px solid #5fa70e;
+  padding: 0 20px;
+  height: 200px;
+  position: relative;
+  color: #fff;
+  text-align: center;
+  font-size: 25px;
+  font-weight: 300;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  strong {
+    margin: 20px 0 20px;
+    display: block;
+    font-size: inherit;
+    margin-bottom: 1 rem;
+    font-weight: 700;
+    line-height: 1.6;
+  }
+
+  small {
+    font-size: 100%;
+    line-height: inherit;
+
+  }
+}
+
+.register-container {
+  width: 100%;
+  height: 300px;
+  background: #5fa70e;
+  padding: 50px 0 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+
+  img {
+    width: 80px;
+    height: auto;
+  }
+
+  p {
+    color: #fff;
+    font-size: 35px;
+    margin-top: 30px;
+  }
+
+  .button {
+    margin-top: 20px;
+    border: 2px solid #fff;
+    color: #fff;
+    display: inline-block;
+    font-size: 20px;
+    font-weight: 900;
+    line-height: 1;
+    padding: 1rem 2rem 1rem 2rem;
+    text-transform: uppercase;
+    cursor: pointer;
+
+    a {
+      text-decoration: none;
+      display: inline-block;
+      color: #fff;
+    }
+  }
+}
+
+@media screen and (max-width : 1400px) {
+  .top-container {
+
+    .top-info {
+
+      .title {
+        small {
+          font-size: 17px;
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width : 1240px) {
+  .top-container {
+
+    .top-info {
+
+      .title {
+        font-size: 34px;
+
+        small {
+          font-size: 15px;
+        }
+      }
+    }
+  }
+
+  .bot-container {
+    font-size: 20px;
+  }
+
+  .register-container {
+    p {
+      font-size: 28px;
+    }
+  }
+
+  .button {
+    font-size: 15px;
+  }
+}
+
+@media screen and (max-width : 1064px) {
+
+  .top-container {
+
+    .top-info {
+
+      .title {
+        font-size: 30px;
+        padding-right: 20px;
+
+        small {
+          font-size: 13px;
+          margin: 20px 0;
+        }
+      }
+
+      .exchange-included {
+        height: 125px;
+
+        header {
+          padding: 11px 0 11px 17px;
+        }
+      }
+    }
+  }
+
+}
+
+@media screen and (max-width : 992px) {
+  .top-container {
+    .top-info {
+      .title {
+        font-size: 25px;
+        line-height: 30px;
+      }
+    }
+  }
+
+  .bot-container {
+    font-size: 15px;
+  }
+}
+
+@media screen and (max-width : 768px) {
+  .top-container {
+    .top-info {
+
+      h2,
+      h1 {
+        margin-bottom: 20px;
+      }
+
+      .exchange-included {
+        height: 100px;
+
+        header {
+          padding: 12px;
+          font-size: 90%;
+        }
+
+        footer {
+          padding-left: 12px;
+          font-size: 90%;
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width : 575px) {
+  .top-container {
+    .top-info {
+      width: 70%;
+    }
+  }
+  .register-container {
+    height: 200px;
+
+    img {
+      width: 40px;
+    }
+
+    p {
+      font-size: 20px;
+      margin-top: 15px;
+    }
+
+    .button {
+      font-size: 12px;
+      padding: 12px;
+    }
+  }
+}

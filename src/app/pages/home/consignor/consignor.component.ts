@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-consignor',
@@ -6,10 +6,11 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./consignor.component.scss']
 })
 export class ConsignorComponent implements OnInit {
-
+  
   constructor() { }
 
   ngOnInit(): void {
+
   }
 
 }
