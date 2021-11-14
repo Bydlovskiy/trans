@@ -6,16 +6,13 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { HeaderComponent } from './components/header/header.component';
-import { BurgerComponent } from './components/burger/burger.component';
 import { HomeComponent } from './pages/home/home.component';
-import { HelpComponent } from './pages/help/help.component';
 import { KontaktyComponent } from './pages/kontakty/kontakty.component';
 import { LoginComponent } from './pages/login/login.component';
 import { RegisterComponent } from './pages/register/register.component';
 import { CabinetComponent } from './pages/cabinet/cabinet.component';
 import { TruckerComponent } from './pages/home/trucker/trucker.component';
 import { ConsignorComponent } from './pages/home/consignor/consignor.component';
-import { UserBlogComponent } from './pages/cabinet/user-blog/user-blog.component';
 import { TruckerRegisterComponent } from './pages/trucker-register/trucker-register.component';
 import { ConsignorRegisterComponent } from './pages/consignor-register/consignor-register.component';
 import { ConsignorLoginComponent } from './pages/consignor-login/consignor-login.component';
@@ -57,17 +54,14 @@ import { YourConsignorOffersComponent } from './pages/cabinet/messages/your-cons
   declarations: [
     AppComponent,
     HeaderComponent,
-    BurgerComponent,
     FooterComponent,
     HomeComponent,
-    HelpComponent,
     KontaktyComponent,
     LoginComponent,
     RegisterComponent,
     CabinetComponent,
     TruckerComponent,
     ConsignorComponent,
-    UserBlogComponent,
     TruckerRegisterComponent,
     ConsignorRegisterComponent,
     ConsignorLoginComponent,

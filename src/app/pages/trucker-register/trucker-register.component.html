@@ -1,9 +1,31 @@
-<app-header></app-header>
-<div class="choose-login-type-container">
-    <form [formGroup]="registerForm" (ngSubmit)="registerTrucker()" class="small-container">
-        <input type="text" placeholder="phoneNumber" formControlName="phoneNumber" >
-        <input type="email" placeholder="email" formControlName="email" >
-        <input type="password" placeholder="password" formControlName="password" >
-        <button type="submit">зареєструватися</button>
+<div class="login-container">
+  <div class="content">
+    <div class="logo-container" [routerLink]="[ '/' ]">
+      <img class="logo" src="/assets/icons/logo-tfx-white.svg">
+    </div>
+    <div class="title">
+      <p>Вітаємо на логістичній Платформі Trans.eu</p>
+    </div>
+    <form [formGroup]="registerForm" (ngSubmit)="registerTrucker()">
+      <div class="input-container">
+        <label for="email">email
+          <input formControlName="email" type="email" placeholder="email" id="email">
+        </label>
+      </div>
+      <div class="input-container">
+        <label for="fhoneNumber">Номер телефону
+          <input type="text" placeholder="phone number" formControlName="phoneNumber" id="fhoneNumber">
+        </label>
+      </div>
+      <div class="input-container">
+        <label for="password">Пароль
+          <input formControlName="password" type="password" placeholder="password" id="password">
+        </label>
+      </div>
+      <button type="submit">Зареєструватися</button>
     </form>
   </div>
+  <footer>
+    <span>Відділ підтримки Клієнтів: </span><span> 032 247 04 07</span>
+  </footer>
+</div>

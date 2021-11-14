@@ -1,8 +1,26 @@
-<app-header></app-header>
-<div class="choose-login-type-container">
-    <form [formGroup]="loginForm" (ngSubmit)="loginConsignor()" class="small-container">
-      <input formControlName="email" type="text" placeholder="email">
-      <input formControlName="password" type="password" placeholder="password">
-      <button  type="submit">увійти</button>
+<div class="login-container">
+  <div class="content">
+    <div class="logo-container" [routerLink]="[ '/' ]">
+      <img class="logo" src="/assets/icons/logo-tfx-white.svg">
+    </div>
+    <div class="title">
+      <p>Вітаємо на логістичній Платформі Trans.eu</p>
+    </div>
+    <form [formGroup]="loginForm" (ngSubmit)="loginConsignor()">
+      <div class="input-container">
+        <label for="email">email
+          <input formControlName="email" type="email" placeholder="email" id="email">
+        </label>
+      </div>
+      <div class="input-container">
+        <label for="password">Пароль
+          <input formControlName="password" type="password" placeholder="password" id="password">
+        </label>
+      </div>
+      <button type="submit">Ввійти</button>
     </form>
   </div>
+  <footer>
+    <span>Відділ підтримки Клієнтів: </span><span> 032 247 04 07</span>
+  </footer>
+</div>

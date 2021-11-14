@@ -1,7 +1,22 @@
-<app-header></app-header>
-<div class="choose-login-type-container">
-    <div class="small-container">
-      <button type="button" [routerLink]="[ '/trucker-login' ]">перевізник</button>
-      <button type="button" [routerLink]="[ '/consignor-login' ]">товаровідправник</button>
+<div class="choose-regiter-type-container">
+  <div class="content">
+    <div class="logo-container" [routerLink]="[ '/' ]">
+      <img class="logo" src="/assets/icons/logo-tfx-white.svg">
+    </div>
+    <div class="title">
+      <p>Вітаємо на логістичній Платформі Trans.eu</p>
+    </div>
+    <div class="buttons-container">
+      <div class="button-container" [routerLink]="[ '/trucker-login' ]">
+        <span>Увійти як перевізник</span>
+      </div>
+      <div class="button-container" [routerLink]="[ '/consignor-login' ]">
+        <span>Увійти як товаровідправник</span>
+
+      </div>
     </div>
   </div>
+  <footer>
+    <span>Відділ підтримки Клієнтів: </span><span> 032 247 04 07</span>
+  </footer>
+</div>

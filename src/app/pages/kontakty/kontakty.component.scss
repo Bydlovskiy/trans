@@ -1,0 +1,27 @@
+
+
+.contact-container {
+  background: transparent url(/assets/images/hero-contact.jpg) top center no-repeat;
+  height: 100vh;
+  width: 100%;
+  background-size: cover;
+  color: #fff;
+  padding-top: 20vh;
+
+  section {
+    padding: 0 50px;
+    text-align: center;
+
+    h1 {
+      font-size: 300%;
+      font-weight: 300;
+      p {
+        font-size: 70%;
+
+        line-height: 1.6;
+        text-rendering: optimizeLegibility;
+      }
+    }
+  }
+
+}

@@ -1,14 +1,12 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './pages/home/home.component';
-import { HelpComponent } from './pages/help/help.component';
 import { KontaktyComponent } from './pages/kontakty/kontakty.component';
 import { LoginComponent } from './pages/login/login.component';
 import { RegisterComponent } from './pages/register/register.component';
 import { CabinetComponent } from './pages/cabinet/cabinet.component';
 import { TruckerComponent } from './pages/home/trucker/trucker.component';
 import { ConsignorComponent } from './pages/home/consignor/consignor.component';
-import { UserBlogComponent } from './pages/cabinet/user-blog/user-blog.component';
 import { TruckerRegisterComponent } from './pages/trucker-register/trucker-register.component';
 import { ConsignorRegisterComponent } from './pages/consignor-register/consignor-register.component';
 import { TruckerLoginComponent } from './pages/trucker-login/trucker-login.component';
@@ -44,11 +42,10 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'trucker-login', component: TruckerLoginComponent },
   { path: 'consignor-login', component: ConsignorLoginComponent },
-  { path: 'help', component: HelpComponent },
   { path: 'contacts', component: KontaktyComponent },
   {
     path: 'cabinet', component: CabinetComponent, children: [
-      { path: '', component: UserBlogComponent },
+      { path: '', pathMatch: 'full', redirectTo: 'settings' },
       {
         path: 'settings', component: UserSettingsComponent, children: [
           { path: '', pathMatch: 'full', redirectTo: 'profile' },

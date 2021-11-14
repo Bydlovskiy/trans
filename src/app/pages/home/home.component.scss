@@ -1,53 +1,132 @@
 .home-page-container {
-    width: 100vw;
-    height: 100vh;
-        background: transparent url(/assets/images/hero-frontpage.png) top center no-repeat;
-        background-size: cover;
+  width: 100vw;
+  height: 100vh;
+  background: transparent url(/assets/images/hero-frontpage.png) top center no-repeat;
+  background-size: cover;
 
+  display: flex;
+
+  .trucker-page,
+  .consignor-page {
+    width: 50%;
+    height: 100%;
     display: flex;
-    .trucker-page,.consignor-page{
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-right: 1px solid #202e3d;
+
+    .trucker-button {
+      border-color: #5fa70e
+    }
+
+    .consignor-button {
+      border-color: #149fe0
+    }
+
+    .content {
+      width: 100%;
+      height: 170px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-around;
+      align-items: center;
+    }
+  }
+
+  .button {
+    cursor: pointer;
+    width: 50%;
+    font-size: 150%;
+    color: white;
+    position: relative;
+    padding: .4375rem 6.25rem .4375rem 3.125rem;
+    border: 2px solid white;
+    display: inline-block;
+    white-space: nowrap;
+
+    &::after {
+      right: 50px;
+      transition: right .5s ease-in;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      position: absolute;
+      content: " ";
+      width: 1.8125rem;
+      height: 1.0625rem;
+      background: transparent url(/assets/icons/white-arrow-right.png) top left no-repeat;
+      background-size: cover;
+    }
+
+    &:hover {
+      &::after {
+        right: 20px
+      }
+    }
+  }
+
+  img {
+    height: 50px;
+  }
+}
+
+@media screen and (max-width : 1770px) {
+  .home-page-container {
+    .button {
+      text-align: center;
+      padding: 10px 0;
+
+      &::after {
+        display: none;
+      }
+    }
+  }
+}
+
+@media screen and (max-width : 1240px) {
+  .home-page-container {
+    .button {
+        width: 60%;
+    }
+  }
+}
+
+
+@media screen and (max-width : 1024px) {
+  .home-page-container {
+    flex-direction: column;
+    .button {
         width: 50%;
-        height: 100%;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items : center;
-        border-right: 1px solid #202e3d;
-        .trucker-button{
-            border-color: #5fa70e 
-        }
-        .consignor-button{
-           border-color: #149fe0
+    }
+    .trucker-page,
+    .consignor-page {
+      height: 50%;
+      width: 100%;
+
+    }
+
+    .consignor-page {
+      border-top: 1px solid #202e3d;
+    }
+  }
+}
+
+@media screen and (max-width : 670px){
+    .home-page-container {
+        .button{
+            font-size: 120%;
         }
     }
-    
-    .button{
-        width:50%;
-        font-size: 150%;
-        color:white;
-        position: relative;
-        padding: .4375rem 6.25rem .4375rem 3.125rem;
-        border: 2px solid white;
-        display: inline-block;
-        white-space: nowrap;
-        &::after{
-            right: 50px;
-            transition: right .5s ease-in;
-            top: 14px;
-            position: absolute;
-            content: " ";
-            width: 1.8125rem;
-            height: 1.0625rem;
-            background: transparent url(/assets/icons/white-arrow-right.png) top left no-repeat;
-            background-size: cover;
+}
+
+@media screen and (max-width : 520px){
+    .home-page-container {
+        img{
+            height: 30px;
         }
-        &:hover{
-            &::after{
-                right : 20px
-            }
+        .button{
+            width: 63%;
+            font-size: 100%;
         }
-    }
-    img{
-        height:50px;
     }
 }
