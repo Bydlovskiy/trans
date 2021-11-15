@@ -44,6 +44,9 @@ import { YouTruckerOffersComponent } from './pages/cabinet/messages/you-trucker-
 import { OthersTruckerOffersComponent } from './pages/cabinet/messages/others-trucker-offers/others-trucker-offers.component';
 import { OthersConsignorOffersComponent } from './pages/cabinet/messages/others-consignor-offers/others-consignor-offers.component';
 import { YourConsignorOffersComponent } from './pages/cabinet/messages/your-consignor-offers/your-consignor-offers.component';
+import { ToastrModule } from 'ngx-toastr';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
 
 
 
@@ -92,6 +95,8 @@ import { YourConsignorOffersComponent } from './pages/cabinet/messages/your-cons
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
+    ToastrModule.forRoot({positionClass: 'toast-bottom-left',}),
+    BrowserAnimationsModule,
     provideFirebaseApp(() => initializeApp( environment.firebaseConfig )),
     provideFirestore(() => getFirestore()),
     provideStorage(()=> getStorage()),
