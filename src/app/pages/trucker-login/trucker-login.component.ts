@@ -2,9 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { Auth, signInWithEmailAndPassword } from '@angular/fire/auth';
 import { doc, docData } from '@angular/fire/firestore';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Firestore } from '@angular/fire/firestore';
 import { Router } from '@angular/router';
-import { Subscription } from 'rxjs';
+import { ToastrService } from 'ngx-toastr';
+import { AuthService } from 'src/app/shared/services/auth/auth.service';
 
 @Component({
   selector: 'app-trucker-login',
@@ -13,10 +13,9 @@ import { Subscription } from 'rxjs';
 })
 export class TruckerLoginComponent implements OnInit {
   public loginForm !: FormGroup;
-  public loginSubscription!: Subscription;
   constructor(private fb: FormBuilder,
-    private auth: Auth,
-    private afs: Firestore,
+    private toastr: ToastrService,
+    private authService : AuthService,
     private router: Router,
   
               ) { }
@@ -31,27 +30,35 @@ export class TruckerLoginComponent implements OnInit {
     })
   }
 
-  async login(email: string, password: string): Promise<any> {
-    const credential = await signInWithEmailAndPassword(this.auth, email, password);
-    this.loginSubscription = docData(doc(this.afs, 'users', credential.user.uid)).subscribe(user => {
-      const userLocal = {
-        id : user.id,
-        role : user.role
-      }
-      localStorage.setItem('user', JSON.stringify(userLocal));
-      if(user && user.role === 'trucker'){
-        this.router.navigate(['/cabinet']);
-      }
-    });
-  }
-
- 
-
 
   loginTrucker(): void {
-    const { email, password } = this.loginForm.value;
-    this.login(email,password).then(data => {
+    if (!this.loginForm.valid) {
+      this.toastr.error('Заповніть форму')
 
-    })
+    } else {
+      const { email, password } = this.loginForm.value;
+      this.login(email, password)
+    }
   }
+
+  login(email: string, password: string) {
+    this.authService.logIn(email,password).then(credential => {
+      this.authService.getUserData(credential.user.uid).then(user => {
+        const currentUser : any = user.data();
+        if (user && currentUser.role  === 'trucker') {
+          const userLocal = {
+            id: user.id,
+            role: currentUser.role
+          }
+          localStorage.setItem('user', JSON.stringify(userLocal));
+          this.toastr.success('Вхід виконано')
+          this.router.navigate(['/cabinet']);
+        } else if (user && currentUser.role === 'consignor') {
+          this.toastr.error('Увійдіть як перевізник')
+        } 
+      }); 
+    }).catch(() => {
+      this.toastr.error('Неправильний email чи пароль')
+    })
+  } 
 }

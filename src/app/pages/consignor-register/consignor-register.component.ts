@@ -4,6 +4,7 @@ import { doc, Firestore, setDoc } from '@angular/fire/firestore';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import { AuthService } from 'src/app/shared/services/auth/auth.service';
 
 @Component({
   selector: 'app-consignor-register',
@@ -13,15 +14,15 @@ import { ToastrService } from 'ngx-toastr';
 export class ConsignorRegisterComponent implements OnInit {
   public registerForm !: FormGroup;
   constructor(private fb: FormBuilder,
-    private auth: Auth,
-    private firestore: Firestore,
+    private authService: AuthService,
     private router: Router,
     private toastr: ToastrService) { }
 
   ngOnInit(): void {
     this.initSignForm();
   }
-  initSignForm(): void {
+
+  private initSignForm(): void {
     this.registerForm = this.fb.group({
       email: [null, Validators.required],
       password: [null, Validators.required],
@@ -30,36 +31,32 @@ export class ConsignorRegisterComponent implements OnInit {
     })
   }
 
-  registerConsignor(): void {
-    if (this.registerForm.valid) {
+  public registerConsignor(): void {
+    if (!this.registerForm.valid) {
+      this.toastr.error('Введіть правильно дані');
+    } else {
       const email = this.registerForm.controls['email'].value;
       const password = this.registerForm.controls['password'].value;
-      this.emailSignUp(email, password).then(() => {
-        this.toastr.success('Реєстрація Успішна')
-      }).catch(err => {
-      })
-    } else {
-      this.toastr.error('Введіть правильно дані');
+      this.emailSignUp(email, password)
     }
-   
   }
 
-  async emailSignUp(email: string, password: string): Promise<any> {
-    createUserWithEmailAndPassword(this.auth, email, password)
-      .then(data => {
-        const user = {
-          phoneNumber: this.registerForm.controls['phoneNumber'].value,
-          email: this.registerForm.controls['email'].value,
-          role: this.registerForm.controls['role'].value,
-          id: data.user.uid,
-          user: {},
-          company: {},
-        }
-        this.registerForm.reset();
-        this.router.navigate(['/consignor-login'])
-        setDoc(doc(this.firestore, "users", data.user.uid), user)
-      }).catch(err => {
-        console.log(err, 'register error');
-      })
+  private  emailSignUp(email: string, password: string): void {
+    this.authService.register(email,password).then(data => {
+      const user = {
+        phoneNumber: this.registerForm.controls['phoneNumber'].value,
+        email: this.registerForm.controls['email'].value,
+        role: this.registerForm.controls['role'].value,
+        id: data.user.uid,
+        user: {},
+        company: {},
+      };
+      this.toastr.success('Ви успішно зареєструвались як товаровідправник')
+      this.registerForm.reset();
+      this.router.navigate(['/consignor-login']);
+      this.authService.setUserData(data.user.uid,user)
+    }).catch(err => {
+      this.toastr.error('Неправильно введені дані')
+    })
   }
 }

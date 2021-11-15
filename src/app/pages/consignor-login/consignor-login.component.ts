@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { Auth, signInWithEmailAndPassword } from '@angular/fire/auth';
-import { doc, docData, Firestore } from '@angular/fire/firestore';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { Subscription } from 'rxjs';
+import { ToastrService } from 'ngx-toastr';
+import { AuthService } from 'src/app/shared/services/auth/auth.service';
 
 @Component({
   selector: 'app-consignor-login',
@@ -12,18 +11,16 @@ import { Subscription } from 'rxjs';
 })
 export class ConsignorLoginComponent implements OnInit {
   public loginForm !: FormGroup;
-  public loginSubscription!: Subscription;
   constructor(private fb: FormBuilder,
-    private auth: Auth,
-    private afs: Firestore,
+    private authService : AuthService,
     private router: Router,
-  
-              ) { }
+    private toastr: ToastrService
+  ) { }
 
   ngOnInit(): void {
     this.initLoginForm()
   }
-  
+
   initLoginForm(): void {
     this.loginForm = this.fb.group({
       email: [null, Validators.required],
@@ -31,23 +28,36 @@ export class ConsignorLoginComponent implements OnInit {
     })
   }
 
-  async login(email: string, password: string): Promise<any> {
-    const credential = await signInWithEmailAndPassword(this.auth, email, password);
-    this.loginSubscription = docData(doc(this.afs, 'users', credential.user.uid)).subscribe(user => {
-      const userLocal = {
-        id : user.id,
-        role : user.role
-      }
-      localStorage.setItem('user', JSON.stringify(userLocal));
-      if(user && user.role === 'consignor'){
-        this.router.navigate(['/cabinet']);
-      }
-    });
+  loginConsignor(): void {
+    if (!this.loginForm.valid) {
+      this.toastr.error('Заповніть форму')
+
+    } else {
+      const { email, password } = this.loginForm.value;
+      this.login(email, password)
+    }
   }
 
-  loginConsignor(): void {
-    const { email, password } = this.loginForm.value;
-    this.login(email,password).then(() => {
+  login(email: string, password: string) {
+    this.authService.logIn(email,password).then(credential => {
+      this.authService.getUserData(credential.user.uid).then(user => {
+        const currentUser : any = user.data();
+        if (user && currentUser.role  === 'consignor') {
+          const userLocal = {
+            id: user.id,
+            role: currentUser.role
+          }
+          localStorage.setItem('user', JSON.stringify(userLocal));
+          this.toastr.success('Вхід виконано')
+          this.router.navigate(['/cabinet']);
+        } else if (user && currentUser.role === 'trucker') {
+          this.toastr.error('Увійдіть як перевізник')
+        } 
+      });
+      
+    }).catch(() => {
+      this.toastr.error('Неправильний email чи пароль')
     })
   }
+
 }
