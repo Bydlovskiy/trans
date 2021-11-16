@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
+import { RouterModule } from '@angular/router';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { FooterComponent } from './components/footer/footer.component';
@@ -17,9 +18,6 @@ import { TruckerRegisterComponent } from './pages/trucker-register/trucker-regis
 import { ConsignorRegisterComponent } from './pages/consignor-register/consignor-register.component';
 import { ConsignorLoginComponent } from './pages/consignor-login/consignor-login.component';
 import { TruckerLoginComponent } from './pages/trucker-login/trucker-login.component';
-import { UserSettingsComponent } from './pages/cabinet/user-settings/user-settings.component';
-import { UserBurgerComponent } from './pages/cabinet/user-burger/user-burger.component';
-
 import { provideFirebaseApp, getApp, initializeApp } from '@angular/fire/app';
 import { getFirestore, provideFirestore } from '@angular/fire/firestore';
 import { getStorage, provideStorage } from '@angular/fire/storage';
@@ -29,9 +27,6 @@ import { UserActionsComponent } from './pages/cabinet/user-actions/user-actions.
 import { ExchangeComponent } from './pages/cabinet/consignor-exchange/consignor-exchange.component';
 import { MessagesComponent } from './pages/cabinet/messages/messages.component';
 import { UserInfoComponent } from './pages/cabinet/user-info/user-info.component';
-import { CarsSettingsComponent } from './pages/cabinet/user-settings/cars-settings/cars-settings.component';
-import { ProfileSettingsComponent } from './pages/cabinet/user-settings/profile-settings/profile-settings.component';
-import { CompanySettingsComponent } from './pages/cabinet/user-settings/company-settings/company-settings.component';
 import { CreateOfferComponent } from './pages/cabinet/user-actions/create-trucker-offer/create-trucker-offer.component';
 import { ActiveOffersComponent } from './pages/cabinet/user-actions/active-trucker-offers/active-trucker-offers.component';
 import { ArchiveOffersComponent } from './pages/cabinet/user-actions/archive-trucker-offers/archive-trucker-offers.component';
@@ -46,6 +41,11 @@ import { OthersConsignorOffersComponent } from './pages/cabinet/messages/others-
 import { YourConsignorOffersComponent } from './pages/cabinet/messages/your-consignor-offers/your-consignor-offers.component';
 import { ToastrModule } from 'ngx-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { UserSettingsComponent } from './pages/cabinet/user-info/user-settings/user-settings.component';
+
+import { CarsSettingsComponent } from './pages/cabinet/user-info/user-settings/cars-settings/cars-settings.component';
+import { CompanySettingsComponent } from './pages/cabinet/user-info/user-settings/company-settings/company-settings.component';
+import { ProfileSettingsComponent } from './pages/cabinet/user-info/user-settings/profile-settings/profile-settings.component';
 
 
 
@@ -69,15 +69,10 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     ConsignorRegisterComponent,
     ConsignorLoginComponent,
     TruckerLoginComponent,
-    UserSettingsComponent,
-    UserBurgerComponent,
     UserActionsComponent,
     ExchangeComponent,
     MessagesComponent,
     UserInfoComponent,
-    CarsSettingsComponent,
-    ProfileSettingsComponent,
-    CompanySettingsComponent,
     CreateOfferComponent,
     ActiveOffersComponent,
     ArchiveOffersComponent,
@@ -88,9 +83,14 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     YouTruckerOffersComponent,
     OthersTruckerOffersComponent,
     OthersConsignorOffersComponent,
-    YourConsignorOffersComponent
+    YourConsignorOffersComponent, 
+    CarsSettingsComponent,
+    CompanySettingsComponent,
+    ProfileSettingsComponent,
+    UserSettingsComponent
   ],
   imports: [
+    RouterModule,
     BrowserModule,
     AppRoutingModule,
     FormsModule,
@@ -102,9 +102,10 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     provideStorage(()=> getStorage()),
     provideAuth(() => getAuth()),
     GooglePlaceModule,
+
   ],
   providers: [],
-  bootstrap: [AppComponent]
-
+  bootstrap: [AppComponent],
+ 
 })
 export class AppModule { }

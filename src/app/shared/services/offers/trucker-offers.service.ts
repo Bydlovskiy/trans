@@ -12,7 +12,6 @@ export class TruckerOffersService {
 
   constructor(private firestore: Firestore) { }
 
-
   getAllforCurrentUser(userId: string): Promise<QuerySnapshot<DocumentData>> {
     return getDocs(query(collection(this.firestore, "trucker-offers"), where("userId", "==", userId)));
   }
@@ -42,10 +41,8 @@ export class TruckerOffersService {
     return getDocs(query(collection(this.firestore, "users"), where("id", "==", userId)));
   }
 
-  changeOfferStatus(offerId : string) : Promise<void> {
-    return updateDoc(doc(this.firestore, "trucker-offers", offerId),{ status :  'archive' })
+  changeOfferStatus(offerId: string): Promise<void> {
+    return updateDoc(doc(this.firestore, "trucker-offers", offerId), { status: 'archive' })
   }
-
-
 }
 

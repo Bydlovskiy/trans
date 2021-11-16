@@ -5,45 +5,43 @@
         <th scope="col">#</th>
         <th scope="col">Марка</th>
         <th scope="col">Модель</th>
-        <th scope="col">Рік випуску</th>
-        <th scope="col">Тип Кузова</th>
-        <th scope="col">Євро стандарт</th>
-        <th scope="col">Детальніше</th>
+        <th class="year" scope="col">Рік випуску</th>
+        <th class="type" scope="col">Тип Кузова</th>
+        <th class="euro" scope="col">Євро стандарт</th>
+        <th scope="col">Дії</th>
       </tr>
     </thead>
     <tbody>
       <tr *ngFor="let car of carList;let i = index">
-        <th scope="row">{{ i + 1 }}</th>
+        <td style="font-weight: 700;" scope="row">{{ i + 1 }}</td>
         <td scope="col">{{ car.mark }}</td>
         <td scope="col">{{ car.model }}</td>
-        <td scope="col">{{ car.year }}</td>
-        <td scope="col">{{ car.type }}</td>
-        <td scope="col">{{ car.EURO }}</td>
-        <td scope="col">
-            <div class="details">
-                <button  (click)="updateCar(car)"  type="button" class="btn btn-warning ">Редагувати</button>
-                <button (click)="deleteCar(car.id)"  type="button" class="btn btn-danger">Видалити</button>
-            </div>
+        <td class="year" scope="col">{{ car.year }}</td>
+        <td class="type" scope="col">{{ car.type }}</td>
+        <td class="euro" scope="col">{{ car.EURO }}</td>
+        <td class="actions" scope="col">
+          <button (click)="updateCar(car)" type="button" class="btn btn-warning">Редагувати</button>
+          <button (click)="deleteCar(car.id)" type="button" class="btn btn-danger">Видалити</button>
         </td>
       </tr>
     </tbody>
   </table>
-  <button type="button"  (click)="isAddCar = !isAddCar">Додати автомобіль</button>
+  <button class="add-car" type="button" (click)="isAddCar = !isAddCar">Додати автомобіль</button>
 </div>
 
 <div class="container" *ngIf="isAddCar">
-  <form [formGroup]="carSettingsForm"  (ngSubmit)="editStatus ? saveCar() : addCar()">
+  <form [formGroup]="carSettingsForm" (ngSubmit)="editStatus ? saveCar() : addCar()">
     <label for="mark">Марка
-      <input formControlName="mark"  id="mark" type="text">
+      <input class="form-control" formControlName="mark" id="mark" type="text">
     </label>
     <label for="model">Модель
-      <input formControlName="model" id="model" type="text">
+      <input class="form-control" formControlName="model" id="model" type="text">
     </label>
     <label for="year">Рік випуску
-      <input formControlName="year" id="year" type="text">
+      <input class="form-control" formControlName="year" id="year" type="text">
     </label>
     <label for="type">Тип автомобіля
-      <select formControlName="type" id="type" placeholder="Виберіть тип">
+      <select class="form-control" formControlName="type" id="type" placeholder="Виберіть тип">
         <option value="Напівпричіп Тент">Напівпричіп Тент</option>
         <option value="Рефрижератор">Рефрижератор</option>
         <option value="Ізотерм">Ізотерм</option>
@@ -60,8 +58,11 @@
       </select>
     </label>
     <label for="EURO">Євро стандарт
-        <input formControlName="EURO" type="number" id="EURO">
+      <input class="form-control" formControlName="EURO" type="number" id="EURO">
     </label>
-    <button   type="submit">{{ editStatus ? 'редагувати' : 'створити' }}</button>
+    <div class="crs-buttons">
+      <button type="submit">{{ editStatus ? 'редагувати' : 'створити' }}</button>
+      <button type="button" (click)="isAddCar = false">Скасувати</button>
+    </div>
   </form>
 </div>

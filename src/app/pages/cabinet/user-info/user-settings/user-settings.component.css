@@ -1,9 +1,5 @@
 .settings-container {
-  position: absolute;
-  top: 0;
-  left: 0;
-  z-index: 1;
-  height: 100vh;
+  height: 100%;
   width: 100%;
   display: -webkit-box;
   display: -ms-flexbox;

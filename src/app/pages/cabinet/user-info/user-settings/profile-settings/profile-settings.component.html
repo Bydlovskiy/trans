@@ -1,0 +1,30 @@
+<div class="profile-settings-container">
+  <form [formGroup]="profileSettingsForm" (ngSubmit)="saveData()">
+    <div class="profile-title">
+      <div class="foto" [style.background-image]="'url(' + imagePathCurentUser + ')'">
+        <input type="file" (change)="uploadImage($event)">
+      </div>
+    </div>
+    <div class="profile-block">
+      <label for="name">Ім'я
+        <input class="form-control" formControlName="name" id="name" type="text">
+      </label>
+      <label for="surname">Прізвище
+        <input class="form-control" formControlName="surname" id="surname" type="text">
+      </label>
+    </div>
+    <div class="profile-block">
+      <label for="dateOfBirth">Дата народження
+        <input class="form-control" formControlName="dateOfBirth" id="dateOfBirth" type="date">
+      </label>
+      <div class="radio-container">
+        <input class="form-check-input" formControlName="sex" name="sex" id type="radio" value="man">Чоловік
+        <input class="form-check-input" formControlName="sex" name="sex" type="radio" value="woman">Жінка
+      </div>
+    </div>
+    <div class="profile-buttons">
+      <button type="submit">Зберегти</button>
+      <button type="button" [routerLink]="['/cabinet/info']">Скасувати</button>
+    </div>
+  </form>
+</div>

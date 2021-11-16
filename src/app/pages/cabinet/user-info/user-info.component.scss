@@ -1,0 +1,123 @@
+.info-container {
+  .title {
+    height: 70px;
+    width: 100%;
+    background-color: #eff4f7;
+    display: flex;
+    align-items: center;
+    padding-left: 50px;
+
+    span {
+      display: flex;
+      align-items: center;
+      color: #333333;
+      height: 20px;
+      font-size: 20px;
+      font-weight: bold;
+    }
+  }
+
+  header {
+    height: 100px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 50px;
+
+    .company-name-container {
+      display: flex;
+      justify-content: space-between;
+      width: 22%;
+
+      svg {
+        height: 60px;
+        width: 120px;
+        fill: #cddee7;
+      }
+
+      .company-name {
+        font-size: 20px;
+        margin-left: 10px;
+        font-weight: 700;
+        display: flex;
+        align-items: center;
+      }
+    }
+
+    .settings-button {
+      color: #5c93b2;
+      background: #fff;
+      border-color: #5c93b2;
+      display: inline-block;
+      border-radius: 7px;
+      outline: none;
+      margin: 0;
+      height: 30px;
+      border: 1 px solid;
+      font: inherit;
+      font-weight: 400;
+      position: relative;
+      transition: background-color .15s ease, border-color .15s ease, color .15s ease;
+      overflow: hidden;
+      box-shadow: none;
+      max-width: 100%;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+
+      &:hover {
+        background-color: rgba(127, 191, 228, 0.6)
+      }
+    }
+  }
+
+  section {
+    padding: 20px 50px 0;
+    display: flex;
+    justify-content: space-between;
+
+    .info-block {
+      width: 31%;
+      text-align: left;
+      display: flex;
+      flex-direction: column;
+
+      .title-block {
+        width: 100%;
+        padding-bottom: 10px;
+        font-weight: 700;
+        font-size: 17px;
+        color: #333;
+        border-bottom: 1px solid #e1e8ee;
+      }
+
+      .info {
+        span {
+          font-weight: 500;
+        }
+        p{
+            margin-bottom: 10px;
+        }
+        .contact-container{
+            padding: 10px 0 ;
+            display: flex;
+            align-items: center;
+            svg{
+                width: 15px;
+                height: 15px;
+                margin-right: 10px;
+            }
+            p{
+                margin-bottom: 0;
+            }
+        }
+      }
+    }
+  }
+}
+
+// svg {
+//   height: 4.16666em;
+//   width: 8.33333em;
+//   fill: #cddee7;
+// }

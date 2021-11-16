@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { getDownloadURL, ref, Storage, uploadBytes } from '@angular/fire/storage';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ToastrService } from 'ngx-toastr';
 import { ProfileSettingsService } from 'src/app/shared/services/settings/profile-settings/profile-settings.service';
 
 @Component({
@@ -15,11 +16,13 @@ export class ProfileSettingsComponent implements OnInit {
 
   constructor(private fb: FormBuilder,
     private profileService: ProfileSettingsService,
-    private storage: Storage) {
+    private storage: Storage, 
+    private toastr : ToastrService) {
 
   }
   ngOnInit(): void {
     this.initForm();
+    this.getData();
   }
 
   initForm(): void {
@@ -35,13 +38,13 @@ export class ProfileSettingsComponent implements OnInit {
   saveData(): void {
     if (this.profileSettingsForm.valid){
       this.profileService.setUserData(this.profileSettingsForm.value, this.currentUserid).then(() => {
-        this.profileSettingsForm.reset()
+        this.toastr.success('Дані успішно змінені')
+      }).catch(() => {
+        this.toastr.error('Щось пішло не так')
       })
     } else {
-      console.log('wrong form');
-      
+      this.toastr.error('Заповніть правильно форму')
     }
-  
   }
 
   uploadImage(event: any) {
@@ -71,5 +74,15 @@ export class ProfileSettingsComponent implements OnInit {
     }
   }
 
+  private getData () {
+    this.profileService.getCompanyData(this.currentUserid).then(data => {
+      let profileData !: any;
+      data.forEach(data => {
+        profileData = data.data().user
+      })
+      this.imagePathCurentUser = profileData.imagePath
+      this.profileSettingsForm.patchValue(profileData)
+    })
+  }
 
 }

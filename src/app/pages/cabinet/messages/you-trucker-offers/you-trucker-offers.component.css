@@ -1,1 +1,9 @@
-/* No CSS *//*# sourceMappingURL=you-trucker-offers.component.css.map */
+.container-main {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+/*# sourceMappingURL=you-trucker-offers.component.css.map */

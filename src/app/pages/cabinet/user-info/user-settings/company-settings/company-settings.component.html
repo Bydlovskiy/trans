@@ -1,0 +1,30 @@
+<div class="company-settings-container">
+    <form [formGroup]="companySettingsForm" (ngSubmit)="saveData()">
+      <label for="name">Назва компанії
+        <input class="form-control" formControlName="name" id="name" type="text">
+      </label>
+      <label for="activity">Діяльність компанії
+        <input class="form-control" formControlName="activity" id="activity" type="text">
+      </label>
+      <label for="country">Країна
+        <input class="form-control" formControlName="country" id="country" type="text">
+      </label>
+      <label for="city">Місто
+        <input class="form-control" formControlName="city" id="city" type="text">
+      </label>
+      <label for="street">вулиця
+        <input class="form-control" formControlName="street" id="street" type="text">
+      </label>
+      <label for="IPN">ІПН
+        <input class="form-control" formControlName="IPN" id="IPN" type="number">
+      </label>
+      <label for="EDRPOY">ЄДРПОУ
+        <input class="form-control" formControlName="EDRPOY" id="EDRPOY" type="number">
+      </label>
+      <div class="profile-buttons">
+        <button type="submit">Зберегти</button>
+        <button type="button" [routerLink]="['/cabinet/info']">Скасувати</button>
+      </div>
+    </form>
+  </div>
+  

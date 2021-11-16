@@ -11,14 +11,10 @@ import { TruckerRegisterComponent } from './pages/trucker-register/trucker-regis
 import { ConsignorRegisterComponent } from './pages/consignor-register/consignor-register.component';
 import { TruckerLoginComponent } from './pages/trucker-login/trucker-login.component';
 import { ConsignorLoginComponent } from './pages/consignor-login/consignor-login.component';
-import { UserSettingsComponent } from './pages/cabinet/user-settings/user-settings.component';
 import { UserActionsComponent } from './pages/cabinet/user-actions/user-actions.component';
 import { ExchangeComponent } from './pages/cabinet/consignor-exchange/consignor-exchange.component';
 import { MessagesComponent } from './pages/cabinet/messages/messages.component';
 import { UserInfoComponent } from './pages/cabinet/user-info/user-info.component';
-import { CarsSettingsComponent } from './pages/cabinet/user-settings/cars-settings/cars-settings.component';
-import { ProfileSettingsComponent } from './pages/cabinet/user-settings/profile-settings/profile-settings.component';
-import { CompanySettingsComponent } from './pages/cabinet/user-settings/company-settings/company-settings.component';
 import { ActiveOffersComponent } from './pages/cabinet/user-actions/active-trucker-offers/active-trucker-offers.component';
 import { ArchiveOffersComponent } from './pages/cabinet/user-actions/archive-trucker-offers/archive-trucker-offers.component';
 import { CreateOfferComponent } from './pages/cabinet/user-actions/create-trucker-offer/create-trucker-offer.component';
@@ -30,6 +26,11 @@ import { YouTruckerOffersComponent } from './pages/cabinet/messages/you-trucker-
 import { YourConsignorOffersComponent } from './pages/cabinet/messages/your-consignor-offers/your-consignor-offers.component';
 import { OthersTruckerOffersComponent } from './pages/cabinet/messages/others-trucker-offers/others-trucker-offers.component';
 import { OthersConsignorOffersComponent } from './pages/cabinet/messages/others-consignor-offers/others-consignor-offers.component';
+import { UserSettingsComponent } from './pages/cabinet/user-info/user-settings/user-settings.component';
+import { CarsSettingsComponent } from './pages/cabinet/user-info/user-settings/cars-settings/cars-settings.component';
+import { ProfileSettingsComponent } from './pages/cabinet/user-info/user-settings/profile-settings/profile-settings.component';
+import { CompanySettingsComponent } from './pages/cabinet/user-info/user-settings/company-settings/company-settings.component';
+
 
 
 const routes: Routes = [
@@ -45,15 +46,8 @@ const routes: Routes = [
   { path: 'contacts', component: KontaktyComponent },
   {
     path: 'cabinet', component: CabinetComponent, children: [
-      { path: '', pathMatch: 'full', redirectTo: 'settings' },
-      {
-        path: 'settings', component: UserSettingsComponent, children: [
-          { path: '', pathMatch: 'full', redirectTo: 'profile' },
-          { path: 'cars', component: CarsSettingsComponent },
-          { path: 'profile', component: ProfileSettingsComponent },
-          { path : 'company' ,component : CompanySettingsComponent }
-        ]
-      },
+      { path: '', pathMatch: 'full', redirectTo: 'info' },
+     
       { path: 'user-actions', component: UserActionsComponent ,children :[
         {path :'' , pathMatch : 'full' , redirectTo : 'active-offers'},
         {path : 'active-trucker-offers' , component : ActiveOffersComponent},
@@ -71,7 +65,18 @@ const routes: Routes = [
         {path : 'others-trucker-offers' , component :  OthersTruckerOffersComponent},
         {path : 'others-consignor-offers' , component : OthersConsignorOffersComponent},
       ]},
-      { path: 'info', component: UserInfoComponent }
+      { path: 'info', component: UserInfoComponent , children : [
+        // { path: '', pathMatch: 'full', redirectTo: 'settings' },
+        {
+          path: 'settings', component: UserSettingsComponent, children: [
+            { path: '', pathMatch: 'full', redirectTo: 'profile' },
+            { path: 'cars', component: CarsSettingsComponent },
+            { path: 'profile', component: ProfileSettingsComponent },
+            { path : 'company' ,component : CompanySettingsComponent }
+          ]
+        },
+      ]
+    }
     ]
   }
 ];
