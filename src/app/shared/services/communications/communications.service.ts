@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
-import { addDoc, collection, doc, DocumentData, Firestore, getDocs, query, QuerySnapshot, updateDoc, where } from '@angular/fire/firestore';
+import { addDoc, collection, doc, DocumentData, DocumentSnapshot, Firestore, getDocs, query, QuerySnapshot, updateDoc, where } from '@angular/fire/firestore';
+import { getDoc } from '@firebase/firestore';
 import { IOfferResponde } from '../../interfaces/IOffer-respond';
 
 @Injectable({
@@ -29,14 +30,14 @@ export class CommunicationsService {
   getUserFromId(userId : String) : Promise<QuerySnapshot<DocumentData>> {
     return getDocs(query(collection(this.firestore, "users"), where("id", "==", userId)));
   }
+  
 
-
-  getConsignorOfferFromId(offerId : String) : Promise<QuerySnapshot<DocumentData>> {
-    return getDocs(query(collection(this.firestore, "consignor-offers"), where("id", "==", offerId)));
+  getTruckerOfferFromId(offerId : string) : Promise<DocumentSnapshot<DocumentData>> {
+    return getDoc(doc(this.firestore,'trucker-offers',offerId))
   } 
 
-  getTruckerOfferFromId(offerId : String) : Promise<QuerySnapshot<DocumentData>> {
-    return getDocs(query(collection(this.firestore, "trucker-offers"), where("id", "==", offerId)));
+  getConsignorOfferFromId(offerId : string) : Promise<DocumentSnapshot<DocumentData>> {
+    return getDoc(doc(this.firestore,'consignor-offers',offerId))
   } 
 
 

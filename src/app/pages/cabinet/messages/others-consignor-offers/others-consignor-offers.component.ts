@@ -45,12 +45,10 @@ export class OthersConsignorOffersComponent implements OnInit {
           })
         })
         this.CommunicationService.getTruckerOfferFromId(notification.offerId).then(data => {
-          data.forEach(offer => {
-            list[index].offerData = (offer.data());
+            list[index].offerData = data.data();
             list[index].date = (notification.date);
             list[index].id = notification.id;
-            list[index].status = notification.status
-          })
+            list[index].status = notification.status;
         }).then(() => {
           list[index].message = notification.message
           this.notificationsList = list;

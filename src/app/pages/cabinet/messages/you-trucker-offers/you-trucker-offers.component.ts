@@ -20,6 +20,10 @@ export class YouTruckerOffersComponent implements OnInit {
   public offerId !: string;
   public notificationId !: string;
   private rejectRespondData !: string;
+  public customerData : any;
+  public offerDetailsData : any ;
+  public customerInfo = false;
+  public offerInfo = false;
   constructor(private CommunicationService: CommunicationsService,
     private fb: FormBuilder) { }
 
@@ -35,15 +39,17 @@ export class YouTruckerOffersComponent implements OnInit {
   }
 
   getYourNotifications(): void {
+    this.notificationsIdList = []
     this.CommunicationService.getNotificationsforCustomerUser(this.currentUserId).then(data => {
-      let list : any[] = [];
+      let list: any[] = [];
       data.forEach(notification => {
         list.push(notification.data() as IOfferResponde)
       })
-      const activeList = list.filter(ell => ell.status == "not-confirmed");
-      this.notificationsIdList = activeList;
+      this.notificationsIdList = list.filter(ell => ell.status == "not-confirmed");
     }).then(() => {
       this.initList()
+    }).catch(() => {
+
     })
   }
 
@@ -54,27 +60,28 @@ export class YouTruckerOffersComponent implements OnInit {
       this.notificationsIdList.forEach((notification, index) => {
         this.CommunicationService.getUserFromId(notification.performerId).then(data => {
           data.forEach(performer => {
-            list.push({ performerData: performer.data() })
-          })
-        })
-        this.CommunicationService.getUserFromId(notification.customerId).then(data => {
-          data.forEach((customer) => {
-            list[index].customerData = customer.data()
-          })
-        })
-        this.CommunicationService.getTruckerOfferFromId(notification.offerId).then(data => {
-          data.forEach(offer => {
-            list[index].offerData = (offer.data());
+            list.push({ performerData: performer.data() });
             list[index].date = (notification.date);
             list[index].id = notification.id;
-            list[index].status = notification.status
+            list[index].status = notification.status;
           })
         }).then(() => {
-          list[index].message = notification.message
+          this.CommunicationService.getTruckerOfferFromId(notification.offerId as string).then(data => {
+            list[index].offerData = data.data()
+          })
+        }).then(() => {
+          this.CommunicationService.getUserFromId(notification.customerId).then(data => {
+            data.forEach((customer) => {
+              list[index].customerData = customer.data()
+            })
+          })
+        }).then(() => {
+          list[index].message = notification.message;
           this.notificationsList = list;
+          console.log(this.notificationsList);
+          
         })
       })
-    } else {
     }
   }
 
@@ -110,4 +117,14 @@ export class YouTruckerOffersComponent implements OnInit {
       });
     }
   }
+  public companyDetails (i : number) {
+    this.customerData = this.notificationsList[i].performerData;
+    this.customerInfo = true
+  } 
+
+  public offerDetails(i: number) {
+    this.offerDetailsData = this.notificationsList[i].offerData;
+    this.offerInfo = true; 
+  }
+
 }

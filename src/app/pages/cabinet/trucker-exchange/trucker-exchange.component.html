@@ -1,4 +1,4 @@
-<div class="main-container">
+<div *ngIf="checkSettings" class="main-container">
   <table>
     <thead>
       <tr>
@@ -45,51 +45,102 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let offer of consignorOffersList;let i = index" >
-        <td>{{ offer.loadingCountry}} {{ offer.loadingCity}} {{ offer.loadingDate}}</td>
-        <td>
-          {{ offer.unloadingCountry}} {{ offer.unloadingCity}} {{ offer.unloadingDate}}
+      <tr *ngFor="let offer of consignorOffersList;let i = index">
+        <td class="class-container">
+          <p class="place">{{ offer.loadingCountry}} {{ offer.loadingCity}}</p>
+          <p>{{ offer.loadingDate }}</p>
+        </td>
+        <td class="class-container">
+          <p class="place"> {{ offer.unloadingCountry }} {{ offer.unloadingCity}}</p>
+          <p>{{ offer.unloadingDate }}</p>
+        </td>
+        <td class="class-container">
+          <p class="place">{{ offer.cargo }}</p>
+        </td>
+        <td class="class-container">
+          <p class="place">{{ offer.weight }}</p>
+        </td>
+        <td class="class-container">
+          <p class="place">{{ offer.price }}</p>
+        </td>
+        <td class="class-container">
+          <p class="place">{{ offer.date.toDate()	| date: 'short' }}</p>
         </td>
         <td>
-          {{ offer.cargo}}
+          <button class="class-container info-button" (click)="customerInfo = true" (click)="getCustomerData(i)" type="button">Деталі
+            про замовника</button>
         </td>
         <td>
-          {{offer.weight}}
-        </td>
-        <td>
-          {{offer.price}}
-        </td>
-        <td>
-          {{offer.date.toDate()	| date: 'short'}}
-        </td>
-        <td>{{ consignorUsersData[i]?.email }}{{ consignorUsersData[i]?.phoneNumber }}</td>
-        <td>
-          <button  type="button" class="btn btn-warning" (click)="createRespondOffer(offer.userId,offer.id)" [disabled]="offer.respondedUsersId.includes(currentUserId)">Вікликнутися</button>
+          <button type="button" class="btn btn-warning" (click)="createRespondOffer(offer.userId,offer.id)"
+            [disabled]="offer.respondedUsersId.includes(user.id)">Вікликнутися</button>
         </td>
       </tr>
     </tbody>
   </table>
-<ng-container *ngIf="modalToggle">
-  <div class="container-main">
-    <div class="modal-dialog" role="document">
+  <ng-container *ngIf="modalToggle">
+    <div class="container-main">
+      <div class="modal-dialog" role="document">
         <div class="modal-content">
           <div class="modal-header">
             <h5 class="modal-title" id="exampleModalLabel">Введіть коментар</h5>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
+              <span aria-hidden="true">&times;</span>
+            </button>
           </div>
           <div class="modal-body">
             <form [formGroup]="messageGroup" class="form-group">
-                <textarea formControlName="message" class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+              <textarea formControlName="message" class="form-control" id="exampleFormControlTextarea1"
+                rows="3"></textarea>
             </form>
-              </div>
+          </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal" >Відмінити</button>
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Відмінити</button>
             <button type="button" class="btn btn-primary" (click)="sendRespond()">Надіслати заявку</button>
           </div>
         </div>
       </div>
-</div>
-</ng-container>
+    </div>
+  </ng-container>
 
+  <ng-container *ngIf="customerInfo">
+    <div class="info-container">
+      <div class="info-modal">
+        <header>
+          <div class="title">Про замовника </div>
+          <div (click)="customerInfo = false">
+            <svg class="_1567t1_i_g" x="0px" y="0px" viewBox="0 0 8 8" xml:space="preserve">
+              <polygon
+                points="8,1.333 6.667,0 4,2.667 1.333,0 0,1.333 2.667,4 0,6.667 1.333,8 4,5.333 6.667,8 8,6.667 5.333,4 ">
+              </polygon>
+            </svg>
+          </div>
+        </header>
+        <div class="data-container">
+          <div class="title-container">
+            <p class="title">Контактна особа</p>
+            <span>{{customerData?.user.name }} </span>
+            <span> {{customerData?.user.surname}}</span>
+          </div>
+          <div class="title-container">
+            <p class="title">Контактні дані</p>
+            <p>{{ customerData?.email }}</p>
+            <p>{{ customerData?.phoneNumber }}</p>
+          </div>
+          <div class="title-container">
+            <p class="title">Дані про компанію</p>
+            <p>{{ customerData?.company.name }}</p>
+            <p>{{ customerData?.company.activity }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </ng-container>
+
+  <ng-container *ngIf="!checkSettings">
+    <div class="container-info">
+      <div class="container-settings">
+        <span>Заповніть дані про користування</span>
+        <button type="button" [routerLink]="['/cabinet/info/settings']">Заповнити</button>
+      </div>
+    </div>
+  </ng-container>

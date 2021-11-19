@@ -32,7 +32,6 @@ export class TruckerOffersService {
     return updateDoc(doc(this.firestore, "consignor-offers", offerId), { respondedUsersId: respondedUsersId })
   }
 
-
   getConsignorOffers(): Observable<DocumentData[]> {
     return collectionData(collection(this.firestore, "consignor-offers"))
   }

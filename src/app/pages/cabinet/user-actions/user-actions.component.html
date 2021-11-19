@@ -1,4 +1,4 @@
-<div class="container-main" >
+<div class="container-main" *ngIf="checkSettings">
   <div class="title-container">
     <b>Додати пропозицію</b>
   </div>
@@ -17,3 +17,11 @@
     <router-outlet></router-outlet>
   </div>
 </div>
+<ng-container *ngIf="!checkSettings">
+  <div class="container-info">
+    <div class="container-settings">
+      <span>Заповніть дані про користування</span>
+      <button type="button" [routerLink]="['/cabinet/info/settings']">Заповнити</button>
+    </div>
+  </div>
+</ng-container>

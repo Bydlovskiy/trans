@@ -10,7 +10,7 @@ import { CommunicationsService } from 'src/app/shared/services/communications/co
 })
 export class YourConsignorOffersComponent implements OnInit {
   private currentUserId = JSON.parse(localStorage.getItem('user') as string).id;
-  private notificationsIdList : IOfferResponde[] = [];
+  private notificationsIdList: IOfferResponde[] = [];
   public notificationsList !: any[];
   public chat !: any[];
   public messageGroup !: FormGroup;
@@ -20,6 +20,10 @@ export class YourConsignorOffersComponent implements OnInit {
   public offerId !: string;
   public notificationId !: string;
   private rejectRespondData !: string;
+  public customerData : any;
+  public offerDetailsData : any ;
+  public customerInfo = false;
+  public offerInfo = false;
   constructor(private CommunicationService: CommunicationsService,
     private fb: FormBuilder) { }
 
@@ -36,7 +40,7 @@ export class YourConsignorOffersComponent implements OnInit {
 
   getYourNotifications(): void {
     this.CommunicationService.getNotificationsforCustomerUser(this.currentUserId).then(data => {
-      let list : any[] = [];
+      let list: any[] = [];
       data.forEach(notification => {
         list.push(notification.data() as IOfferResponde)
       })
@@ -54,20 +58,20 @@ export class YourConsignorOffersComponent implements OnInit {
       this.notificationsIdList.forEach((notification, index) => {
         this.CommunicationService.getUserFromId(notification.performerId).then(data => {
           data.forEach(performer => {
-            list.push({performerData : performer.data()})
-          })
-        })
-        this.CommunicationService.getUserFromId(notification.customerId).then(data => {
-          data.forEach((customer) => {
-            list[index].customerData = customer.data()
-          })
-        })
-        this.CommunicationService.getConsignorOfferFromId(notification.offerId).then(data => {
-          data.forEach(offer => {
-            list[index].offerData = (offer.data());
+            list.push({ performerData: performer.data() });
             list[index].date = (notification.date);
             list[index].id = notification.id;
-            list[index].status = notification.status
+            list[index].status = notification.status;
+          })
+        }).then(() => {
+          this.CommunicationService.getConsignorOfferFromId(notification.offerId as string).then(data => {
+            list[index].offerData = data.data()
+          })
+        }).then(() => {
+          this.CommunicationService.getUserFromId(notification.customerId).then(data => {
+            data.forEach((customer) => {
+              list[index].customerData = customer.data()
+            })
           })
         }).then(() => {
           list[index].message = notification.message;
@@ -99,7 +103,7 @@ export class YourConsignorOffersComponent implements OnInit {
         this.confirmModalToggle = false;
         this.getYourNotifications();
       }).then(() => {
-        this.CommunicationService.changeConsignorOfferStatus(this.offerId, 'in-work',this.chat).then(() => {
+        this.CommunicationService.changeConsignorOfferStatus(this.offerId, 'in-work', this.chat).then(() => {
         })
       });
     } else {
@@ -109,4 +113,19 @@ export class YourConsignorOffersComponent implements OnInit {
       });
     }
   }
+
+  public companyDetails (i : number) {
+    this.customerData = this.notificationsList[i].performerData;
+    this.customerInfo = true
+  } 
+
+  public offerDetails(i: number) {
+    this.offerDetailsData = this.notificationsList[i].offerData;
+    this.offerInfo = true;
+    console.log(this.offerDetailsData);
+    
+  }
+
+
+
 }

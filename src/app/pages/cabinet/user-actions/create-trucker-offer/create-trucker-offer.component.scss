@@ -1,6 +1,5 @@
 .container-main {
   display: flex;
-
   justify-content: center;
 
   form {
@@ -22,22 +21,22 @@
         margin-top: 30px;
         font-size: 25px;
       }
+
+      label {
+        font-size: 20px;
+        display: flex;
+        flex-direction: column;
+        margin: 10px 0;
+
+        input {
+          margin: 4px;
+          width: 100%;
+        }
+      }
     }
 
-    label {
-      font-size: 20px;
-      display: flex;
-      flex-direction: column;
-      margin: 10px 0;
-    }
-
-    input {
-      margin: 4px;
-      width: 100%;
-    }
-
-    .other-info{
-      height: 25vh;
+    .other-info {
+      height: 37vh;
     }
 
     button {

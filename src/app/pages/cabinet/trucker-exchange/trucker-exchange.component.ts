@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { IConsignorOffer } from 'src/app/shared/interfaces/consignor-offer-interface';
-import { IOfferResponde } from 'src/app/shared/interfaces/IOffer-respond';
+import { isEmpty } from '@firebase/util';
 import { CommunicationsService } from 'src/app/shared/services/communications/communications.service';
 import { TruckerOffersService } from 'src/app/shared/services/offers/trucker-offers.service';
+import { UserInfoService } from 'src/app/shared/services/user-info/user-info.service';
 
 
 @Component({
@@ -17,13 +18,18 @@ export class TruckerExchangeComponent implements OnInit {
   public respondToOfferForm !: FormGroup;
   public messageGroup !: FormGroup;
   public modalToggle = false;
-
-  public currentUserId = JSON.parse(localStorage.getItem('user') as string).id;
+  public customerInfo = false;
+  public customerData ! : any ;
+  public currentUser !: any;
+  public checkSettings !: boolean;
+  public user = JSON.parse(localStorage.getItem('user') as string);
   constructor(private truckerOffersSrvice: TruckerOffersService,
     private communicationService: CommunicationsService,
-    private fb: FormBuilder) { }
+    private fb: FormBuilder,
+    private userInfoService: UserInfoService) { }
 
   ngOnInit(): void {
+    this.checkSetings();
     this.initRespondToOfferForm();
     this.initMessageForm()
     this.getConsignorOffersList();
@@ -88,13 +94,31 @@ export class TruckerExchangeComponent implements OnInit {
     this.truckerOffersSrvice.getConsignorOfferById(this.respondToOfferForm.controls['offerId'].value).then(data => {
       data.forEach(offer => {
         let currentOffer = offer.data().respondedUsersId;
-        currentOffer.push(this.currentUserId);
+        currentOffer.push(this.user.id);
         this.truckerOffersSrvice.updateResponsedUser(offer.id, currentOffer as IConsignorOffer).then(() => {
         })
       })
     })
     this.communicationService.saveOffer(this.respondToOfferForm.value).then(() => {
       this.getConsignorOffersList();
+    })
+  }
+
+  getCustomerData(i : number) : void {
+    this.customerData = this.consignorUsersData[i];
+  }
+
+  checkSetings(): void {
+    this.userInfoService.getUserInfo(this.user.id).then(data => {
+      data.forEach(data => {
+        this.currentUser = data.data();
+      })
+    }).then(() => {
+      if (isEmpty(this.currentUser.company) || isEmpty(this.currentUser.user)) {
+        this.checkSettings = false;
+      } else {
+        this.checkSettings = true;
+      }
     })
   }
 }

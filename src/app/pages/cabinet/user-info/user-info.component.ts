@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { AuthService } from 'src/app/shared/services/auth/auth.service';
 import { UserInfoService } from 'src/app/shared/services/user-info/user-info.service';
 
 @Component({
@@ -9,7 +11,9 @@ import { UserInfoService } from 'src/app/shared/services/user-info/user-info.ser
 export class UserInfoComponent implements OnInit {
   private currentUserid = JSON.parse(localStorage.getItem('user') as string).id;
   public userInfo !: any;
-  constructor(private userService: UserInfoService) { }
+  constructor(private userService: UserInfoService,
+    private authService : AuthService,
+    private router  : Router)  { }
 
   ngOnInit(): void {
     this.getUserInfo();
@@ -21,6 +25,13 @@ export class UserInfoComponent implements OnInit {
         this.userInfo = data.data();
       });
 
+    })
+  }
+
+  public logOut() : void {
+    this.authService.logOut().then(() => {
+      this.router.navigate(['']);
+      localStorage.removeItem('user')
     })
   }
 

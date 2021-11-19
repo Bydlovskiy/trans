@@ -1,8 +1,142 @@
-.container-main{
+.container-main {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.container-all {
+  margin-top: 20px;
+
+  table {
+    width: 100%;
+
+    thead {
+      border-bottom: 2px solid;
+
+      th {
+        text-align: center;
+        vertical-align: middle;
+      }
+    }
+
+    tbody {
+      tr {
+        border-bottom: 1px solid;
+
+        .class-container {
+          height: 100%;
+
+          p {
+            margin: 3px;
+          }
+
+          .place {
+            font-size: 16px;
+            font-weight: 500;
+          }
+        }
+
+        td {
+          text-align: center;
+          padding-top: 10px;
+          .more {
+            background-color: #fff;
+            border: 1px solid #82acc4;
+            color: #5c93b2;
+            padding: 8px 19px;
+            border-radius: 3px;
+            cursor: pointer;
+
+            &:hover {
+              background-color: rgb(182, 218, 241);
+            }
+          }
+        }
+      }
+
+      .info-button {
+        background-color: #fff;
+        border: 1px solid #82acc4;
+        color: #5c93b2;
+        padding: 8px 19px;
+        border-radius: 3px;
+        cursor: pointer;
+
+        &:hover {
+          background-color: rgb(182, 218, 241);
+        }
+      }
+    }
+  }
+
+}
+
+.info-container {
     position: absolute;
     top: 0;
     left: 0;
-    width: 100vw;
+    z-index: 1;
     height: 100vh;
-    background-color: rgba(0, 0, 0, 0.5);
-}
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  
+    .info-modal {
+      border-radius: 10px;
+      border: 1px solid grey;
+      width: 90%;
+      min-height: 50%;
+      background-color: rgb(255, 255, 255);
+      box-shadow: 0 0 300px black;
+  
+      header {
+        height: 70px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 50px;
+        border-bottom: 1px solid #cddee7;
+  
+        .title {
+          font-size: 20px;
+          font-weight: 700;
+        }
+  
+        svg {
+          width: 15px;
+          height: 15px;
+          fill: #ccc;
+          transition: color .15s ease;
+          overflow: hidden;
+          cursor: pointer;
+  
+          &:hover {
+            fill: grey
+          }
+        }
+      }
+  
+      .data-container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        padding: 20px;
+  
+        .title-container {
+          width: 50%;
+          text-align: center;
+          padding: 5px;
+  
+          .title {
+            font-weight: 600;
+            font-size: 17px;
+            border-bottom: 1px solid black;
+          }
+        }
+      }
+    }
+  }

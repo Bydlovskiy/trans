@@ -1,8 +1,3 @@
-<div class="table-settings">
-  <div class="find-count">
-    <span></span>
-  </div>
-</div>
 <div class="table-container">
   <table>
     <thead>
@@ -36,24 +31,22 @@
     </thead>
     <tbody>
       <tr *ngFor="let offer of activeOffersList ;let i = index">
-        <td>
-          <span class="country">{{offer.loadingCountry}}</span>
-          <span class="city">{{offer.loadingCity}}</span>
-          <span class="data">{{offer.loadingDate}}</span>
+        <td class="class-container">
+          <p class="place">{{offer.loadingCountry}}{{offer.loadingCity}}</p>
+          <p>{{offer.loadingDate}}</p>
         </td>
-        <td>
-          <span class="country">{{offer.unloadingCountry}}</span>
-          <span class="city">{{offer.unloadingCity}}</span>
-          <span class="data">{{offer.unloadingDate}}</span>
+        <td class="class-container">
+          <p class="place">{{offer.unloadingCountry}}{{offer.unloadingCity}}</p>
+          <p >{{offer.unloadingDate}}</p>
         </td>
-        <td>
-          <span class="car">{{ offer.car.mark }}{{ offer.car.model }}</span>
+        <td class="class-container">
+          <p class="place">{{ offer.car.mark }}{{ offer.car.model }}</p>
         </td>
-        <td>
-          <span class="price">{{offer.price}}</span>
+        <td class="class-container">
+          <p class="place">{{offer.price}}</p>
         </td>
-        <td>
-          <span class="data">{{ offer.date.toDate()	| date: 'short'}}</span>
+        <td class="class-container">
+          <p class="place">{{ offer.date.toDate()	| date: 'short'}}</p>
         </td>
       </tr>
     </tbody>

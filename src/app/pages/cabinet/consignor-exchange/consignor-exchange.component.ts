@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ITruckerOffer } from 'src/app/shared/interfaces/trucker-offer-interface';
+import { isEmpty } from '@firebase/util';
 import { CommunicationsService } from 'src/app/shared/services/communications/communications.service';
 import { ConsignorOffersService } from 'src/app/shared/services/offers/consignor-offers.service';
+import { UserInfoService } from 'src/app/shared/services/user-info/user-info.service';
 
 @Component({
   selector: 'app-consignor-exchange',
@@ -15,12 +17,18 @@ export class ExchangeComponent implements OnInit {
   public respondToOfferForm !: FormGroup;
   public messageGroup !: FormGroup;
   public modalToggle = false;
-  public currentUserId = JSON.parse(localStorage.getItem('user') as string).id;
-  constructor(private consignorOffersService : ConsignorOffersService,
-              private communicationService : CommunicationsService,
-              private fb: FormBuilder) { }
+  public customerInfo = false;
+  public customerData !: any;
+  public currentUser !: any;
+  public checkSettings !: boolean;
+  public user = JSON.parse(localStorage.getItem('user') as string);
+  constructor(private consignorOffersService: ConsignorOffersService,
+    private communicationService: CommunicationsService,
+    private fb: FormBuilder,
+    private userInfoService: UserInfoService) { }
 
   ngOnInit(): void {
+    this.checkSetings();
     this.initMessageForm();
     this.initRespondToOfferForm()
     this.getConsignorOffersList()
@@ -38,8 +46,8 @@ export class ExchangeComponent implements OnInit {
       performerId: [JSON.parse(localStorage.getItem('user') as string).id, Validators.required],
       offerId: [null, Validators.required],
       message: [null],
-      date : [null],
-      status : ['not-confirmed',Validators.required]
+      date: [null],
+      status: ['not-confirmed', Validators.required]
     })
   }
 
@@ -63,10 +71,8 @@ export class ExchangeComponent implements OnInit {
         });
       })
     })
-    this.truckerUsersData = truckerUsersData
+    this.truckerUsersData = truckerUsersData;
     this.truckerOffersList = arr;
-    console.log(this.truckerOffersList);
-    
   }
 
   public createRespondOffer(userId: String, offerId: String): void {
@@ -82,18 +88,36 @@ export class ExchangeComponent implements OnInit {
     const message = [{ performer: this.messageGroup.controls['message'].value }]
     this.respondToOfferForm.patchValue({
       message: message,
-      date : new Date
+      date: new Date
     });
     this.consignorOffersService.getTruckerOfferById(this.respondToOfferForm.controls['offerId'].value).then(data => {
       data.forEach(offer => {
         let currentOffer = offer.data().respondedUsersId;
-        currentOffer.push(this.currentUserId);
+        currentOffer.push(this.user.id);
         this.consignorOffersService.updateResponsedUser(offer.id, currentOffer as ITruckerOffer).then(() => {
         })
       })
     })
     this.communicationService.saveOffer(this.respondToOfferForm.value).then(() => {
       this.getConsignorOffersList();
+    })
+  }
+
+  public getCustomerData(i: number): void {
+    this.customerData = this.truckerUsersData[i];
+  }
+
+  private checkSetings(): void {
+    this.userInfoService.getUserInfo(this.user.id).then(data => {
+      data.forEach(data => {
+        this.currentUser = data.data();
+      })
+    }).then(() => {
+      if (isEmpty(this.currentUser.company) || isEmpty(this.currentUser.user)) {
+        this.checkSettings = false;
+      } else {
+        this.checkSettings = true;
+      }
     })
   }
 }

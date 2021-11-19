@@ -1,4 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { isEmpty } from '@firebase/util';
+import { UserInfoService } from 'src/app/shared/services/user-info/user-info.service';
 
 @Component({
   selector: 'app-user-actions',
@@ -6,18 +8,35 @@ import { Component, Input, OnInit } from '@angular/core';
   styleUrls: ['./user-actions.component.scss']
 })
 export class UserActionsComponent implements OnInit {
-  private userRole = JSON.parse(localStorage.getItem('user') as string).role;
+  private user = JSON.parse(localStorage.getItem('user') as string);
+  public currentUser !: any;
+  public checkSettings !: boolean;
   public path: Array<any> = [];
-  constructor() { }
+  constructor(private userInfoService: UserInfoService) { }
 
   ngOnInit(): void {
+    this.checkSetings();
     this.checkRole();
   }
 
+  checkSetings(): void {
+    this.userInfoService.getUserInfo(this.user.id).then(data => {
+      data.forEach(data => {
+        this.currentUser = data.data();
+      })
+    }).then(() => {
+      if (isEmpty(this.currentUser.company) || isEmpty(this.currentUser.user)) {
+        this.checkSettings = false;
+      } else {
+        this.checkSettings = true;
+      }
+    })
+  }
+
   checkRole(): void {
-    if (this.userRole == 'trucker') {
+    if (this.user.role == 'trucker') {
       this.path = ['create-trucker-offers', 'active-trucker-offers', 'archive-trucker-offers']
-    } else if (this.userRole == 'consignor') {
+    } else if (this.user.role == 'consignor') {
       this.path = ['create-consignor-offers', 'active-consignor-offers', 'archive-consignor-offers']
     }
   }

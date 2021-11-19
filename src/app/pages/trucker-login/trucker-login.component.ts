@@ -54,7 +54,7 @@ export class TruckerLoginComponent implements OnInit {
           this.toastr.success('Вхід виконано')
           this.router.navigate(['/cabinet']);
         } else if (user && currentUser.role === 'consignor') {
-          this.toastr.error('Увійдіть як перевізник')
+          this.toastr.error('Увійдіть як товаровідправник')
         } 
       }); 
     }).catch(() => {

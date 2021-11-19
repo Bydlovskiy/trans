@@ -5,7 +5,9 @@
     background-color: #eff4f7;
     display: flex;
     align-items: center;
+    justify-content: space-between;
     padding-left: 50px;
+    border-bottom: 1px solid #5c93b2;
 
     span {
       display: flex;
@@ -14,6 +16,19 @@
       height: 20px;
       font-size: 20px;
       font-weight: bold;
+    }
+    button{
+      margin-right: 50px;
+      background-color: #fff;
+      border: 1px solid #82acc4;
+      color: #5c93b2;
+      padding: 8px 19px;
+      border-radius: 3px;
+      cursor: pointer;
+
+      &:hover {
+        background-color: rgb(182, 218, 241);
+      }
     }
   }
 
@@ -116,8 +131,3 @@
   }
 }
 
-// svg {
-//   height: 4.16666em;
-//   width: 8.33333em;
-//   fill: #cddee7;
-// }
