@@ -11,17 +11,22 @@ export class ConsignorOffersService {
 
   constructor(private firestore: Firestore) { }
 
+// CREATE
+
   getAllforCurrentUser(userId : string) : Promise<QuerySnapshot<DocumentData>>{
     return getDocs(query(collection(this.firestore, "consignor-offers"), where("userId", "==", userId)));
   }
   
-  saveOffer(offer: IConsignorOffer): Promise<void> {
-    return addDoc(collection(this.firestore, "consignor-offers"), offer).then(data => {
-      updateDoc(doc(this.firestore, "consignor-offers", data.id), {
+  saveOffer(offer: IConsignorOffer, role : string): Promise<void> {
+    return addDoc(collection(this.firestore, `${role}-offers`), offer).then(data => {
+      updateDoc(doc(this.firestore, `${role}-offers`, data.id), {
         id: data.id
       })
     })
   }
+
+
+
 
   getTruckerOfferById (offerId : String) : Promise<QuerySnapshot<DocumentData>> {
     return getDocs(query(collection(this.firestore, "trucker-offers"), where("id", "==", offerId)));

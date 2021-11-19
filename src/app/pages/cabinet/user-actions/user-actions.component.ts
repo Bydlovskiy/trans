@@ -16,7 +16,6 @@ export class UserActionsComponent implements OnInit {
 
   ngOnInit(): void {
     this.checkSetings();
-    this.checkRole();
   }
 
   checkSetings(): void {
@@ -33,11 +32,5 @@ export class UserActionsComponent implements OnInit {
     })
   }
 
-  checkRole(): void {
-    if (this.user.role == 'trucker') {
-      this.path = ['create-trucker-offers', 'active-trucker-offers', 'archive-trucker-offers']
-    } else if (this.user.role == 'consignor') {
-      this.path = ['create-consignor-offers', 'active-consignor-offers', 'archive-consignor-offers']
-    }
-  }
+
 }

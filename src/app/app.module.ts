@@ -16,7 +16,7 @@ import { TruckerComponent } from './pages/home/trucker/trucker.component';
 import { ConsignorComponent } from './pages/home/consignor/consignor.component';
 import { UserRegisterComponent } from './pages/user-register/user-register.component';
 import { UserLoginComponent } from './pages/user-login/user-login.component';
-import { provideFirebaseApp, getApp, initializeApp } from '@angular/fire/app';
+import { provideFirebaseApp,  initializeApp } from '@angular/fire/app';
 import { getFirestore, provideFirestore } from '@angular/fire/firestore';
 import { getStorage, provideStorage } from '@angular/fire/storage';
 import { getAuth, provideAuth } from '@angular/fire/auth'
@@ -25,11 +25,10 @@ import { UserActionsComponent } from './pages/cabinet/user-actions/user-actions.
 import { ExchangeComponent } from './pages/cabinet/consignor-exchange/consignor-exchange.component';
 import { MessagesComponent } from './pages/cabinet/messages/messages.component';
 import { UserInfoComponent } from './pages/cabinet/user-info/user-info.component';
-import { CreateOfferComponent } from './pages/cabinet/user-actions/create-trucker-offer/create-trucker-offer.component';
 import { ActiveOffersComponent } from './pages/cabinet/user-actions/active-trucker-offers/active-trucker-offers.component';
 import { ArchiveOffersComponent } from './pages/cabinet/user-actions/archive-trucker-offers/archive-trucker-offers.component';
 import { GooglePlaceModule } from 'ngx-google-places-autocomplete';
-import { CreateConsignorOfferComponent } from './pages/cabinet/user-actions/create-consignor-offer/create-consignor-offer.component';
+import { CreateOfferComponent } from './pages/cabinet/user-actions/create-offer/create-offer.component';
 import { ActiveConsignorOffersComponent } from './pages/cabinet/user-actions/active-consignor-offers/active-consignor-offers.component';
 import { ArchiveConsignorOffersComponent } from './pages/cabinet/user-actions/archive-consignor-offers/archive-consignor-offers.component';
 import { TruckerExchangeComponent } from './pages/cabinet/trucker-exchange/trucker-exchange.component';
@@ -69,10 +68,8 @@ import { ProfileSettingsComponent } from './pages/cabinet/user-info/user-setting
     ExchangeComponent,
     MessagesComponent,
     UserInfoComponent,
-    CreateOfferComponent,
     ActiveOffersComponent,
     ArchiveOffersComponent,
-    CreateConsignorOfferComponent,
     ActiveConsignorOffersComponent,
     ArchiveConsignorOffersComponent,
     TruckerExchangeComponent,
@@ -83,7 +80,8 @@ import { ProfileSettingsComponent } from './pages/cabinet/user-info/user-setting
     CarsSettingsComponent,
     CompanySettingsComponent,
     ProfileSettingsComponent,
-    UserSettingsComponent
+    UserSettingsComponent,
+    CreateOfferComponent
   ],
   imports: [
     RouterModule,

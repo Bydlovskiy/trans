@@ -15,8 +15,6 @@ import { MessagesComponent } from './pages/cabinet/messages/messages.component';
 import { UserInfoComponent } from './pages/cabinet/user-info/user-info.component';
 import { ActiveOffersComponent } from './pages/cabinet/user-actions/active-trucker-offers/active-trucker-offers.component';
 import { ArchiveOffersComponent } from './pages/cabinet/user-actions/archive-trucker-offers/archive-trucker-offers.component';
-import { CreateOfferComponent } from './pages/cabinet/user-actions/create-trucker-offer/create-trucker-offer.component';
-import { CreateConsignorOfferComponent } from './pages/cabinet/user-actions/create-consignor-offer/create-consignor-offer.component';
 import { ActiveConsignorOffersComponent } from './pages/cabinet/user-actions/active-consignor-offers/active-consignor-offers.component';
 import { ArchiveConsignorOffersComponent } from './pages/cabinet/user-actions/archive-consignor-offers/archive-consignor-offers.component';
 import { TruckerExchangeComponent } from './pages/cabinet/trucker-exchange/trucker-exchange.component';
@@ -28,6 +26,7 @@ import { UserSettingsComponent } from './pages/cabinet/user-info/user-settings/u
 import { CarsSettingsComponent } from './pages/cabinet/user-info/user-settings/cars-settings/cars-settings.component';
 import { ProfileSettingsComponent } from './pages/cabinet/user-info/user-settings/profile-settings/profile-settings.component';
 import { CompanySettingsComponent } from './pages/cabinet/user-info/user-settings/company-settings/company-settings.component';
+import { CreateOfferComponent } from './pages/cabinet/user-actions/create-offer/create-offer.component';
 
 
 
@@ -48,8 +47,7 @@ const routes: Routes = [
         {path :'' , pathMatch : 'full' , redirectTo : 'active-offers'},
         {path : 'active-trucker-offers' , component : ActiveOffersComponent},
         {path : 'archive-trucker-offers' , component : ArchiveOffersComponent},
-        {path : 'create-trucker-offers', component : CreateOfferComponent},
-        {path : 'create-consignor-offers' , component : CreateConsignorOfferComponent},
+        {path : 'create-offers' , component : CreateOfferComponent},
         {path : 'active-consignor-offers', component : ActiveConsignorOffersComponent},
         {path : 'archive-consignor-offers', component : ArchiveConsignorOffersComponent},
       ]},

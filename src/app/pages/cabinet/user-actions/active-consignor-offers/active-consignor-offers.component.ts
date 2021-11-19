@@ -9,17 +9,17 @@ import { ConsignorOffersService } from 'src/app/shared/services/offers/consignor
 })
 export class ActiveConsignorOffersComponent implements OnInit {
   public activeOffersList !: IConsignorOffer[];
-  private currentUserid = JSON.parse(localStorage.getItem('user') as string).id;
-  constructor(private consignorOffersService : ConsignorOffersService) { }
+  private user = JSON.parse(localStorage.getItem('user') as string);
+  constructor(private consignorOffersService: ConsignorOffersService) { }
 
   ngOnInit(): void {
-    this.loadOfferList()
+    this.loadOfferList();
   }
 
   loadOfferList(): void {
-    this.consignorOffersService.getAllforCurrentUser(this.currentUserid).then(data => {
+    this.consignorOffersService.getAllforCurrentUser(this.user.id).then(data => {
       this.activeOffersList = [];
-      let offerList : any[] = [];
+      let offerList: any[] = [];
       data.forEach(offer => {
         offerList.push(offer.data() as IConsignorOffer);
       });
@@ -27,7 +27,7 @@ export class ActiveConsignorOffersComponent implements OnInit {
     })
   }
 
-  addToArchive(offerId : string): void {
+  addToArchive(offerId: string): void {
     this.consignorOffersService.changeOfferStatus(offerId).then(() => {
       this.loadOfferList();
     })

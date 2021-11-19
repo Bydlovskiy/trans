@@ -1,0 +1,109 @@
+
+<ng-container *ngIf="user.role == 'consignor'">
+  <div class="container-main">
+    <form [formGroup]="offerConsignorForm" (ngSubmit)="saveOffer()">
+      <div class="block-container">
+        <div class="title">
+          <span>Місце завантаження</span>
+        </div>
+        <label for="">Країна
+          <input ngx-google-places-autocomplete="{ types: ['(cities)']}" #placesRef="ngx-places"
+            (onAddressChange)="loadingCountryChange($event)" class="form-control" type="text">
+        </label>
+        <label for="">Місто
+          <input ngx-google-places-autocomplete="{ types: ['(cities)']}" #placesRef="ngx-places"
+            (onAddressChange)="loadingCityChange($event)" class="form-control" type="text">
+        </label>
+        <label for="">Дата
+          <input formControlName="loadingDate" class="form-control" type="date">
+        </label>
+      </div>
+      <div class="block-container">
+        <div class="title">
+          <span>Місце розвантаження</span>
+        </div>
+        <label for="">Країна
+          <input ngx-google-places-autocomplete="{ types:['(cities)'] }" #placesRef="ngx-places"
+            (onAddressChange)="unloadingCountryChange($event)" class="form-control" type="text">
+        </label>
+        <label for="">Місто
+          <input ngx-google-places-autocomplete="{ types:['(cities)'] }" #placesRef="ngx-places"
+            (onAddressChange)="unloadingCityChange($event)" class="form-control" type="text">
+        </label>
+        <label for="">Дата
+          <input formControlName="unloadingDate" class="form-control" type="date">
+        </label>
+      </div>
+      <div class="block-container">
+        <div class="title">
+          <span>Інша інформація</span>
+        </div>
+        <label for=""> Вантаж
+          <input type="text" formControlName="cargo"  class="form-control">
+        </label>
+        <label for=""> Вага
+          <input type="number" formControlName="weight"  class="form-control">
+        </label>
+        <label for=""> Ціна
+          <input formControlName="price" class="form-control" type="text">
+        </label>
+      </div>
+      <button type="submit">Зберегти</button>
+    </form>
+  </div>
+</ng-container>
+
+<ng-container *ngIf="user.role == 'trucker'">
+  <div class="container-main">
+    <form [formGroup]="offerTruckerForm" (ngSubmit)="saveOffer()">
+      <div class="block-container">
+        <div class="title">
+          <span>Місце завантаження</span>
+        </div>
+        <label for="">Країна
+          <input ngx-google-places-autocomplete="{ types: ['(cities)']}" #placesRef="ngx-places"
+            (onAddressChange)="loadingCountryChange($event)" class="form-control" type="text">
+        </label>
+        <label for="">Місто
+          <input ngx-google-places-autocomplete="{ types: ['(cities)']}" #placesRef="ngx-places"
+            (onAddressChange)="loadingCityChange($event)" class="form-control" type="text">
+        </label>
+        <label for="">Дата
+          <input formControlName="loadingDate" class="form-control" type="date">
+        </label>
+      </div>
+      <div class="block-container">
+        <div class="title">
+          <span>Місце розвантаження</span>
+        </div>
+        <label for="">Країна
+          <input ngx-google-places-autocomplete="{ types:['(cities)'] }" #placesRef="ngx-places"
+            (onAddressChange)="unloadingCountryChange($event)" class="form-control" type="text">
+        </label>
+        <label for="">Місто
+          <input ngx-google-places-autocomplete="{ types:['(cities)'] }" #placesRef="ngx-places"
+            (onAddressChange)="unloadingCityChange($event)" class="form-control" type="text">
+        </label>
+        <label for="">Дата
+          <input formControlName="unloadingDate" class="form-control" type="date">
+        </label>
+      </div>
+      <div class="block-container other-info">
+        <div class="title">
+          <span>Інша інформація</span>
+        </div>
+        <label for="">Виберіть автомобіль
+          <select [(ngModel)]="selectedValue" formControlName="car" name="car" id="" class="car" class="form-control">
+            <option *ngFor="let car of carList" [ngValue]="car">{{ car.model }} {{ car.mark }} {{ car.EURO }}</option>
+          </select>
+        </label>
+        <label for=""> Ціна
+          <input formControlName="price" class="form-control" type="text">
+        </label>
+      </div>
+      <button type="submit">Зберегти</button>
+    </form>
+  </div>
+</ng-container>
+
+

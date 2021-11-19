@@ -1,8 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { CreateOfferComponent } from './create-trucker-offer.component';
+import { CreateOfferComponent } from './create-offer.component';
 
-describe('CreateOfferComponent', () => {
+describe('CreateConsignorOfferComponent', () => {
   let component: CreateOfferComponent;
   let fixture: ComponentFixture<CreateOfferComponent>;
 
