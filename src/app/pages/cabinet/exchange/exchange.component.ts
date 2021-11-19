@@ -5,33 +5,40 @@ import { isEmpty } from '@firebase/util';
 import { CommunicationsService } from 'src/app/shared/services/communications/communications.service';
 import { ConsignorOffersService } from 'src/app/shared/services/offers/consignor-offers.service';
 import { UserInfoService } from 'src/app/shared/services/user-info/user-info.service';
+import { IConsignorOffer } from 'src/app/shared/interfaces/consignor-offer-interface';
 
 @Component({
-  selector: 'app-consignor-exchange',
-  templateUrl: './consignor-exchange.component.html',
-  styleUrls: ['./consignor-exchange.component.scss']
+  selector: 'app-exchange',
+  templateUrl: './exchange.component.html',
+  styleUrls: ['./exchange.component.scss']
 })
 export class ExchangeComponent implements OnInit {
   public truckerOffersList !: ITruckerOffer[];
+  public consignorOffersList !: IConsignorOffer[];
   public truckerUsersData !: Array<any>;
+  public consignorUsersData !: Array<any>;
   public respondToOfferForm !: FormGroup;
   public messageGroup !: FormGroup;
+  private collection !: string;
   public modalToggle = false;
-  public customerInfo = false;
-  public customerData !: any;
+  public customerInfoForConsignor = false;
+  public customerInfoForTrucker = false;
+  public customerDataAboutConsignor !: any;
+  public customerDataAboutTrucker !: any;
   public currentUser !: any;
   public checkSettings !: boolean;
   public user = JSON.parse(localStorage.getItem('user') as string);
-  constructor(private consignorOffersService: ConsignorOffersService,
+  constructor(private offersService: ConsignorOffersService,
     private communicationService: CommunicationsService,
     private fb: FormBuilder,
     private userInfoService: UserInfoService) { }
 
   ngOnInit(): void {
     this.checkSetings();
+    this.chooseColection();
     this.initMessageForm();
     this.initRespondToOfferForm()
-    this.getConsignorOffersList()
+    this.getOffersList();
   }
   private initMessageForm(): void {
     this.messageGroup = this.fb.group({
@@ -51,28 +58,40 @@ export class ExchangeComponent implements OnInit {
     })
   }
 
-  private getConsignorOffersList(): void {
-    this.consignorOffersService.getTruckerOffers().subscribe(data => {
+  private chooseColection(): void {
+    if (this.user.role == 'consignor') {
+      this.collection = 'trucker'
+    } else {
+      this.collection = 'consignor'
+    }
+  }
+
+  private getOffersList(): void {
+
+    this.offersService.getOffers(this.collection).subscribe(data => {
       const activeOffers = data.filter(data => data.status == "generated");
-      this.getUserData(activeOffers as Array<ITruckerOffer>)
+      this.getUserData(activeOffers as ITruckerOffer[] | IConsignorOffer[])
     })
   }
 
-  private getUserData(arr: Array<ITruckerOffer>): void {
-    let truckerUsersId: String[] = [];
-    let truckerUsersData: Array<any> = []
+  private getUserData(arr: any[]): void {
+    let truckerUsersId: string[] = [];
+    let usersData: Array<any> = []
     arr.forEach(offer => {
-      truckerUsersId.push(offer.userId)
+      truckerUsersId.push(offer.userId as string)
     })
     truckerUsersId.forEach(userId => {
-      this.consignorOffersService.getUserFromId(userId).then(data => {
-        data.forEach(ell => {
-          truckerUsersData.push(ell.data())
-        });
+      this.offersService.getUserFromId(userId).then(data => {
+        usersData.push(data.data())
       })
     })
-    this.truckerUsersData = truckerUsersData;
-    this.truckerOffersList = arr;
+    if (this.user.role == 'consignor') {
+      this.truckerUsersData = usersData;
+      this.truckerOffersList = arr;
+    } else if (this.user.role == 'trucker') {
+      this.consignorUsersData = usersData;
+      this.consignorOffersList = arr;
+    }
   }
 
   public createRespondOffer(userId: String, offerId: String): void {
@@ -90,21 +109,23 @@ export class ExchangeComponent implements OnInit {
       message: message,
       date: new Date
     });
-    this.consignorOffersService.getTruckerOfferById(this.respondToOfferForm.controls['offerId'].value).then(data => {
-      data.forEach(offer => {
-        let currentOffer = offer.data().respondedUsersId;
-        currentOffer.push(this.user.id);
-        this.consignorOffersService.updateResponsedUser(offer.id, currentOffer as ITruckerOffer).then(() => {
-        })
-      })
+    this.offersService.getOfferById(this.respondToOfferForm.controls['offerId'].value, this.collection).then(data => {
+      let currentOffer = data.data() as IConsignorOffer | ITruckerOffer;
+      currentOffer.respondedUsersId.push(this.user.id);
+      console.log(currentOffer);
+      this.offersService.updateResponsedUser(currentOffer.id, this.user.id, this.collection).then(() => { })
     })
     this.communicationService.saveOffer(this.respondToOfferForm.value).then(() => {
-      this.getConsignorOffersList();
+      this.getOffersList();
     })
   }
 
   public getCustomerData(i: number): void {
-    this.customerData = this.truckerUsersData[i];
+    if (this.user.role == 'consignor') {
+      this.customerDataAboutTrucker = this.truckerUsersData[i];
+    } else if (this.user.role == 'trucker') {
+      this.customerDataAboutConsignor = this.consignorUsersData[i];
+    }
   }
 
   private checkSetings(): void {

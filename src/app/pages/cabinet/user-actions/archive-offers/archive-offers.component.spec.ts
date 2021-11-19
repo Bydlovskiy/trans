@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ArchiveConsignorOffersComponent } from './archive-consignor-offers.component';
+import { ArchiveOffersComponent } from './archive-offers.component';
 
 describe('ArchiveConsignorOffersComponent', () => {
-  let component: ArchiveConsignorOffersComponent;
-  let fixture: ComponentFixture<ArchiveConsignorOffersComponent>;
+  let component: ArchiveOffersComponent;
+  let fixture: ComponentFixture<ArchiveOffersComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ArchiveConsignorOffersComponent ]
+      declarations: [ ArchiveOffersComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ArchiveConsignorOffersComponent);
+    fixture = TestBed.createComponent(ArchiveOffersComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

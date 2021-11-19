@@ -16,22 +16,18 @@ import { TruckerComponent } from './pages/home/trucker/trucker.component';
 import { ConsignorComponent } from './pages/home/consignor/consignor.component';
 import { UserRegisterComponent } from './pages/user-register/user-register.component';
 import { UserLoginComponent } from './pages/user-login/user-login.component';
-import { provideFirebaseApp,  initializeApp } from '@angular/fire/app';
+import { provideFirebaseApp, initializeApp } from '@angular/fire/app';
 import { getFirestore, provideFirestore } from '@angular/fire/firestore';
 import { getStorage, provideStorage } from '@angular/fire/storage';
 import { getAuth, provideAuth } from '@angular/fire/auth'
 import { environment } from 'src/environments/environment';
 import { UserActionsComponent } from './pages/cabinet/user-actions/user-actions.component';
-import { ExchangeComponent } from './pages/cabinet/consignor-exchange/consignor-exchange.component';
+import { ExchangeComponent } from './pages/cabinet/exchange/exchange.component';
 import { MessagesComponent } from './pages/cabinet/messages/messages.component';
 import { UserInfoComponent } from './pages/cabinet/user-info/user-info.component';
-import { ActiveOffersComponent } from './pages/cabinet/user-actions/active-trucker-offers/active-trucker-offers.component';
-import { ArchiveOffersComponent } from './pages/cabinet/user-actions/archive-trucker-offers/archive-trucker-offers.component';
+import { ActiveOffersComponent } from './pages/cabinet/user-actions/active-offers/active-offers.component';
 import { GooglePlaceModule } from 'ngx-google-places-autocomplete';
 import { CreateOfferComponent } from './pages/cabinet/user-actions/create-offer/create-offer.component';
-import { ActiveConsignorOffersComponent } from './pages/cabinet/user-actions/active-consignor-offers/active-consignor-offers.component';
-import { ArchiveConsignorOffersComponent } from './pages/cabinet/user-actions/archive-consignor-offers/archive-consignor-offers.component';
-import { TruckerExchangeComponent } from './pages/cabinet/trucker-exchange/trucker-exchange.component';
 import { YouTruckerOffersComponent } from './pages/cabinet/messages/you-trucker-offers/you-trucker-offers.component';
 import { OthersTruckerOffersComponent } from './pages/cabinet/messages/others-trucker-offers/others-trucker-offers.component';
 import { OthersConsignorOffersComponent } from './pages/cabinet/messages/others-consignor-offers/others-consignor-offers.component';
@@ -39,7 +35,7 @@ import { YourConsignorOffersComponent } from './pages/cabinet/messages/your-cons
 import { ToastrModule } from 'ngx-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { UserSettingsComponent } from './pages/cabinet/user-info/user-settings/user-settings.component';
-
+import { ArchiveOffersComponent } from './pages/cabinet/user-actions/archive-offers/archive-offers.component';
 import { CarsSettingsComponent } from './pages/cabinet/user-info/user-settings/cars-settings/cars-settings.component';
 import { CompanySettingsComponent } from './pages/cabinet/user-info/user-settings/company-settings/company-settings.component';
 import { ProfileSettingsComponent } from './pages/cabinet/user-info/user-settings/profile-settings/profile-settings.component';
@@ -50,7 +46,7 @@ import { ProfileSettingsComponent } from './pages/cabinet/user-info/user-setting
 
 
 @NgModule({
- 
+
   declarations: [
     AppComponent,
     HeaderComponent,
@@ -69,19 +65,16 @@ import { ProfileSettingsComponent } from './pages/cabinet/user-info/user-setting
     MessagesComponent,
     UserInfoComponent,
     ActiveOffersComponent,
-    ArchiveOffersComponent,
-    ActiveConsignorOffersComponent,
-    ArchiveConsignorOffersComponent,
-    TruckerExchangeComponent,
     YouTruckerOffersComponent,
     OthersTruckerOffersComponent,
     OthersConsignorOffersComponent,
-    YourConsignorOffersComponent, 
+    YourConsignorOffersComponent,
     CarsSettingsComponent,
     CompanySettingsComponent,
     ProfileSettingsComponent,
     UserSettingsComponent,
-    CreateOfferComponent
+    CreateOfferComponent,
+    ArchiveOffersComponent
   ],
   imports: [
     RouterModule,
@@ -89,17 +82,17 @@ import { ProfileSettingsComponent } from './pages/cabinet/user-info/user-setting
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    ToastrModule.forRoot({positionClass: 'toast-bottom-left',}),
+    ToastrModule.forRoot({ positionClass: 'toast-bottom-left', }),
     BrowserAnimationsModule,
-    provideFirebaseApp(() => initializeApp( environment.firebaseConfig )),
+    provideFirebaseApp(() => initializeApp(environment.firebaseConfig)),
     provideFirestore(() => getFirestore()),
-    provideStorage(()=> getStorage()),
+    provideStorage(() => getStorage()),
     provideAuth(() => getAuth()),
     GooglePlaceModule,
 
   ],
   providers: [],
   bootstrap: [AppComponent],
- 
+
 })
 export class AppModule { }

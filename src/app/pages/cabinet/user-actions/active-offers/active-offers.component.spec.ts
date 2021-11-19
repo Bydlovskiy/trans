@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ActiveOffersComponent } from './active-trucker-offers.component';
+import { ActiveOffersComponent } from './active-offers.component';
 
 describe('ActiveOffersComponent', () => {
   let component: ActiveOffersComponent;

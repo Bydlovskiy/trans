@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { addDoc, collection, collectionData, doc, DocumentData, Firestore, getDocs, query, QuerySnapshot, updateDoc, where } from '@angular/fire/firestore';
+import { addDoc, collection, collectionData, doc, DocumentData, DocumentSnapshot, Firestore, getDoc, getDocs, query, QuerySnapshot, updateDoc, where } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
 import { IConsignorOffer } from '../../interfaces/consignor-offer-interface';
 import { ITruckerOffer } from '../../interfaces/trucker-offer-interface';
@@ -11,13 +11,10 @@ export class ConsignorOffersService {
 
   constructor(private firestore: Firestore) { }
 
-// CREATE
+  // CREATE
 
-  getAllforCurrentUser(userId : string) : Promise<QuerySnapshot<DocumentData>>{
-    return getDocs(query(collection(this.firestore, "consignor-offers"), where("userId", "==", userId)));
-  }
-  
-  saveOffer(offer: IConsignorOffer, role : string): Promise<void> {
+
+  saveOffer(offer: IConsignorOffer, role: string): Promise<void> {
     return addDoc(collection(this.firestore, `${role}-offers`), offer).then(data => {
       updateDoc(doc(this.firestore, `${role}-offers`, data.id), {
         id: data.id
@@ -25,26 +22,38 @@ export class ConsignorOffersService {
     })
   }
 
+  // ACTIVE
 
-
-
-  getTruckerOfferById (offerId : String) : Promise<QuerySnapshot<DocumentData>> {
-    return getDocs(query(collection(this.firestore, "trucker-offers"), where("id", "==", offerId)));
+  getAllforCurrentUser(userId: string, role: string): Promise<QuerySnapshot<DocumentData>> {
+    return getDocs(query(collection(this.firestore, `${role}-offers`), where("userId", "==", userId)));
   }
 
-  updateResponsedUser(offerId : string,respondedUsersId : ITruckerOffer):Promise<void>{
-    return updateDoc(doc(this.firestore, "trucker-offers", offerId),{ respondedUsersId : respondedUsersId })
-  }
-  
-  getTruckerOffers() : Observable<DocumentData[]> {
-    return collectionData(collection(this.firestore, "trucker-offers"))
+  changeOfferStatus(offerId: string, role: string): Promise<void> {
+    return updateDoc(doc(this.firestore, `${role}-offers`, offerId), { status: 'archive' })
   }
 
-  getUserFromId(userId : String) : Promise<QuerySnapshot<DocumentData>> {
-    return getDocs(query(collection(this.firestore, "users"), where("id", "==", userId)));
+  // Exchanges
+
+  getOffers(role: string): Observable<DocumentData[]> {
+    return collectionData(collection(this.firestore, `${role}-offers`))
   }
 
-  changeOfferStatus(offerId : string) : Promise<void> {
-    return updateDoc(doc(this.firestore, "consignor-offers", offerId),{ status :  'archive' })
+  getOfferById(offerId: string,role : string): Promise<DocumentSnapshot<DocumentData>> {
+    return getDoc(doc(this.firestore, `${role}-offers`,offerId));
   }
+
+
+  getUserFromId(userId: string): Promise<DocumentSnapshot<DocumentData>> {
+    return getDoc(doc(this.firestore, "users", userId));
+  }
+
+
+ 
+
+  updateResponsedUser(offerId: string, respondedUsersId :string ,role : string): Promise<void> {
+    return updateDoc(doc(this.firestore, `${role}-offers`, offerId), { respondedUsersId: respondedUsersId })
+  }
+
+
+
 }

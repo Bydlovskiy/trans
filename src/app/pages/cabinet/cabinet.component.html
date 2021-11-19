@@ -5,7 +5,7 @@
     </div>
     <div class="header-buttons-container">
       <div class="header-button" [routerLink]="[ '/cabinet/user-actions' ]">Ваші пропозиції</div>
-      <div class="header-button" [routerLink]="[ '/cabinet',exchangePath  ]">Біржа</div>
+      <div class="header-button" [routerLink]="[ '/cabinet/consignor-exchange'  ]">Біржа</div>
       <div class="header-button" [routerLink]="[ '/cabinet/messages' ]">повідомлення</div>
       <div class="header-button user-panel-button" [routerLink]="[ '/cabinet/info' ]">Панель користувача</div>
     </div>
@@ -13,19 +13,4 @@
   <router-outlet></router-outlet>
 </div>
 
-<!-- 
-<div class="user-panel" *ngIf="isUserPanel">
-  <div class="user-title">
-    <span class="name"></span>
-    <span class="email"></span>
-  </div>
-  <div class="panel-element" [routerLink]="[ '/cabinet/info' ]" (click)="isUserPanel = false">
-    <span>Моя компанія</span>
-  </div>
-  <div class="panel-element" [routerLink]="[ '/cabinet/settings' ]" (click)="isUserPanel = false">
-    <span>Налаштування</span>
-  </div>
-  <div class="panel-element" (click)="logOut()">
-    <span>Вийти</span>
-  </div>
-</div> -->
+

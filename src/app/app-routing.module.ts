@@ -10,14 +10,11 @@ import { ConsignorComponent } from './pages/home/consignor/consignor.component';
 import { UserRegisterComponent } from './pages/user-register/user-register.component';
 import { UserLoginComponent } from './pages/user-login/user-login.component';
 import { UserActionsComponent } from './pages/cabinet/user-actions/user-actions.component';
-import { ExchangeComponent } from './pages/cabinet/consignor-exchange/consignor-exchange.component';
+import { ExchangeComponent } from './pages/cabinet/exchange/exchange.component';
 import { MessagesComponent } from './pages/cabinet/messages/messages.component';
 import { UserInfoComponent } from './pages/cabinet/user-info/user-info.component';
-import { ActiveOffersComponent } from './pages/cabinet/user-actions/active-trucker-offers/active-trucker-offers.component';
-import { ArchiveOffersComponent } from './pages/cabinet/user-actions/archive-trucker-offers/archive-trucker-offers.component';
-import { ActiveConsignorOffersComponent } from './pages/cabinet/user-actions/active-consignor-offers/active-consignor-offers.component';
-import { ArchiveConsignorOffersComponent } from './pages/cabinet/user-actions/archive-consignor-offers/archive-consignor-offers.component';
-import { TruckerExchangeComponent } from './pages/cabinet/trucker-exchange/trucker-exchange.component';
+import { ActiveOffersComponent } from './pages/cabinet/user-actions/active-offers/active-offers.component';
+import { ArchiveOffersComponent } from './pages/cabinet/user-actions/archive-offers/archive-offers.component';
 import { YouTruckerOffersComponent } from './pages/cabinet/messages/you-trucker-offers/you-trucker-offers.component';
 import { YourConsignorOffersComponent } from './pages/cabinet/messages/your-consignor-offers/your-consignor-offers.component';
 import { OthersTruckerOffersComponent } from './pages/cabinet/messages/others-trucker-offers/others-trucker-offers.component';
@@ -45,13 +42,10 @@ const routes: Routes = [
      
       { path: 'user-actions', component: UserActionsComponent ,children :[
         {path :'' , pathMatch : 'full' , redirectTo : 'active-offers'},
-        {path : 'active-trucker-offers' , component : ActiveOffersComponent},
-        {path : 'archive-trucker-offers' , component : ArchiveOffersComponent},
+        {path : 'active-offers' , component : ActiveOffersComponent},
         {path : 'create-offers' , component : CreateOfferComponent},
-        {path : 'active-consignor-offers', component : ActiveConsignorOffersComponent},
-        {path : 'archive-consignor-offers', component : ArchiveConsignorOffersComponent},
+        {path : 'archive-consignor-offers', component : ArchiveOffersComponent},
       ]},
-      { path: 'trucker-exchange' ,component : TruckerExchangeComponent},
       { path: 'consignor-exchange', component: ExchangeComponent },
       { path: 'messages', component: MessagesComponent ,children : [
         {path : 'your-trucker-offers' , component : YouTruckerOffersComponent },
