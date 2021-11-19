@@ -25,7 +25,7 @@ export class CarsSettingsComponent implements OnInit {
     this.getCarsList();
   }
 
-  initForm(): void {
+  private initForm(): void {
     this.carSettingsForm = this.fb.group({
       mark: [null, Validators.required],
       model: [null, Validators.required],
@@ -37,7 +37,7 @@ export class CarsSettingsComponent implements OnInit {
     })
   }
 
-  getCarsList(): void {
+  private getCarsList(): void {
     const user = JSON.parse(localStorage.getItem('user') as string);
     this.carService.getCars(user.id).then(data => {
       this.carList = []
@@ -47,7 +47,7 @@ export class CarsSettingsComponent implements OnInit {
     })
   }
 
-  addCar() {
+  public addCar() {
     if (this.carSettingsForm.valid) {
       this.carService.setCar(this.carSettingsForm.value).then(() => {
         this.getCarsList();
@@ -62,13 +62,13 @@ export class CarsSettingsComponent implements OnInit {
     }
   }
 
-  updateCar(car: ICar): void {
+  public updateCar(car: ICar): void {
     this.carSettingsForm.patchValue(car);
     this.isAddCar = true;
     this.editStatus = true;
   }
 
-  saveCar(): void {
+  public saveCar(): void {
     if (this.carSettingsForm.valid) {
       this.carService.updateCar(this.carSettingsForm.value).then(() => {
         this.toastr.success('Автомобіль успішно редаговано')
@@ -84,7 +84,7 @@ export class CarsSettingsComponent implements OnInit {
     }
   }
 
-  deleteCar(id: string): void {
+  public deleteCar(id: string): void {
     this.carService.deleteCar(id).then(() => {
       this.getCarsList();
       this.toastr.success('Автомобіль успішно видалено')

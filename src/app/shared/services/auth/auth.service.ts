@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Auth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, UserCredential } from '@angular/fire/auth';
-import { doc, Firestore, getDoc, setDoc } from '@angular/fire/firestore';
+import { doc, DocumentData, DocumentSnapshot, Firestore, getDoc, setDoc } from '@angular/fire/firestore';
 
 
 @Injectable({
@@ -16,11 +16,11 @@ export class AuthService {
     return signOut(this.auth)
   }
 
-  logIn(email : string , password :string) {
+  logIn(email : string , password :string):Promise<UserCredential> {
     return signInWithEmailAndPassword(this.auth, email, password);
   }
 
-  getUserData(uId : string) {
+  getUserData(uId : string) :Promise<DocumentSnapshot<DocumentData>> {
     return getDoc(doc(this.firestore , 'users', uId))
   }
 
@@ -31,4 +31,5 @@ export class AuthService {
   register(email : string , password : string) : Promise<UserCredential> {
    return createUserWithEmailAndPassword(this.auth, email, password)
   }
+  
 }

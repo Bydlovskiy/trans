@@ -1,7 +1,9 @@
 <div class="profile-settings-container">
   <form [formGroup]="profileSettingsForm" (ngSubmit)="saveData()">
     <div class="profile-title">
-      <div class="foto" [style.background-image]="'url(' + imagePathCurentUser + ')'">
+      <div class="foto">
+        <img [src]="!imagePathCurrentUser ?  '/assets/icons/photocameraoutline_80020.svg' : imagePathCurrentUser"
+          width="80px">
         <input type="file" (change)="uploadImage($event)">
       </div>
     </div>

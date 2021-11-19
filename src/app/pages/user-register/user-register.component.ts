@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
@@ -9,7 +9,7 @@ import { AuthService } from 'src/app/shared/services/auth/auth.service';
   templateUrl: './user-register.component.html',
   styleUrls: ['./user-register.component.scss']
 })
-export class UserRegisterComponent implements OnInit {
+export class UserRegisterComponent implements OnInit ,OnDestroy {
   private role: string = JSON.parse(localStorage.getItem('register-role') as string)
   public registerForm !: FormGroup;
   constructor(private fb: FormBuilder,
@@ -20,6 +20,15 @@ export class UserRegisterComponent implements OnInit {
   ngOnInit(): void {
     console.log(this.role);
     this.initSignForm();
+    this.checkChoosingRole();
+  }
+
+  checkChoosingRole ()  {
+    if(localStorage.getItem('register-role') == null){
+      this.router.navigate(['/register'])
+    } else {
+
+    }
   }
 
   private initSignForm(): void {
@@ -65,5 +74,9 @@ export class UserRegisterComponent implements OnInit {
     }).catch(err => {
       this.toastr.error('Неправильно введені дані')
     })
+  }
+
+  ngOnDestroy(): void {
+    localStorage.removeItem('register-role')
   }
 }

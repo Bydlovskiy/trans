@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { addDoc, arrayUnion, collection, collectionData, deleteDoc, doc, DocumentData, DocumentReference, Firestore, getDocs, query, QuerySnapshot, setDoc, updateDoc } from '@angular/fire/firestore';
+import { addDoc, collection, deleteDoc, doc, DocumentData, Firestore, getDocs, query, QuerySnapshot, setDoc, updateDoc } from '@angular/fire/firestore';
 import { where } from '@firebase/firestore';
 import { ICar } from 'src/app/shared/interfaces/car-interface';
 
@@ -7,7 +7,9 @@ import { ICar } from 'src/app/shared/interfaces/car-interface';
   providedIn: 'root'
 })
 export class CarsSettingsService {
+
   constructor(private firestore: Firestore) { }
+
   getCars(userId: string): Promise<QuerySnapshot<DocumentData>> {
     return getDocs(query(collection(this.firestore, "cars"), where("userid", "==", userId)));
   }

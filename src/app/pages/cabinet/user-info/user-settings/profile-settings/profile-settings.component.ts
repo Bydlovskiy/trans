@@ -11,21 +11,29 @@ import { ProfileSettingsService } from 'src/app/shared/services/settings/profile
 })
 export class ProfileSettingsComponent implements OnInit {
   public profileSettingsForm!: FormGroup;
-  public imagePathCurentUser : string = '';
+  public imagePathCurrentUser: string = '';
   private currentUserid = JSON.parse(localStorage.getItem('user') as string).id;
+  public imagePath !: string;
 
   constructor(private fb: FormBuilder,
     private profileService: ProfileSettingsService,
-    private storage: Storage, 
-    private toastr : ToastrService) {
+    private storage: Storage,
+    private toastr: ToastrService) { }
 
-  }
   ngOnInit(): void {
     this.initForm();
     this.getData();
   }
 
-  initForm(): void {
+  private getData() {
+    this.profileService.getCompanyData(this.currentUserid).then(data => {
+      let profileData = data.data()?.user;
+      this.profileSettingsForm.patchValue(profileData);
+      this.imagePathCurrentUser = this.profileSettingsForm.controls['imagePath'].value;
+    })
+  }
+
+  private initForm(): void {
     this.profileSettingsForm = this.fb.group({
       name: [null, Validators.required],
       surname: [null, Validators.required],
@@ -35,8 +43,8 @@ export class ProfileSettingsComponent implements OnInit {
     })
   }
 
-  saveData(): void {
-    if (this.profileSettingsForm.valid){
+  public saveData(): void {
+    if (this.profileSettingsForm.valid) {
       this.profileService.setUserData(this.profileSettingsForm.value, this.currentUserid).then(() => {
         this.toastr.success('Дані успішно змінені')
       }).catch(() => {
@@ -47,14 +55,14 @@ export class ProfileSettingsComponent implements OnInit {
     }
   }
 
-  uploadImage(event: any) {
+  public uploadImage(event: any) {
     const file = event.target.files[0];
     console.log(file);
     this.uploadFile('images', file.name, file).then(data => {
       this.profileSettingsForm.patchValue({
         imagePath: data
       });
-      this.imagePathCurentUser = data;
+      this.imagePathCurrentUser = data;
     })
   }
 
@@ -73,16 +81,4 @@ export class ProfileSettingsComponent implements OnInit {
       }
     }
   }
-
-  private getData () {
-    this.profileService.getCompanyData(this.currentUserid).then(data => {
-      let profileData !: any;
-      data.forEach(data => {
-        profileData = data.data().user
-      })
-      this.imagePathCurentUser = profileData.imagePath
-      this.profileSettingsForm.patchValue(profileData)
-    })
-  }
-
 }

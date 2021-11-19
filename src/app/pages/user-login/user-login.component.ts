@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
@@ -9,7 +9,7 @@ import { AuthService } from 'src/app/shared/services/auth/auth.service';
   templateUrl: './user-login.component.html',
   styleUrls: ['./user-login.component.scss']
 })
-export class UserLoginComponent implements OnInit {
+export class UserLoginComponent implements OnInit , OnDestroy {
   private role : string = JSON.parse(localStorage.getItem('login-role') as string)
   public loginForm !: FormGroup;
   constructor(private fb: FormBuilder,
@@ -19,8 +19,16 @@ export class UserLoginComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    console.log(this.role);
+    this.checkChoosingRole();
     this.initLoginForm()
+  }
+  
+  checkChoosingRole ()  {
+    if(localStorage.getItem('login-role') == null){
+      this.router.navigate(['/login'])
+    } else {
+      
+    }
   }
 
   initLoginForm(): void {
@@ -66,5 +74,9 @@ export class UserLoginComponent implements OnInit {
     }).catch(() => {
       this.toastr.error('Неправильний email чи пароль')
     })
+  }
+
+  ngOnDestroy(): void {
+    localStorage.removeItem('login-role')
   }
 }
