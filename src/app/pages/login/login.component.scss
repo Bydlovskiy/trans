@@ -68,6 +68,7 @@
     font-size: 20px;
     letter-spacing: .14px;
     color: #fff;
+    margin-bottom: 20px;
   }
 }
 
@@ -123,9 +124,10 @@
 @media screen and (max-width : 470px) {
   .choose-regiter-type-container {
     .content {
-      .logo-container{
+      .logo-container {
         width: 250px;
       }
+
       .title {
         p {
           font-size: 15px;

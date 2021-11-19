@@ -7,10 +7,10 @@
       <p>Вітаємо на логістичній Платформі Trans.eu</p>
     </div>
     <div class="buttons-container">
-      <div class="button-container" [routerLink]="[ '/trucker-register' ]">
+      <div class="button-container" (click)="chooseRole('trucker')" [routerLink]="[ '/user-register' ]">
         <span>Зареєструватися як перевізник</span>
       </div>
-      <div class="button-container" [routerLink]="[ '/consignor-register' ]">
+      <div class="button-container" (click)="chooseRole('consignor')" [routerLink]="[ '/user-register' ]">
         <span>Зареєструватися як товаровідправник</span>
         
       </div>

@@ -1,15 +1,16 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { AuthService } from 'src/app/shared/services/auth/auth.service';
 
 @Component({
-  selector: 'app-consignor-login',
-  templateUrl: './consignor-login.component.html',
-  styleUrls: ['./consignor-login.component.scss']
+  selector: 'app-user-login',
+  templateUrl: './user-login.component.html',
+  styleUrls: ['./user-login.component.scss']
 })
-export class ConsignorLoginComponent implements OnInit {
+export class UserLoginComponent implements OnInit {
+  private role : string = JSON.parse(localStorage.getItem('login-role') as string)
   public loginForm !: FormGroup;
   constructor(private fb: FormBuilder,
     private authService : AuthService,
@@ -18,6 +19,7 @@ export class ConsignorLoginComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    console.log(this.role);
     this.initLoginForm()
   }
 
@@ -31,7 +33,6 @@ export class ConsignorLoginComponent implements OnInit {
   loginConsignor(): void {
     if (!this.loginForm.valid) {
       this.toastr.error('Заповніть форму')
-
     } else {
       const { email, password } = this.loginForm.value;
       this.login(email, password)
@@ -42,7 +43,7 @@ export class ConsignorLoginComponent implements OnInit {
     this.authService.logIn(email,password).then(credential => {
       this.authService.getUserData(credential.user.uid).then(user => {
         const currentUser : any = user.data();
-        if (user && currentUser.role  === 'consignor') {
+        if (user && currentUser.role  ===  this.role) {
           const userLocal = {
             id: user.id,
             role: currentUser.role
@@ -50,14 +51,20 @@ export class ConsignorLoginComponent implements OnInit {
           localStorage.setItem('user', JSON.stringify(userLocal));
           this.toastr.success('Вхід виконано')
           this.router.navigate(['/cabinet']);
-        } else if (user && currentUser.role === 'trucker') {
-          this.toastr.error('Увійдіть як перевізник')
+          localStorage.removeItem('login-role');
+          localStorage.removeItem('register-role');
+        } else if (user && currentUser.role != this.role ) {
+          let role !: string;
+          if(this.role == 'trucker'){
+            role = 'товаровідправник'
+          } else if (this.role = 'consignor'){
+            role = 'перевізник'
+          }
+          this.toastr.error(`Увійдіть як ${role}`)
         } 
       });
-      
     }).catch(() => {
       this.toastr.error('Неправильний email чи пароль')
     })
   }
-
 }

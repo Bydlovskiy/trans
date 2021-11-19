@@ -14,10 +14,8 @@ import { RegisterComponent } from './pages/register/register.component';
 import { CabinetComponent } from './pages/cabinet/cabinet.component';
 import { TruckerComponent } from './pages/home/trucker/trucker.component';
 import { ConsignorComponent } from './pages/home/consignor/consignor.component';
-import { TruckerRegisterComponent } from './pages/trucker-register/trucker-register.component';
-import { ConsignorRegisterComponent } from './pages/consignor-register/consignor-register.component';
-import { ConsignorLoginComponent } from './pages/consignor-login/consignor-login.component';
-import { TruckerLoginComponent } from './pages/trucker-login/trucker-login.component';
+import { UserRegisterComponent } from './pages/user-register/user-register.component';
+import { UserLoginComponent } from './pages/user-login/user-login.component';
 import { provideFirebaseApp, getApp, initializeApp } from '@angular/fire/app';
 import { getFirestore, provideFirestore } from '@angular/fire/firestore';
 import { getStorage, provideStorage } from '@angular/fire/storage';
@@ -65,10 +63,8 @@ import { ProfileSettingsComponent } from './pages/cabinet/user-info/user-setting
     CabinetComponent,
     TruckerComponent,
     ConsignorComponent,
-    TruckerRegisterComponent,
-    ConsignorRegisterComponent,
-    ConsignorLoginComponent,
-    TruckerLoginComponent,
+    UserRegisterComponent,
+    UserLoginComponent,
     UserActionsComponent,
     ExchangeComponent,
     MessagesComponent,

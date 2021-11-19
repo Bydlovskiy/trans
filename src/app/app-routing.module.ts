@@ -7,10 +7,8 @@ import { RegisterComponent } from './pages/register/register.component';
 import { CabinetComponent } from './pages/cabinet/cabinet.component';
 import { TruckerComponent } from './pages/home/trucker/trucker.component';
 import { ConsignorComponent } from './pages/home/consignor/consignor.component';
-import { TruckerRegisterComponent } from './pages/trucker-register/trucker-register.component';
-import { ConsignorRegisterComponent } from './pages/consignor-register/consignor-register.component';
-import { TruckerLoginComponent } from './pages/trucker-login/trucker-login.component';
-import { ConsignorLoginComponent } from './pages/consignor-login/consignor-login.component';
+import { UserRegisterComponent } from './pages/user-register/user-register.component';
+import { UserLoginComponent } from './pages/user-login/user-login.component';
 import { UserActionsComponent } from './pages/cabinet/user-actions/user-actions.component';
 import { ExchangeComponent } from './pages/cabinet/consignor-exchange/consignor-exchange.component';
 import { MessagesComponent } from './pages/cabinet/messages/messages.component';
@@ -38,11 +36,9 @@ const routes: Routes = [
   { path: 'trucker', component: TruckerComponent },
   { path: 'consignor', component: ConsignorComponent },
   { path: 'register', component: RegisterComponent },
-  { path: 'trucker-register', component: TruckerRegisterComponent },
-  { path: 'consignor-register', component: ConsignorRegisterComponent },
+  { path: 'user-register', component: UserRegisterComponent },
   { path: 'login', component: LoginComponent },
-  { path: 'trucker-login', component: TruckerLoginComponent },
-  { path: 'consignor-login', component: ConsignorLoginComponent },
+  { path: 'user-login', component: UserLoginComponent },
   { path: 'contacts', component: KontaktyComponent },
   {
     path: 'cabinet', component: CabinetComponent, children: [

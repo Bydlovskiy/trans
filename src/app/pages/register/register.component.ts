@@ -12,4 +12,8 @@ export class RegisterComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  chooseRole(role : string) {
+    localStorage.setItem('register-role',JSON.stringify(role))
+  }
+
 }

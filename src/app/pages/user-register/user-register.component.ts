@@ -1,17 +1,16 @@
 import { Component, OnInit } from '@angular/core';
-import { Auth, createUserWithEmailAndPassword } from '@angular/fire/auth';
-import { doc, Firestore, setDoc } from '@angular/fire/firestore';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { AuthService } from 'src/app/shared/services/auth/auth.service';
 
 @Component({
-  selector: 'app-consignor-register',
-  templateUrl: './consignor-register.component.html',
-  styleUrls: ['./consignor-register.component.scss']
+  selector: 'app-user-register',
+  templateUrl: './user-register.component.html',
+  styleUrls: ['./user-register.component.scss']
 })
-export class ConsignorRegisterComponent implements OnInit {
+export class UserRegisterComponent implements OnInit {
+  private role: string = JSON.parse(localStorage.getItem('register-role') as string)
   public registerForm !: FormGroup;
   constructor(private fb: FormBuilder,
     private authService: AuthService,
@@ -19,6 +18,7 @@ export class ConsignorRegisterComponent implements OnInit {
     private toastr: ToastrService) { }
 
   ngOnInit(): void {
+    console.log(this.role);
     this.initSignForm();
   }
 
@@ -27,7 +27,7 @@ export class ConsignorRegisterComponent implements OnInit {
       email: [null, Validators.required],
       password: [null, Validators.required],
       phoneNumber: [null, Validators.required],
-      role: ['consignor']
+      role: [this.role]
     })
   }
 
@@ -41,8 +41,8 @@ export class ConsignorRegisterComponent implements OnInit {
     }
   }
 
-  private  emailSignUp(email: string, password: string): void {
-    this.authService.register(email,password).then(data => {
+  private emailSignUp(email: string, password: string): void {
+    this.authService.register(email, password).then(data => {
       const user = {
         phoneNumber: this.registerForm.controls['phoneNumber'].value,
         email: this.registerForm.controls['email'].value,
@@ -51,10 +51,17 @@ export class ConsignorRegisterComponent implements OnInit {
         user: {},
         company: {},
       };
-      this.toastr.success('Ви успішно зареєструвались як товаровідправник')
+      let role !: string;
+      if (this.role == 'trucker') {
+        role = 'перевізник'
+      } else if (this.role = 'consignor') {
+        role = 'товаровідправник'
+      }
+      this.toastr.success(`Ви успішно зареєструвались як ${role}`)
       this.registerForm.reset();
-      this.router.navigate(['/consignor-login']);
-      this.authService.setUserData(data.user.uid,user)
+      localStorage.setItem('login-role', JSON.stringify(this.role))
+      this.router.navigate(['/user-login']);
+      this.authService.setUserData(data.user.uid, user)
     }).catch(err => {
       this.toastr.error('Неправильно введені дані')
     })
