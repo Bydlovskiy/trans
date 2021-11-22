@@ -15,15 +15,14 @@ import { MessagesComponent } from './pages/cabinet/messages/messages.component';
 import { UserInfoComponent } from './pages/cabinet/user-info/user-info.component';
 import { ActiveOffersComponent } from './pages/cabinet/user-actions/active-offers/active-offers.component';
 import { ArchiveOffersComponent } from './pages/cabinet/user-actions/archive-offers/archive-offers.component';
-import { YouTruckerOffersComponent } from './pages/cabinet/messages/you-trucker-offers/you-trucker-offers.component';
-import { YourConsignorOffersComponent } from './pages/cabinet/messages/your-consignor-offers/your-consignor-offers.component';
-import { OthersTruckerOffersComponent } from './pages/cabinet/messages/others-trucker-offers/others-trucker-offers.component';
-import { OthersConsignorOffersComponent } from './pages/cabinet/messages/others-consignor-offers/others-consignor-offers.component';
+import { YourNotificationsComponent } from './pages/cabinet/messages/your-notifications/your-notifications.component';
+import { OthersNotificationsComponent } from './pages/cabinet/messages/others-notifications/others-notifications.component';
 import { UserSettingsComponent } from './pages/cabinet/user-info/user-settings/user-settings.component';
 import { CarsSettingsComponent } from './pages/cabinet/user-info/user-settings/cars-settings/cars-settings.component';
 import { ProfileSettingsComponent } from './pages/cabinet/user-info/user-settings/profile-settings/profile-settings.component';
 import { CompanySettingsComponent } from './pages/cabinet/user-info/user-settings/company-settings/company-settings.component';
 import { CreateOfferComponent } from './pages/cabinet/user-actions/create-offer/create-offer.component';
+import { ArchiveNotificationsComponent } from './pages/cabinet/messages/archive-notifications/archive-notifications.component';
 
 
 
@@ -39,32 +38,35 @@ const routes: Routes = [
   {
     path: 'cabinet', component: CabinetComponent, children: [
       { path: '', pathMatch: 'full', redirectTo: 'info' },
-     
-      { path: 'user-actions', component: UserActionsComponent ,children :[
-        {path :'' , pathMatch : 'full' , redirectTo : 'active-offers'},
-        {path : 'active-offers' , component : ActiveOffersComponent},
-        {path : 'create-offers' , component : CreateOfferComponent},
-        {path : 'archive-consignor-offers', component : ArchiveOffersComponent},
-      ]},
-      { path: 'consignor-exchange', component: ExchangeComponent },
-      { path: 'messages', component: MessagesComponent ,children : [
-        {path : 'your-trucker-offers' , component : YouTruckerOffersComponent },
-        {path : 'your-consignor-offers' , component : YourConsignorOffersComponent},
-        {path : 'others-trucker-offers' , component :  OthersTruckerOffersComponent},
-        {path : 'others-consignor-offers' , component : OthersConsignorOffersComponent},
-      ]},
-      { path: 'info', component: UserInfoComponent , children : [
-        // { path: '', pathMatch: 'full', redirectTo: 'settings' },
-        {
-          path: 'settings', component: UserSettingsComponent, children: [
-            { path: '', pathMatch: 'full', redirectTo: 'profile' },
-            { path: 'cars', component: CarsSettingsComponent },
-            { path: 'profile', component: ProfileSettingsComponent },
-            { path : 'company' ,component : CompanySettingsComponent }
-          ]
-        },
-      ]
-    }
+
+      {
+        path: 'user-actions', component: UserActionsComponent, children: [
+          { path: '', pathMatch: 'full', redirectTo: 'active-offers' },
+          { path: 'active-offers', component: ActiveOffersComponent },
+          { path: 'create-offers', component: CreateOfferComponent },
+          { path: 'archive-offers', component: ArchiveOffersComponent },
+        ]
+      },
+      { path: 'exchange', component: ExchangeComponent },
+      {
+        path: 'messages', component: MessagesComponent, children: [
+          { path: 'your-notifications', component: YourNotificationsComponent },
+          { path: 'others-notifications', component: OthersNotificationsComponent },
+          { path : 'archive-notifications',component : ArchiveNotificationsComponent}
+        ]
+      },
+      {
+        path: 'info', component: UserInfoComponent, children: [
+          {
+            path: 'settings', component: UserSettingsComponent, children: [
+              { path: '', pathMatch: 'full', redirectTo: 'profile' },
+              { path: 'cars', component: CarsSettingsComponent },
+              { path: 'profile', component: ProfileSettingsComponent },
+              { path: 'company', component: CompanySettingsComponent }
+            ]
+          },
+        ]
+      }
     ]
   }
 ];

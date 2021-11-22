@@ -3,7 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ITruckerOffer } from 'src/app/shared/interfaces/trucker-offer-interface';
 import { isEmpty } from '@firebase/util';
 import { CommunicationsService } from 'src/app/shared/services/communications/communications.service';
-import { ConsignorOffersService } from 'src/app/shared/services/offers/consignor-offers.service';
+import { OffersService } from 'src/app/shared/services/offers/offers.service';
 import { UserInfoService } from 'src/app/shared/services/user-info/user-info.service';
 import { IConsignorOffer } from 'src/app/shared/interfaces/consignor-offer-interface';
 
@@ -20,6 +20,7 @@ export class ExchangeComponent implements OnInit {
   public respondToOfferForm !: FormGroup;
   public messageGroup !: FormGroup;
   private collection !: string;
+  public isEmpty = false;
   public modalToggle = false;
   public customerInfoForConsignor = false;
   public customerInfoForTrucker = false;
@@ -28,7 +29,7 @@ export class ExchangeComponent implements OnInit {
   public currentUser !: any;
   public checkSettings !: boolean;
   public user = JSON.parse(localStorage.getItem('user') as string);
-  constructor(private offersService: ConsignorOffersService,
+  constructor(private offersService: OffersService,
     private communicationService: CommunicationsService,
     private fb: FormBuilder,
     private userInfoService: UserInfoService) { }
@@ -67,9 +68,13 @@ export class ExchangeComponent implements OnInit {
   }
 
   private getOffersList(): void {
-
     this.offersService.getOffers(this.collection).subscribe(data => {
       const activeOffers = data.filter(data => data.status == "generated");
+      if(activeOffers.length > 0){
+        this.isEmpty = false; 
+      } else if (activeOffers.length == 0){
+        this.isEmpty = true; 
+      }
       this.getUserData(activeOffers as ITruckerOffer[] | IConsignorOffer[])
     })
   }
@@ -112,10 +117,9 @@ export class ExchangeComponent implements OnInit {
     this.offersService.getOfferById(this.respondToOfferForm.controls['offerId'].value, this.collection).then(data => {
       let currentOffer = data.data() as IConsignorOffer | ITruckerOffer;
       currentOffer.respondedUsersId.push(this.user.id);
-      console.log(currentOffer);
-      this.offersService.updateResponsedUser(currentOffer.id, this.user.id, this.collection).then(() => { })
+      this.offersService.updateResponsedUser(currentOffer.id, currentOffer.respondedUsersId, this.collection).then(() => { })
     })
-    this.communicationService.saveOffer(this.respondToOfferForm.value).then(() => {
+    this.communicationService.saveNotification(this.respondToOfferForm.value).then(() => {
       this.getOffersList();
     })
   }

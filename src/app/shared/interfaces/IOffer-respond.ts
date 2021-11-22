@@ -1,13 +1,13 @@
 import { Timestamp } from "@firebase/firestore";
 
 export interface IOfferResponde {
-    customerId: String,
-    performerId: String,
-    offerId: String,
+    customerId: string,
+    performerId: string,
+    offerId: string,
     message: IMessageCustomer[] | IMessagePerformer[]
     date : Timestamp,
-    id : String,
-    status : String
+    id : string,
+    status : string
 }
 
 export interface IMessageCustomer {

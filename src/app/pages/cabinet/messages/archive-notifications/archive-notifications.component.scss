@@ -42,6 +42,7 @@
         td {
           text-align: center;
           padding-top: 10px;
+
           .more {
             background-color: #fff;
             border: 1px solid #82acc4;
@@ -86,6 +87,11 @@
   align-items: center;
 
   .info-modal {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    z-index: 20;
+    transform: translate(-50%,-50%);
     border-radius: 10px;
     border: 1px solid grey;
     width: 90%;

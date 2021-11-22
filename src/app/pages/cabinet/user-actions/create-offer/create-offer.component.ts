@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import { GooglePlaceDirective } from 'ngx-google-places-autocomplete';
 import { Address } from 'ngx-google-places-autocomplete/objects/address';
 import { ICar } from 'src/app/shared/interfaces/car-interface';
-import { ConsignorOffersService } from 'src/app/shared/services/offers/consignor-offers.service';
+import { OffersService } from 'src/app/shared/services/offers/offers.service';
 import { CarsSettingsService } from 'src/app/shared/services/settings/cars-settings/cars-settings.service';
 
 @Component({
@@ -19,7 +19,7 @@ export class CreateOfferComponent implements OnInit {
   public selectedValue = null;
   public user = JSON.parse(localStorage.getItem('user') as string);
   constructor(private fb: FormBuilder,
-    private offerService: ConsignorOffersService,
+    private offerService: OffersService,
     private carService: CarsSettingsService,
     private router : Router
 
@@ -175,7 +175,8 @@ export class CreateOfferComponent implements OnInit {
       status: [null, Validators.required],
       date: [null, Validators.required],
       id: [null, Validators.required],
-      respondedUsersId: [[]]
+      respondedUsersId: [[]],
+      notifitaionId : [null]
     })
   }
 
@@ -194,11 +195,12 @@ export class CreateOfferComponent implements OnInit {
       status: [null, Validators.required],
       date: [null, Validators.required],
       id: [null, Validators.required],
-      respondedUsersId: [[]]
+      respondedUsersId: [[]],
+      notifitaionId : [null]
     })
   }
 
-  initCarList(): void {
+  private initCarList(): void {
     this.carService.getCars(this.user.id).then(data => {
       this.carList = []
       data.forEach(car => {
@@ -207,14 +209,15 @@ export class CreateOfferComponent implements OnInit {
     })
   }
 
-  saveOffer(): void {
+  public saveOffer(): void {
     if (this.user.role == 'trucker') {
       this.offerTruckerForm.patchValue({
         status: 'generated',
         date: new Date,
         id: ''
       })
-      this.offerService.saveOffer(this.offerTruckerForm.value, this.user.role).then(data => {
+      this.offerService.saveOffer(this.offerTruckerForm.value, this.user.role).then(() => {
+        this.router.navigate(['/cabinet/user-actions/active-offers' ])
         this.offerTruckerForm.reset();
 
       })
@@ -224,7 +227,8 @@ export class CreateOfferComponent implements OnInit {
         date: new Date,
         id: ''
       })
-      this.offerService.saveOffer(this.offerConsignorForm.value, this.user.role).then(data => {
+      this.offerService.saveOffer(this.offerConsignorForm.value, this.user.role).then(() => {
+        this.router.navigate(['/cabinet/user-actions/active-offers' ])
         this.offerConsignorForm.reset();
       })
     }

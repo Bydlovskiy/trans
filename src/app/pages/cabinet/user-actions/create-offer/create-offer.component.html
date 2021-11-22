@@ -1,4 +1,3 @@
-
 <ng-container *ngIf="user.role == 'consignor'">
   <div class="container-main">
     <form [formGroup]="offerConsignorForm" (ngSubmit)="saveOffer()">
@@ -39,16 +38,16 @@
           <span>Інша інформація</span>
         </div>
         <label for=""> Вантаж
-          <input type="text" formControlName="cargo"  class="form-control">
+          <input type="text" formControlName="cargo" class="form-control">
         </label>
         <label for=""> Вага
-          <input type="number" formControlName="weight"  class="form-control">
+          <input type="number" formControlName="weight" class="form-control">
         </label>
         <label for=""> Ціна
           <input formControlName="price" class="form-control" type="text">
         </label>
+        <button type="submit">Зберегти</button>
       </div>
-      <button type="submit">Зберегти</button>
     </form>
   </div>
 </ng-container>
@@ -100,10 +99,8 @@
         <label for=""> Ціна
           <input formControlName="price" class="form-control" type="text">
         </label>
+        <button type="submit">Зберегти</button>
       </div>
-      <button type="submit">Зберегти</button>
     </form>
   </div>
 </ng-container>
-
-

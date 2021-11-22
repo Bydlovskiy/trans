@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { YouTruckerOffersComponent } from './you-trucker-offers.component';
+import { EmptyPageComponent } from './empty-page.component';
 
-describe('YouTruckerOffersComponent', () => {
-  let component: YouTruckerOffersComponent;
-  let fixture: ComponentFixture<YouTruckerOffersComponent>;
+describe('EmptyPageComponent', () => {
+  let component: EmptyPageComponent;
+  let fixture: ComponentFixture<EmptyPageComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ YouTruckerOffersComponent ]
+      declarations: [ EmptyPageComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(YouTruckerOffersComponent);
+    fixture = TestBed.createComponent(EmptyPageComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

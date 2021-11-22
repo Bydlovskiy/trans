@@ -28,10 +28,8 @@ import { UserInfoComponent } from './pages/cabinet/user-info/user-info.component
 import { ActiveOffersComponent } from './pages/cabinet/user-actions/active-offers/active-offers.component';
 import { GooglePlaceModule } from 'ngx-google-places-autocomplete';
 import { CreateOfferComponent } from './pages/cabinet/user-actions/create-offer/create-offer.component';
-import { YouTruckerOffersComponent } from './pages/cabinet/messages/you-trucker-offers/you-trucker-offers.component';
-import { OthersTruckerOffersComponent } from './pages/cabinet/messages/others-trucker-offers/others-trucker-offers.component';
-import { OthersConsignorOffersComponent } from './pages/cabinet/messages/others-consignor-offers/others-consignor-offers.component';
-import { YourConsignorOffersComponent } from './pages/cabinet/messages/your-consignor-offers/your-consignor-offers.component';
+import { OthersNotificationsComponent } from './pages/cabinet/messages/others-notifications/others-notifications.component';
+import { YourNotificationsComponent } from './pages/cabinet/messages/your-notifications/your-notifications.component';
 import { ToastrModule } from 'ngx-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { UserSettingsComponent } from './pages/cabinet/user-info/user-settings/user-settings.component';
@@ -39,6 +37,9 @@ import { ArchiveOffersComponent } from './pages/cabinet/user-actions/archive-off
 import { CarsSettingsComponent } from './pages/cabinet/user-info/user-settings/cars-settings/cars-settings.component';
 import { CompanySettingsComponent } from './pages/cabinet/user-info/user-settings/company-settings/company-settings.component';
 import { ProfileSettingsComponent } from './pages/cabinet/user-info/user-settings/profile-settings/profile-settings.component';
+import { ArchiveNotificationsComponent } from './pages/cabinet/messages/archive-notifications/archive-notifications.component';
+import { EmptyPageComponent } from './components/empty-page/empty-page.component';
+import { CheckSettingsComponent } from './components/check-settings/check-settings.component';
 
 
 
@@ -65,16 +66,17 @@ import { ProfileSettingsComponent } from './pages/cabinet/user-info/user-setting
     MessagesComponent,
     UserInfoComponent,
     ActiveOffersComponent,
-    YouTruckerOffersComponent,
-    OthersTruckerOffersComponent,
-    OthersConsignorOffersComponent,
-    YourConsignorOffersComponent,
+    OthersNotificationsComponent,
+    YourNotificationsComponent,
     CarsSettingsComponent,
     CompanySettingsComponent,
     ProfileSettingsComponent,
     UserSettingsComponent,
     CreateOfferComponent,
-    ArchiveOffersComponent
+    ArchiveOffersComponent,
+    ArchiveNotificationsComponent,
+    EmptyPageComponent,
+    CheckSettingsComponent
   ],
   imports: [
     RouterModule,

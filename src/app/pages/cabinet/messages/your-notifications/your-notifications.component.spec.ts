@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { YourConsignorOffersComponent } from './your-consignor-offers.component';
+import { YourOffersComponent } from './your-notifications.component';
 
 describe('YourConsignorOffersComponent', () => {
-  let component: YourConsignorOffersComponent;
-  let fixture: ComponentFixture<YourConsignorOffersComponent>;
+  let component: YourOffersComponent;
+  let fixture: ComponentFixture<YourOffersComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ YourConsignorOffersComponent ]
+      declarations: [ YourOffersComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(YourConsignorOffersComponent);
+    fixture = TestBed.createComponent(YourOffersComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

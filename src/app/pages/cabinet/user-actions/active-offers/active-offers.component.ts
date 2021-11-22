@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { IConsignorOffer } from 'src/app/shared/interfaces/consignor-offer-interface';
 import { ITruckerOffer } from 'src/app/shared/interfaces/trucker-offer-interface';
-import { ConsignorOffersService } from 'src/app/shared/services/offers/consignor-offers.service';
+import { CommunicationsService } from 'src/app/shared/services/communications/communications.service';
+import { OffersService } from 'src/app/shared/services/offers/offers.service';
 
 
 
@@ -12,34 +13,48 @@ import { ConsignorOffersService } from 'src/app/shared/services/offers/consignor
 })
 export class ActiveOffersComponent implements OnInit {
   public activeConsignorOffersList !: IConsignorOffer[];
-  public activeTruckerOffersList !:ITruckerOffer[];
+  public activeTruckerOffersList !: ITruckerOffer[];
+  public isEmpty = false;
   public user = JSON.parse(localStorage.getItem('user') as string);
+  constructor(private offerService: OffersService,
+              private comunicationService: CommunicationsService) { }
 
-  constructor(private offerService: ConsignorOffersService) { }
- 
   ngOnInit(): void {
-    this.loadOfferList()
+    this.loadOfferList();
   }
 
   loadOfferList(): void {
-    this.offerService.getAllforCurrentUser(this.user.id,this.user.role).then(data => {
+    this.offerService.getAllforCurrentUser(this.user.id, this.user.role).then(data => {
       this.activeTruckerOffersList = [];
       this.activeConsignorOffersList = [];
-      let offerList : any[] = [];
+      let offerList: any[] = [];
       data.forEach(offer => {
         offerList.push(offer.data() as ITruckerOffer | IConsignorOffer);
       });
-      if(this.user.role == 'consignor'){
-        this.activeConsignorOffersList = offerList.filter(offer => offer.status == "generated" || offer.status == "in-work")
-      } else if (this.user.role == 'trucker'){
-        this.activeTruckerOffersList = offerList.filter(offer => offer.status == "generated" || offer.status == "in-work")
+      if (this.user.role == 'consignor') {
+        this.activeConsignorOffersList = offerList.filter(offer => offer.status == "generated" || offer.status == "in-work");
+        if(this.activeConsignorOffersList.length > 0){
+          this.isEmpty = false;
+        } else if(this.activeConsignorOffersList.length == 0){
+          this.isEmpty = true;
+        }
+      } else if (this.user.role == 'trucker') {
+        this.activeTruckerOffersList = offerList.filter(offer => offer.status == "generated" || offer.status == "in-work");
+        if(this.activeTruckerOffersList.length > 0){
+          this.isEmpty = false;
+        } else if(this.activeTruckerOffersList.length == 0){
+          this.isEmpty = true;
+        }
       }
+
     })
   }
 
-  addToArchive(offerId : string): void {
-    this.offerService.changeOfferStatus(offerId , this.user.role).then(() => {
-      this.loadOfferList();
+  addToArchive(offerId: string, notificationId: string): void {
+    this.offerService.changeOfferStatus(offerId, this.user.role).then(() => {
+      this.comunicationService.archivateNotification(notificationId).then(() => {
+        this.loadOfferList();
+      })
     })
   }
 }

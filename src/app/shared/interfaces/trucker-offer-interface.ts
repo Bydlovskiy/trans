@@ -14,5 +14,6 @@ export interface ITruckerOffer {
     userId : String,
     id : string,
     status : String,
-    respondedUsersId : String[]
+    respondedUsersId : String[],
+    notifitaionId : string
 }

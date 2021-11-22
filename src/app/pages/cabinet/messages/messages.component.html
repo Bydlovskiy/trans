@@ -3,11 +3,14 @@
       <b>Сповіщення</b>
     </div>
     <div class="buttons-container">
-      <div class="button" [routerLink]="[ '/cabinet/messages', path[0] ]">
-        <span>Ваші пропозиції</span>
+      <div class="button" [routerLink]="[ '/cabinet/messages/your-notifications' ]">
+        <span>Заявки</span>
       </div>
-      <div class="button" [routerLink]="[ '/cabinet/messages', path[1] ]">
-        <span>Інші пропозиції</span>
+      <div class="button" [routerLink]="[ '/cabinet/messages/others-notifications']">
+        <span>Відповіді</span>
+      </div>
+      <div class="button" [routerLink]="[ '/cabinet/messages/archive-notifications']">
+        <span>Архів виконаних</span>
       </div>
     </div>
     <div>

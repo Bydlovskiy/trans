@@ -1,9 +1,4 @@
-<ng-container *ngIf="user.role == 'consignor'">
-  <div class="table-settings">
-    <div class="find-count">
-      <span></span>
-    </div>
-  </div>
+<ng-container *ngIf="!isEmpty && user.role == 'consignor'">
   <div class="table-container">
     <table>
       <thead>
@@ -59,7 +54,8 @@
     </table>
   </div>
 </ng-container>
-<ng-container *ngIf="user.role == 'trucker'">
+
+<ng-container *ngIf="!isEmpty && user.role == 'trucker'">
   <div class="table-container">
     <table>
       <thead>
@@ -99,7 +95,7 @@
           </td>
           <td class="class-container">
             <p class="place">{{offer.unloadingCountry}}{{offer.unloadingCity}}</p>
-            <p >{{offer.unloadingDate}}</p>
+            <p>{{offer.unloadingDate}}</p>
           </td>
           <td class="class-container">
             <p class="place">{{ offer.car.mark }}{{ offer.car.model }}</p>
@@ -114,5 +110,6 @@
       </tbody>
     </table>
   </div>
-  
 </ng-container>
+
+<app-empty-page *ngIf="isEmpty">Поки ще немає архівованих пропозицій</app-empty-page>

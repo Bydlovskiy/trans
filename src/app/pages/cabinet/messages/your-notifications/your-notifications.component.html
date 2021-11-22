@@ -1,51 +1,53 @@
-<div class="container-all">
+<div class="container-all" *ngIf="!isEmpty">
   <table>
     <thead>
       <tr>
-          <th>Дані про фірму</th>
-          <th></th>
-          <th>Пропозиція</th>
-          <th></th>
-          <th>Повідомлення</th>
-          <th>Дата</th>
-          <th>Відреагувати</th>
+        <th>Дані про фірму</th>
+        <th></th>
+        <th>Пропозиція</th>
+        <th></th>
+        <th>Повідомлення</th>
+        <th>Дата</th>
+        <th>Відреагувати</th>
       </tr>
-  </thead>
+    </thead>
     <tbody>
       <tr *ngFor="let notification of notificationsList;let i = index">
         <td class="class-container">
           <p class="place">
-              {{notification.performerData?.company.name}} 
+            {{notification.performerData?.company.name}}
           </p>
-      </td>
-      <td class="class-container">
-          <button  class="more" (click)="companyDetails(i)" type="button">Детальніше</button>
-      </td>
-      <td class="class-container">
+        </td>
+        <td class="class-container">
+          <button class="more" (click)="companyDetails(i)" type="button">Детальніше</button>
+        </td>
+        <td class="class-container">
           <p class="place">
-              {{ notification.offerData?.loadingCity }}  -   
+            {{ notification.offerData?.loadingCity }} -
           </p>
           <p class="place">
-              {{ notification.offerData?.unloadingCity }}
+            {{ notification.offerData?.unloadingCity }}
           </p>
-      </td>
-      <td class="class-container">
+        </td>
+        <td class="class-container">
           <button class="more" (click)="offerDetails(i)" type="button">Детальніше</button>
-      </td>
-      <td class="class-container">
+        </td>
+        <td class="class-container">
           <p class="place">
-              {{notification.message[0]?.performer}}
+            {{notification.message[0]?.performer}}
           </p>
-      </td>
-      <td class="class-container">
+        </td>
+        <td class="class-container">
           <p class="place">
-              {{notification.date?.toDate() | date : 'short'}}
+            {{notification.date?.toDate() | date : 'short'}}
           </p>
-      </td>
-      <td class="class-container">
-          <button type="button" class="btn btn-success btn-sm" (click)="confirmRespond(i,notification.offerData.id,notification.id)">Прийняти</button>
-          <button type="button" class="btn btn-danger btn-sm" (click)="rejectRespond(i,notification.id)">Відхилити</button>
-      </td>
+        </td>
+        <td class="class-container">
+          <button type="button" class="btn btn-success btn-sm"
+            (click)="confirmRespond(i,notification.offerData.id,notification.id)">Прийняти</button>
+          <button type="button" class="btn btn-danger btn-sm"
+            (click)="rejectRespond(i,notification.id)">Відхилити</button>
+        </td>
       </tr>
     </tbody>
   </table>
@@ -137,12 +139,12 @@
   </div>
 </ng-container>
 
-<ng-container *ngIf="offerInfo">
+<ng-container *ngIf="offerConsignorInfo">
   <div class="info-container">
     <div class="info-modal">
       <header>
         <div class="title">Про замовника </div>
-        <div (click)="offerInfo = false">
+        <div (click)="offerConsignorInfo = false">
           <svg class="_1567t1_i_g" x="0px" y="0px" viewBox="0 0 8 8" xml:space="preserve">
             <polygon
               points="8,1.333 6.667,0 4,2.667 1.333,0 0,1.333 2.667,4 0,6.667 1.333,8 4,5.333 6.667,8 8,6.667 5.333,4 ">
@@ -171,3 +173,39 @@
   </div>
 </ng-container>
 
+<ng-container *ngIf="offerTruckerInfo">
+  <div class="info-container">
+    <div class="info-modal">
+      <header>
+        <div class="title">Про замовника </div>
+        <div (click)="offerTruckerInfo = false">
+          <svg class="_1567t1_i_g" x="0px" y="0px" viewBox="0 0 8 8" xml:space="preserve">
+            <polygon
+              points="8,1.333 6.667,0 4,2.667 1.333,0 0,1.333 2.667,4 0,6.667 1.333,8 4,5.333 6.667,8 8,6.667 5.333,4 ">
+            </polygon>
+          </svg>
+        </div>
+      </header>
+      <div class="data-container">
+        <div class="title-container">
+          <p class="title">Місця завантаження і розвантаження</p>
+          <span>{{ offerDetailsData?.loadingCity }} - </span>
+          <span> {{ offerDetailsData?.unloadingCity }}</span>
+        </div>
+        <div class="title-container">
+          <p class="title">Дати завантаження і розвантаження</p>
+          <p>{{ offerDetailsData?.loadingDate }}</p>
+          <p>{{ offerDetailsData?.unloadingDate }}</p>
+        </div>
+        <div class="title-container">
+          <p class="title">Дані про авто</p>
+          <p> <b>марка :</b> {{ offerDetailsData?.car.mark }}</p>
+          <p><b>тип :</b> {{ offerDetailsData?.car.type }}</p>
+          <p><b>рік :</b> {{ offerDetailsData?.car.year }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-container>
+
+<app-empty-page *ngIf="isEmpty">Поки ще немає заявок</app-empty-page>

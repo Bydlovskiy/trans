@@ -9,9 +9,9 @@ import { IOfferResponde } from '../../interfaces/IOffer-respond';
 export class CommunicationsService {
 
   constructor(private firestore : Firestore) { }
+//  Exchange
 
-
-  saveOffer(offerRespond: IOfferResponde ): Promise<void> {
+  saveNotification(offerRespond: IOfferResponde ): Promise<void> {
     return addDoc(collection(this.firestore, "communications"), offerRespond).then(data => {
       updateDoc(doc(this.firestore, "communications", data.id), {
         id: data.id
@@ -20,45 +20,43 @@ export class CommunicationsService {
   }
 
   getNotificationsforCustomerUser(customerId : string) : Promise<QuerySnapshot<DocumentData>>{
-    return getDocs(query(collection(this.firestore, "communications"), where("customerId", "==", customerId)));
+    return getDocs(query(collection(this.firestore, "communications"), where("customerId", "==", customerId )));
   }
 
   getNotificationsforPerformerUser(performerId : string) : Promise<QuerySnapshot<DocumentData>>{
     return getDocs(query(collection(this.firestore, "communications"), where("performerId", "==", performerId)));
   }
 
-  getUserFromId(userId : String) : Promise<QuerySnapshot<DocumentData>> {
-    return getDocs(query(collection(this.firestore, "users"), where("id", "==", userId)));
+  getUserFromId(userId : string) : Promise<DocumentSnapshot<DocumentData>> {
+    return getDoc(doc(this.firestore, "users",userId));
   }
   
-
-  getTruckerOfferFromId(offerId : string) : Promise<DocumentSnapshot<DocumentData>> {
-    return getDoc(doc(this.firestore,'trucker-offers',offerId))
+  getOfferFromId(offerId : string,role : string) : Promise<DocumentSnapshot<DocumentData>> {
+    return getDoc(doc(this.firestore,`${role}-offers`,offerId))
   } 
-
-  getConsignorOfferFromId(offerId : string) : Promise<DocumentSnapshot<DocumentData>> {
-    return getDoc(doc(this.firestore,'consignor-offers',offerId))
-  } 
-
 
   changeNotificationStatus(notificationId : string,status : string,chat : any[]) : Promise<any> {
     return updateDoc(doc(this.firestore, "communications", notificationId), {
       status : status,
       message : chat
     })
-  } 
+  }
   
-  changeConsignorOfferStatus(offerId : string,status : string,chat : any[]) : Promise<any> {
-    return updateDoc(doc(this.firestore, "consignor-offers", offerId), {
+  archivateNotification(notificationId : string) {
+    return updateDoc(doc(this.firestore, "communications", notificationId), {
+      status : 'archived',
+    })
+  } 
+
+
+  
+  changeOfferStatus(offerId : string,status : string,notifitaionId : string,role : string) : Promise<any> {
+    return updateDoc(doc(this.firestore, `${role}-offers`, offerId), {
       status : status,
-      date : new Date
+      date : new Date,
+      notifitaionId : notifitaionId
     })
   }
 
-  changeTruckerOfferStatus(offerId : string,status : string) : Promise<any> {
-    return updateDoc(doc(this.firestore, "trucker-offers", offerId), {
-      status : status,
-      date : new Date
-    })
-  }
+
 }

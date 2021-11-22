@@ -1,6 +1,9 @@
-<ng-container *ngIf="user.role == 'consignor'">
-  <div *ngIf="checkSettings" class="main-container">
-    <table>
+<div class="title-container">
+  <b>Біржа</b>
+</div>
+<ng-container *ngIf="user.role == 'consignor' && !isEmpty && checkSettings">
+  <div  class="main-container">
+    <table >
       <thead>
         <tr>
           <th>
@@ -73,9 +76,10 @@
     </table>
   </div>
 </ng-container>
-<ng-container *ngIf="user.role == 'trucker'">
-  <div *ngIf="checkSettings" class="main-container">
-    <table>
+
+<ng-container *ngIf="user.role == 'trucker' && checkSettings && !isEmpty">
+  <div class="main-container">
+    <table >
       <thead>
         <tr>
           <th>
@@ -255,11 +259,7 @@
   </div>
 </ng-container>
 
-<ng-container *ngIf="!checkSettings">
-  <div class="container-info">
-    <div class="container-settings">
-      <span>Заповніть дані про користування</span>
-      <button type="button" [routerLink]="['/cabinet/info/settings']">Заповнити</button>
-    </div>
-  </div>
-</ng-container>
+<app-check-settings *ngIf="!checkSettings"></app-check-settings>
+
+<app-empty-page *ngIf="isEmpty && checkSettings">Поки ще немає пропозицій</app-empty-page>
+
