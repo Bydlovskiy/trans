@@ -32,16 +32,16 @@
 <div class="container" *ngIf="isAddCar">
   <form [formGroup]="carSettingsForm" (ngSubmit)="editStatus ? saveCar() : addCar()">
     <label for="mark">Марка
-      <input class="form-control" formControlName="mark" id="mark" type="text">
+      <input class="form-control" [ngClass]="{ 'is-invalid': submited &&  validation.mark.errors }"  formControlName="mark" id="mark" type="text">
     </label>
     <label for="model">Модель
-      <input class="form-control" formControlName="model" id="model" type="text">
+      <input class="form-control" [ngClass]="{ 'is-invalid': submited &&  validation.model.errors }"  formControlName="model" id="model" type="text">
     </label>
     <label for="year">Рік випуску
-      <input class="form-control" formControlName="year" id="year" type="text">
+      <input class="form-control" [ngClass]="{ 'is-invalid': submited &&  validation.year.errors }"  formControlName="year" id="year" type="text">
     </label>
     <label for="type">Тип автомобіля
-      <select class="form-control" formControlName="type" id="type" placeholder="Виберіть тип">
+      <select class="form-control" [ngClass]="{ 'is-invalid': submited &&  validation.type.errors }"   formControlName="type" id="type" placeholder="Виберіть тип">
         <option value="Напівпричіп Тент">Напівпричіп Тент</option>
         <option value="Рефрижератор">Рефрижератор</option>
         <option value="Ізотерм">Ізотерм</option>
@@ -58,7 +58,7 @@
       </select>
     </label>
     <label for="EURO">Євро стандарт
-      <input class="form-control" formControlName="EURO" type="number" id="EURO">
+      <input class="form-control" [ngClass]="{ 'is-invalid': submited &&  validation.EURO.errors }"  formControlName="EURO" type="number" id="EURO">
     </label>
     <div class="crs-buttons">
       <button type="submit">{{ editStatus ? 'редагувати' : 'створити' }}</button>

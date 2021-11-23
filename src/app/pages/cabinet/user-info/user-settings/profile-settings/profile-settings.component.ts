@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { getDownloadURL, ref, Storage, uploadBytes } from '@angular/fire/storage';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { ProfileSettingsService } from 'src/app/shared/services/settings/profile-settings/profile-settings.service';
 
@@ -11,6 +11,7 @@ import { ProfileSettingsService } from 'src/app/shared/services/settings/profile
 })
 export class ProfileSettingsComponent implements OnInit {
   public profileSettingsForm!: FormGroup;
+  public submited = false;
   public imagePathCurrentUser: string = '';
   private currentUserid = JSON.parse(localStorage.getItem('user') as string).id;
   public imagePath !: string;
@@ -44,6 +45,7 @@ export class ProfileSettingsComponent implements OnInit {
   }
 
   public saveData(): void {
+    this.submited = true;
     if (this.profileSettingsForm.valid) {
       this.profileService.setUserData(this.profileSettingsForm.value, this.currentUserid).then(() => {
         this.toastr.success('Дані успішно змінені')
@@ -57,7 +59,6 @@ export class ProfileSettingsComponent implements OnInit {
 
   public uploadImage(event: any) {
     const file = event.target.files[0];
-    console.log(file);
     this.uploadFile('images', file.name, file).then(data => {
       this.profileSettingsForm.patchValue({
         imagePath: data
@@ -80,5 +81,9 @@ export class ProfileSettingsComponent implements OnInit {
         }
       }
     }
+  }
+
+  get validation(): { [key: string]: AbstractControl } {
+    return this.profileSettingsForm.controls;
   }
 }

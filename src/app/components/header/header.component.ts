@@ -13,8 +13,8 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit(): void {
     window.addEventListener('scroll', this.scrolling, true)
-
   }
+
   openMenu(){
     if (this.burgerStatus){
       this.menuOpen =  'block' ;  
@@ -30,6 +30,5 @@ export class HeaderComponent implements OnInit {
     if(sc > 55){this.scroll=true}
     else{this.scroll=false}
   }
-
 
 }

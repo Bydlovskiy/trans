@@ -8,6 +8,8 @@ import { AuthService } from 'src/app/shared/services/auth/auth.service';
   styleUrls: ['./cabinet.component.scss']
 })
 export class CabinetComponent implements OnInit {
+  public menuOpen !:any
+  private burgerStatus = true;  
   public isUserPanel = false;
   public exchangePath !:string;
   public userRole = JSON.parse(localStorage.getItem('user') as string).role
@@ -33,6 +35,16 @@ export class CabinetComponent implements OnInit {
       this.exchangePath = 'trucker-exchange';
     } else if (this.userRole == 'consignor'){
       this.exchangePath = 'consignor-exchange';
+    }
+  }
+
+  openMenu(){
+    if (this.burgerStatus){
+      this.menuOpen =  'block' ;  
+      this.burgerStatus = false;    
+    } else {
+      this.menuOpen =  'none';
+      this.burgerStatus = true;
     }
   }
 

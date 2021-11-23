@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { GooglePlaceDirective } from 'ngx-google-places-autocomplete';
 import { Address } from 'ngx-google-places-autocomplete/objects/address';
+import { ToastrService } from 'ngx-toastr';
 import { ICar } from 'src/app/shared/interfaces/car-interface';
 import { OffersService } from 'src/app/shared/services/offers/offers.service';
 import { CarsSettingsService } from 'src/app/shared/services/settings/cars-settings/cars-settings.service';
@@ -21,7 +22,8 @@ export class CreateOfferComponent implements OnInit {
   constructor(private fb: FormBuilder,
     private offerService: OffersService,
     private carService: CarsSettingsService,
-    private router : Router
+    private router: Router,
+    private toastr: ToastrService
 
   ) { }
 
@@ -176,7 +178,7 @@ export class CreateOfferComponent implements OnInit {
       date: [null, Validators.required],
       id: [null, Validators.required],
       respondedUsersId: [[]],
-      notifitaionId : [null]
+      notifitaionId: [null]
     })
   }
 
@@ -192,11 +194,11 @@ export class CreateOfferComponent implements OnInit {
       price: [null, Validators.required],
       weight: [null, Validators.required],
       userId: [this.user.id],
-      status: [null, Validators.required],
-      date: [null, Validators.required],
-      id: [null, Validators.required],
+      status: [null],
+      date: [null],
+      id: [null],
       respondedUsersId: [[]],
-      notifitaionId : [null]
+      notifitaionId: [null]
     })
   }
 
@@ -210,27 +212,37 @@ export class CreateOfferComponent implements OnInit {
   }
 
   public saveOffer(): void {
-    if (this.user.role == 'trucker') {
-      this.offerTruckerForm.patchValue({
-        status: 'generated',
-        date: new Date,
-        id: ''
-      })
-      this.offerService.saveOffer(this.offerTruckerForm.value, this.user.role).then(() => {
-        this.router.navigate(['/cabinet/user-actions/active-offers' ])
-        this.offerTruckerForm.reset();
 
-      })
+    if (this.user.role == 'trucker') {
+      if (this.offerTruckerForm.valid) {
+        this.offerTruckerForm.patchValue({
+          status: 'generated',
+          date: new Date,
+          id: ''
+        })
+        this.offerService.saveOffer(this.offerTruckerForm.value, this.user.role).then(() => {
+          this.router.navigate(['/cabinet/user-actions/active-offers'])
+          this.offerTruckerForm.reset();
+          this.toastr.success('Пропозицію додано успішно')
+        })
+      } else {
+        this.toastr.error('Заповніть правильно форму')
+      }
     } else if (this.user.role = 'consignor') {
-      this.offerConsignorForm.patchValue({
-        status: 'generated',
-        date: new Date,
-        id: ''
-      })
-      this.offerService.saveOffer(this.offerConsignorForm.value, this.user.role).then(() => {
-        this.router.navigate(['/cabinet/user-actions/active-offers' ])
-        this.offerConsignorForm.reset();
-      })
+      if (this.offerConsignorForm.valid) {
+        this.offerConsignorForm.patchValue({
+          status: 'generated',
+          date: new Date,
+          id: ''
+        })
+        this.offerService.saveOffer(this.offerConsignorForm.value, this.user.role).then(() => {
+          this.router.navigate(['/cabinet/user-actions/active-offers']);
+          this.offerConsignorForm.reset();
+          this.toastr.success('Пропозицію додано успішно')
+        })
+      } else {
+        this.toastr.error('Заповніть правильно форму')
+      }
     }
   }
 

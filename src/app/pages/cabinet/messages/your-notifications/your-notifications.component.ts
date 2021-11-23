@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { ToastrService } from 'ngx-toastr';
 import { IOfferResponde } from 'src/app/shared/interfaces/IOffer-respond';
 import { CommunicationsService } from 'src/app/shared/services/communications/communications.service';
 
@@ -26,7 +27,8 @@ export class YourNotificationsComponent implements OnInit {
   public offerTruckerInfo = false;
   public offerConsignorInfo = false;
   constructor(private CommunicationService: CommunicationsService,
-    private fb: FormBuilder) { }
+    private fb: FormBuilder,
+    private toastr: ToastrService) { }
 
   ngOnInit(): void {
     this.initMessages();
@@ -46,9 +48,9 @@ export class YourNotificationsComponent implements OnInit {
         list.push(notification.data() as IOfferResponde)
       })
       const activeList = list.filter(ell => ell.status == "not-confirmed");
-      if(activeList.length > 0){
+      if (activeList.length > 0) {
         this.isEmpty = false;
-      } else if(activeList.length == 0){
+      } else if (activeList.length == 0) {
         this.isEmpty = true;
       }
       this.notificationsIdList = activeList;
@@ -67,7 +69,7 @@ export class YourNotificationsComponent implements OnInit {
           list[index].date = (notification.date);
           list[index].id = notification.id;
         }).then(() => {
-          this.CommunicationService.getOfferFromId(notification.offerId as string,this.user.role).then(data => {
+          this.CommunicationService.getOfferFromId(notification.offerId as string, this.user.role).then(data => {
             list[index].offerData = data.data()
           })
         }).then(() => {
@@ -105,14 +107,21 @@ export class YourNotificationsComponent implements OnInit {
         this.confirmModalToggle = false;
         this.getYourNotifications();
       }).then(() => {
-        console.log(this.offerId, 'in-work',this.notificationId,this.user.role);
-        this.CommunicationService.changeOfferStatus(this.offerId, 'in-work',this.notificationId,this.user.role).then(() => {
+        this.CommunicationService.changeOfferStatus(this.offerId, 'in-work', this.notificationId, this.user.role).then(() => {
+          this.toastr.success('Відповідь відправлена')
+        }).catch(() => {
+          this.toastr.error('Щось пішло не так')
         })
+      }).catch(() => {
+        this.toastr.error('Щось пішло не так')
       });
     } else {
       this.CommunicationService.changeNotificationStatus(this.notificationId, 'rejected', this.chat).then(() => {
         this.rejectModalToggle = false;
         this.getYourNotifications();
+        this.toastr.success('Відповідь відправлена')
+      }).catch(() => {
+        this.toastr.error('Щось пішло не так')
       });
     }
   }
@@ -123,10 +132,10 @@ export class YourNotificationsComponent implements OnInit {
   }
 
   public offerDetails(i: number) {
-    if(this.user.role == 'trucker'){
+    if (this.user.role == 'trucker') {
       this.offerDetailsData = this.notificationsList[i].offerData;
       this.offerTruckerInfo = true;
-    } else if(this.user.role == 'consignor'){
+    } else if (this.user.role == 'consignor') {
       this.offerDetailsData = this.notificationsList[i].offerData;
       this.offerConsignorInfo = true;
     }

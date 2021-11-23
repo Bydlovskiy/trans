@@ -1,5 +1,5 @@
 import { Component, Input, OnDestroy, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { AuthService } from 'src/app/shared/services/auth/auth.service';
@@ -11,6 +11,7 @@ import { AuthService } from 'src/app/shared/services/auth/auth.service';
 })
 export class UserLoginComponent implements OnInit , OnDestroy {
   private role : string = JSON.parse(localStorage.getItem('login-role') as string)
+  public submited = false;
   public loginForm !: FormGroup;
   constructor(private fb: FormBuilder,
     private authService : AuthService,
@@ -33,12 +34,13 @@ export class UserLoginComponent implements OnInit , OnDestroy {
 
   initLoginForm(): void {
     this.loginForm = this.fb.group({
-      email: [null, Validators.required],
-      password: [null, Validators.required]
+      email: [null, [Validators.required, Validators.email]],
+      password: [null, Validators.required ]
     })
   }
 
   loginConsignor(): void {
+    this.submited = true;
     if (!this.loginForm.valid) {
       this.toastr.error('Заповніть форму')
     } else {
@@ -48,6 +50,7 @@ export class UserLoginComponent implements OnInit , OnDestroy {
   }
 
   login(email: string, password: string) {
+    
     this.authService.logIn(email,password).then(credential => {
       this.authService.getUserData(credential.user.uid).then(user => {
         const currentUser : any = user.data();
@@ -75,7 +78,11 @@ export class UserLoginComponent implements OnInit , OnDestroy {
       this.toastr.error('Неправильний email чи пароль')
     })
   }
-
+  
+  get validation(): { [key: string]: AbstractControl } {    
+    return this.loginForm.controls;
+  }
+  
   ngOnDestroy(): void {
     localStorage.removeItem('login-role')
   }

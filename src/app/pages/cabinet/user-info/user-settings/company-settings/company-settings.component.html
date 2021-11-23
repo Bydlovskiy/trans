@@ -1,25 +1,25 @@
 <div class="company-settings-container">
     <form [formGroup]="companySettingsForm" (ngSubmit)="saveData()">
       <label for="name">Назва компанії
-        <input class="form-control" formControlName="name" id="name" type="text">
+        <input class="form-control" [ngClass]="{ 'is-invalid': submited &&  validation.name.errors }" formControlName="name" id="name" type="text">
       </label>
       <label for="activity">Діяльність компанії
-        <input class="form-control" formControlName="activity" id="activity" type="text">
+        <input class="form-control"  [ngClass]="{ 'is-invalid': submited &&  validation.activity.errors }" formControlName="activity" id="activity" type="text">
       </label>
       <label for="country">Країна
-        <input class="form-control" formControlName="country" id="country" type="text">
+        <input class="form-control"  [ngClass]="{ 'is-invalid': submited &&  validation.country.errors }" formControlName="country" id="country" type="text">
       </label>
       <label for="city">Місто
-        <input class="form-control" formControlName="city" id="city" type="text">
+        <input class="form-control" [ngClass]="{ 'is-invalid': submited &&  validation.city.errors }" formControlName="city" id="city" type="text">
       </label>
       <label for="street">вулиця
-        <input class="form-control" formControlName="street" id="street" type="text">
+        <input class="form-control" [ngClass]="{ 'is-invalid': submited &&  validation.street.errors }" formControlName="street" id="street" type="text">
       </label>
       <label for="IPN">ІПН
-        <input class="form-control" formControlName="IPN" id="IPN" type="number">
+        <input class="form-control" [ngClass]="{ 'is-invalid': submited &&  validation.IPN.errors }" formControlName="IPN" id="IPN" type="number">
       </label>
       <label for="EDRPOY">ЄДРПОУ
-        <input class="form-control" formControlName="EDRPOY" id="EDRPOY" type="number">
+        <input class="form-control" [ngClass]="{ 'is-invalid': submited &&  validation.EDRPOY.errors }" formControlName="EDRPOY" id="EDRPOY" type="number">
       </label>
       <div class="profile-buttons">
         <button type="submit">Зберегти</button>

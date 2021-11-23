@@ -25,25 +25,79 @@
       display: flex;
       justify-content: space-around;
       align-items: center;
-      .header-button{
-          width: 25%;
-          height: 100%;
-          text-align: center;
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          color: #fff;
-          cursor: pointer;
-          font-size: 12px;
-          letter-spacing: .03em;
-          transition: all 0.5s;
-          &:hover {
-              background-color: #072a3e;
-          }
+
+      .header-button {
+        width: 25%;
+        height: 100%;
+        text-align: center;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: #fff;
+        cursor: pointer;
+        font-size: 12px;
+        letter-spacing: .03em;
+        transition: all 0.5s;
+
+        &:hover {
+          background-color: #072a3e;
+        }
+      }
+    }
+
+    .burger-icon {
+      position: relative;
+      display: none;
+      vertical-align: middle;
+      width: 40px;
+      height: 20px;
+      cursor: pointer;
+
+      &::after {
+        position: absolute;
+        top: 0;
+        left: 0;
+        display: block;
+        width: 100%;
+        height: 0.1875rem;
+        background: #fff;
+        box-shadow: 0 0.6875rem 0 #fff, 0 1.375rem 0 #fff;
+        content: '';
       }
     }
   }
 }
 
-
-
+@media screen and (max-width : 850px) {
+  .main-cabinet-container{
+    header{
+      .header-buttons-container{
+        display: none;
+        flex-direction: column;
+        background-color: #033857;
+        border: 1px solid #fff;
+        position: absolute;
+        top: 90px;
+        right: 20px;
+        transition: all 0.7s;
+        flex-direction: column;
+        width: 250px;
+        height: 200px;
+        z-index: 5;
+        .header-button {
+          font-size: 15px;
+          border: none;
+          outline: none;
+          background-color: Transparent;
+          color: #fff;
+          cursor: pointer;
+          width: 100%;
+          height: 25%;
+        }
+      }
+      .burger-icon{
+        display: block;
+      }
+    }
+  }  
+}

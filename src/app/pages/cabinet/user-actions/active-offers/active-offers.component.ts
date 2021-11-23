@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ToastrService } from 'ngx-toastr';
 import { IConsignorOffer } from 'src/app/shared/interfaces/consignor-offer-interface';
 import { ITruckerOffer } from 'src/app/shared/interfaces/trucker-offer-interface';
 import { CommunicationsService } from 'src/app/shared/services/communications/communications.service';
@@ -17,7 +18,8 @@ export class ActiveOffersComponent implements OnInit {
   public isEmpty = false;
   public user = JSON.parse(localStorage.getItem('user') as string);
   constructor(private offerService: OffersService,
-              private comunicationService: CommunicationsService) { }
+              private comunicationService: CommunicationsService,
+              private toastr : ToastrService) { }
 
   ngOnInit(): void {
     this.loadOfferList();
@@ -55,6 +57,9 @@ export class ActiveOffersComponent implements OnInit {
       this.comunicationService.archivateNotification(notificationId).then(() => {
         this.loadOfferList();
       })
+      this.toastr.success('Пропозиція успішно архівована')
+    }).catch(() => {
+      this.toastr.error('Щось пішло не так')
     })
   }
 }

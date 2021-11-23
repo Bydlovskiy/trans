@@ -8,18 +8,18 @@
     </div>
     <form [formGroup]="registerForm" (ngSubmit)="registerConsignor()">
       <div class="input-container">
-        <label for="email">email
-          <input formControlName="email" type="email" placeholder="email" id="email">
+        <label  for="email">email
+          <input class="form-control" [ngClass]="{ 'is-invalid': submited &&  validation.email.errors }" formControlName="email" type="email" placeholder="email" id="email">
         </label>
       </div>
       <div class="input-container">
         <label for="fhoneNumber">Номер телефону
-          <input type="number" placeholder="phone number" formControlName="phoneNumber" id="fhoneNumber">
+          <input class="form-control" [ngClass]="{ 'is-invalid': submited &&  validation.phoneNumber.errors }" type="number" placeholder="phone number" formControlName="phoneNumber" id="fhoneNumber">
         </label>
       </div>
       <div class="input-container">
         <label for="password">Пароль
-          <input formControlName="password" type="password" placeholder="password" id="password">
+          <input class="form-control" [ngClass]="{ 'is-invalid': submited &&  validation.password.errors }" formControlName="password" type="password" placeholder="password" id="password">
         </label>
       </div>
       <button type="submit">Зареєструватися</button>

@@ -1,19 +1,18 @@
-<div class="header-container" (scroll)="scrolling($event)"  >
+<div class="header-container" (scroll)="scrolling($event)">
   <header [ngClass]="{'header-background': scroll}">
-        <div class="logo-container" [routerLink]="[ '/' ]">
-            <img class="logo" src="/assets/icons/logo-tfx-white.svg" >
-        </div>
-        <div class="container-main" [ngStyle]="{'display' :  menuOpen  }">
-          <form class="buttons-container">
-              <button type="button" class="button" [routerLink]="[ '/login' ]" >Увійти</button>
-              <button type="button" class="button register" [routerLink]="[ '/register' ]" >Реєстрація</button>
-              <button type="button" class="button" [routerLink]="[ '/contacts' ]" >Контакти</button>
-              <a type="button" style="text-decoration: none; text-align: center;" class="button" href="https://help.trans.eu/l/uk?_ga=2.91801886.548008984.1636802009-1164580266.1634334587&_gac=1.58469336.1634341883.CjwKCAjwzaSLBhBJEiwAJSRokhYw60x7Z9XCPbO7RbzW32tdTyfYdqpjgfky0MEWStfEM3TybK4J9BoCfvgQAvD_BwE" > Допомога</a>
-          </form>
-        </div>
-        <div class="burger-icon" (click)="openMenu()"> 
-
-         
-        </div>
+    <div class="logo-container" [routerLink]="[ '/' ]">
+      <img class="logo" src="/assets/icons/logo-tfx-white.svg">
+    </div>
+    <div class="container-main" [ngStyle]="{'display' :  menuOpen  }">
+      <form class="buttons-container">
+        <button type="button" class="button" [routerLink]="[ '/login' ]">Увійти</button>
+        <button type="button" class="button register" [routerLink]="[ '/register' ]">Реєстрація</button>
+        <button type="button" class="button" [routerLink]="[ '/contacts' ]">Контакти</button>
+        <a type="button" style="text-decoration: none; text-align: center;" class="button"
+          href="https://help.trans.eu/l/uk?_ga=2.91801886.548008984.1636802009-1164580266.1634334587&_gac=1.58469336.1634341883.CjwKCAjwzaSLBhBJEiwAJSRokhYw60x7Z9XCPbO7RbzW32tdTyfYdqpjgfky0MEWStfEM3TybK4J9BoCfvgQAvD_BwE">
+          Допомога</a>
+      </form>
+    </div>
+    <div class="burger-icon" (click)="openMenu()"></div>
   </header>
 </div>

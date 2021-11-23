@@ -6,6 +6,7 @@ import { CommunicationsService } from 'src/app/shared/services/communications/co
 import { OffersService } from 'src/app/shared/services/offers/offers.service';
 import { UserInfoService } from 'src/app/shared/services/user-info/user-info.service';
 import { IConsignorOffer } from 'src/app/shared/interfaces/consignor-offer-interface';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-exchange',
@@ -32,7 +33,8 @@ export class ExchangeComponent implements OnInit {
   constructor(private offersService: OffersService,
     private communicationService: CommunicationsService,
     private fb: FormBuilder,
-    private userInfoService: UserInfoService) { }
+    private userInfoService: UserInfoService,
+    private toastr : ToastrService) { }
 
   ngOnInit(): void {
     this.checkSetings();
@@ -121,6 +123,9 @@ export class ExchangeComponent implements OnInit {
     })
     this.communicationService.saveNotification(this.respondToOfferForm.value).then(() => {
       this.getOffersList();
+      this.toastr.success('Відгук успішно надіслано')
+    }).catch(() => {
+      this.toastr.error('Щось пішло не так')
     })
   }
 

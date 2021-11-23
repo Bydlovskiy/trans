@@ -9,12 +9,12 @@
     <form [formGroup]="loginForm" (ngSubmit)="loginConsignor()">
       <div class="input-container">
         <label for="email">email
-          <input formControlName="email" type="email" placeholder="email" id="email">
+          <input class="form-control" [ngClass]="{ 'is-invalid': submited &&  validation.email.errors }" formControlName="email" type="email" placeholder="email" id="email">
         </label>
       </div>
       <div class="input-container">
         <label for="password">Пароль
-          <input formControlName="password" type="password" placeholder="password" id="password">
+          <input  class="form-control" [ngClass]="{ 'is-invalid': submited &&  validation.password.errors }" formControlName="password" type="password" placeholder="password" id="password">
         </label>
       </div>
       <button type="submit">Ввійти</button>

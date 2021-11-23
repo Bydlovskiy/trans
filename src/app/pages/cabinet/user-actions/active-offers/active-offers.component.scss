@@ -15,6 +15,7 @@
     tbody {
       tr {
         border-bottom: 1px solid;
+        margin-right: 20px;
 
         .class-container {
           height: 100%;
@@ -49,4 +50,34 @@
       }
     }
   }
+}
+
+@media screen and (max-width : 960px) {
+
+  
+}
+
+@media screen and (max-width : 800px) {
+  .table-container{
+    table{
+      thead{
+        font-size: 10px;
+      }
+      tbody{
+        tr{
+          .class-container{
+            .place {
+              font-size: 10px;
+            }
+          }
+          td{
+            .archive-button{
+              padding: 7px 2px;
+            }
+          }
+        }
+      }
+    }
+  }
+  
 }

@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { AuthService } from 'src/app/shared/services/auth/auth.service';
@@ -11,6 +11,7 @@ import { AuthService } from 'src/app/shared/services/auth/auth.service';
 })
 export class UserRegisterComponent implements OnInit ,OnDestroy {
   private role: string = JSON.parse(localStorage.getItem('register-role') as string)
+  public submited = false;
   public registerForm !: FormGroup;
   constructor(private fb: FormBuilder,
     private authService: AuthService,
@@ -41,6 +42,7 @@ export class UserRegisterComponent implements OnInit ,OnDestroy {
   }
 
   public registerConsignor(): void {
+    this.submited = true;
     if (!this.registerForm.valid) {
       this.toastr.error('Введіть правильно дані');
     } else {
@@ -74,6 +76,9 @@ export class UserRegisterComponent implements OnInit ,OnDestroy {
     }).catch(err => {
       this.toastr.error('Неправильно введені дані')
     })
+  }
+  get validation(): { [key: string]: AbstractControl } {    
+    return this.registerForm.controls;
   }
 
   ngOnDestroy(): void {

@@ -1,19 +1,19 @@
-<div class="container-main" >
-    <div class="title-container">
-      <b>Сповіщення</b>
+<div class="container-main">
+  <div class="title-container">
+    <b>Сповіщення</b>
+  </div>
+  <div class="buttons-container">
+    <div class="button" [routerLink]="[ '/cabinet/messages/your-notifications' ]" routerLinkActive="active">
+      <span>Заявки</span>
     </div>
-    <div class="buttons-container">
-      <div class="button" [routerLink]="[ '/cabinet/messages/your-notifications' ]">
-        <span>Заявки</span>
-      </div>
-      <div class="button" [routerLink]="[ '/cabinet/messages/others-notifications']">
-        <span>Відповіді</span>
-      </div>
-      <div class="button" [routerLink]="[ '/cabinet/messages/archive-notifications']">
-        <span>Архів виконаних</span>
-      </div>
+    <div class="button" [routerLink]="[ '/cabinet/messages/others-notifications']" routerLinkActive="active">
+      <span>Відповіді</span>
     </div>
-    <div>
-      <router-outlet></router-outlet>
+    <div class="button" [routerLink]="[ '/cabinet/messages/archive-notifications']" routerLinkActive="active">
+      <span>Архів виконаних</span>
     </div>
   </div>
+  <div>
+    <router-outlet></router-outlet>
+  </div>
+</div>

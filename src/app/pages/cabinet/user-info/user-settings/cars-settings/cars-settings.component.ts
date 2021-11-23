@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { ICar } from 'src/app/shared/interfaces/car-interface';
 import { CarsSettingsService } from 'src/app/shared/services/settings/cars-settings/cars-settings.service';
@@ -12,6 +12,7 @@ import { CarsSettingsService } from 'src/app/shared/services/settings/cars-setti
 export class CarsSettingsComponent implements OnInit {
   public carList: ICar[] = [];
   public carSettingsForm !: FormGroup;
+  public submited = false;
   public editStatus = false;
   public isAddCar = false;
   private currentUserid = JSON.parse(localStorage.getItem('user') as string).id;
@@ -48,6 +49,7 @@ export class CarsSettingsComponent implements OnInit {
   }
 
   public addCar() {
+    this.submited = true;
     if (this.carSettingsForm.valid) {
       this.carService.setCar(this.carSettingsForm.value).then(() => {
         this.getCarsList();
@@ -69,6 +71,7 @@ export class CarsSettingsComponent implements OnInit {
   }
 
   public saveCar(): void {
+    this.submited = true;
     if (this.carSettingsForm.valid) {
       this.carService.updateCar(this.carSettingsForm.value).then(() => {
         this.toastr.success('Автомобіль успішно редаговано')
@@ -91,5 +94,9 @@ export class CarsSettingsComponent implements OnInit {
     }).catch(() => {
       this.toastr.error('Щось пішло не так')
     })
+  }
+
+  get validation(): { [key: string]: AbstractControl } {
+    return this.carSettingsForm.controls;
   }
 }

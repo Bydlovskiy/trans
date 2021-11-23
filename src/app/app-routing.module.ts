@@ -38,7 +38,6 @@ const routes: Routes = [
   {
     path: 'cabinet', component: CabinetComponent, children: [
       { path: '', pathMatch: 'full', redirectTo: 'info' },
-
       {
         path: 'user-actions', component: UserActionsComponent, children: [
           { path: '', pathMatch: 'full', redirectTo: 'active-offers' },
@@ -50,9 +49,10 @@ const routes: Routes = [
       { path: 'exchange', component: ExchangeComponent },
       {
         path: 'messages', component: MessagesComponent, children: [
+          { path: '', pathMatch: 'full', redirectTo: 'your-notifications' },
           { path: 'your-notifications', component: YourNotificationsComponent },
           { path: 'others-notifications', component: OthersNotificationsComponent },
-          { path : 'archive-notifications',component : ArchiveNotificationsComponent}
+          { path: 'archive-notifications', component: ArchiveNotificationsComponent }
         ]
       },
       {

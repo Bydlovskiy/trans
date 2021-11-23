@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { ICompany } from 'src/app/shared/interfaces/company-interface';
 import { CompanySettingsService } from 'src/app/shared/services/settings/company-settings/company-settings.service';
@@ -11,6 +11,7 @@ import { CompanySettingsService } from 'src/app/shared/services/settings/company
 })
 export class CompanySettingsComponent implements OnInit {
   public companySettingsForm !: FormGroup;
+  public submited = false;
   private currentUserId = JSON.parse(localStorage.getItem('user') as string).id;
   constructor(private fb: FormBuilder,
     private companyService: CompanySettingsService,
@@ -20,7 +21,7 @@ export class CompanySettingsComponent implements OnInit {
     this.initForm();
     this.getData()
   }
-  
+
   private initForm(): void {
     this.companySettingsForm = this.fb.group({
       name: [null, Validators.required],
@@ -34,6 +35,7 @@ export class CompanySettingsComponent implements OnInit {
   }
 
   public saveData(): void {
+    this.submited = true;
     if (this.companySettingsForm.valid) {
       this.companyService.setCompanyData(this.companySettingsForm.value, this.currentUserId).then(() => {
         this.toastr.success('Дані успішно редаговані')
@@ -53,6 +55,11 @@ export class CompanySettingsComponent implements OnInit {
       })
       this.companySettingsForm.patchValue(copmanyData)
     })
+  }
+
+
+  get validation(): { [key: string]: AbstractControl } {
+    return this.companySettingsForm.controls;
   }
 
 }

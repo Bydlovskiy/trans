@@ -3,12 +3,13 @@
     <div class="logo-icon">
       <img src="/assets/icons/logo-tfs-white.svg" alt="">
     </div>
-    <div class="header-buttons-container">
-      <div class="header-button" [routerLink]="[ '/cabinet/user-actions' ]">Ваші пропозиції</div>
-      <div class="header-button" [routerLink]="[ '/cabinet/exchange'  ]">Біржа</div>
-      <div class="header-button" [routerLink]="[ '/cabinet/messages' ]">повідомлення</div>
-      <div class="header-button user-panel-button" [routerLink]="[ '/cabinet/info' ]">Панель користувача</div>
+    <div class="header-buttons-container" [ngStyle]="{'display' :  menuOpen  }">
+      <div class="header-button" (click)="menuOpen = 'none'" [routerLink]="[ '/cabinet/user-actions' ]">Ваші пропозиції</div>
+      <div class="header-button" (click)="menuOpen = 'none'" [routerLink]="[ '/cabinet/exchange'  ]">Біржа</div>
+      <div class="header-button" (click)="menuOpen = 'none'" [routerLink]="[ '/cabinet/messages' ]">повідомлення</div>
+      <div class="header-button user-panel-button" (click)="menuOpen = 'none'" [routerLink]="[ '/cabinet/info' ]">Панель користувача</div>
     </div>
+    <div class="burger-icon" (click)="openMenu()"></div>
   </header>
   <router-outlet></router-outlet>
 </div>
