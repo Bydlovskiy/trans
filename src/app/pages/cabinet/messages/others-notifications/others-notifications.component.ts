@@ -14,6 +14,7 @@ export class OthersNotificationsComponent implements OnInit {
   private notificationsIdList !: Array<any>;
   public notificationsList !: Array<any>;
   private collection !: string;
+  public pageReady = false;
   public chat !: any[];
   public messageGroup !: FormGroup;
   public isEmpty = false;
@@ -55,6 +56,8 @@ export class OthersNotificationsComponent implements OnInit {
       this.notificationsIdList = activeList;
     }).then(() => {
       this.initList()
+    }).then(() => {
+      this.pageReady = true;
     })
   }
 

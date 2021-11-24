@@ -9,7 +9,7 @@ import { AuthService } from 'src/app/shared/services/auth/auth.service';
 })
 export class CabinetComponent implements OnInit {
   public menuOpen !:any
-  private burgerStatus = true;  
+  public burgerStatus = true;  
   public isUserPanel = false;
   public exchangePath !:string;
   public userRole = JSON.parse(localStorage.getItem('user') as string).role
@@ -25,7 +25,6 @@ export class CabinetComponent implements OnInit {
   logOut(): void {
     this.authService.logOut().then(() => {
       localStorage.removeItem('user');
-      // this.currentUser$.next(false);
       this.router.navigate([''])
     });
   }
@@ -47,5 +46,14 @@ export class CabinetComponent implements OnInit {
       this.burgerStatus = true;
     }
   }
+
+  resizeWidth(event: any) :void {
+    if(event.target?.innerWidth > 850) {
+      this.menuOpen =  'none';
+      this.burgerStatus = true;
+    } 
+
+  }
+
 
 }

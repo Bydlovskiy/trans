@@ -1,3 +1,4 @@
+<ng-container *ngIf="pageReady">
 <div class="company-settings-container">
     <form [formGroup]="companySettingsForm" (ngSubmit)="saveData()">
       <label for="name">Назва компанії
@@ -27,4 +28,8 @@
       </div>
     </form>
   </div>
+</ng-container>
+<app-load-page *ngIf="!pageReady"></app-load-page>
+
+
   

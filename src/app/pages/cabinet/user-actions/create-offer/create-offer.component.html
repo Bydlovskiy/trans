@@ -7,14 +7,17 @@
         </div>
         <label for="">Країна
           <input ngx-google-places-autocomplete="{ types: ['(cities)']}" #placesRef="ngx-places"
-            (onAddressChange)="loadingCountryChange($event)" class="form-control" type="text">
+            (onAddressChange)="loadingCountryChange($event)" class="form-control" formControlName="loadingCountry"
+            [ngClass]="{ 'is-invalid': submited &&  validation.loadingCountry.errors }" type="text">
         </label>
         <label for="">Місто
           <input ngx-google-places-autocomplete="{ types: ['(cities)']}" #placesRef="ngx-places"
-            (onAddressChange)="loadingCityChange($event)" class="form-control" type="text">
+            (onAddressChange)="loadingCityChange($event)" class="form-control" formControlName="loadingCity"
+            [ngClass]="{ 'is-invalid': submited &&  validation.loadingCity.errors }" type="text">
         </label>
         <label for="">Дата
-          <input formControlName="loadingDate" class="form-control" type="date">
+          <input formControlName="loadingDate" class="form-control"
+            [ngClass]="{ 'is-invalid': submited &&  validation.loadingDate.errors }" type="date">
         </label>
       </div>
       <div class="block-container">
@@ -23,14 +26,17 @@
         </div>
         <label for="">Країна
           <input ngx-google-places-autocomplete="{ types:['(cities)'] }" #placesRef="ngx-places"
-            (onAddressChange)="unloadingCountryChange($event)" class="form-control" type="text">
+            (onAddressChange)="unloadingCountryChange($event)" class="form-control" formControlName="unloadingCountry"
+            [ngClass]="{ 'is-invalid': submited &&  validation.unloadingCountry.errors }" type="text">
         </label>
         <label for="">Місто
           <input ngx-google-places-autocomplete="{ types:['(cities)'] }" #placesRef="ngx-places"
-            (onAddressChange)="unloadingCityChange($event)" class="form-control" type="text">
+            (onAddressChange)="unloadingCityChange($event)" class="form-control" formControlName="unloadingCity"
+            [ngClass]="{ 'is-invalid': submited &&  validation.unloadingCity.errors }" type="text">
         </label>
         <label for="">Дата
-          <input formControlName="unloadingDate" class="form-control" type="date">
+          <input formControlName="unloadingDate" class="form-control"
+            [ngClass]="{ 'is-invalid': submited &&  validation.unloadingDate.errors }" type="date">
         </label>
       </div>
       <div class="block-container">
@@ -38,13 +44,16 @@
           <span>Інша інформація</span>
         </div>
         <label for=""> Вантаж
-          <input type="text" formControlName="cargo" class="form-control">
+          <input type="text" formControlName="cargo" class="form-control"
+            [ngClass]="{ 'is-invalid': submited &&  validation.cargo.errors }">
         </label>
         <label for=""> Вага
-          <input type="number" formControlName="weight" class="form-control">
+          <input type="number" formControlName="weight" class="form-control"
+            [ngClass]="{ 'is-invalid': submited &&  validation.weight.errors }">
         </label>
         <label for=""> Ціна
-          <input formControlName="price" class="form-control" type="text">
+          <input formControlName="price" class="form-control"
+            [ngClass]="{ 'is-invalid': submited &&  validation.price.errors }" type="text">
         </label>
         <button type="submit">Зберегти</button>
       </div>
@@ -61,14 +70,17 @@
         </div>
         <label for="">Країна
           <input ngx-google-places-autocomplete="{ types: ['(cities)']}" #placesRef="ngx-places"
-            (onAddressChange)="loadingCountryChange($event)" class="form-control" type="text">
+            (onAddressChange)="loadingCountryChange($event)" class="form-control" formControlName="loadingCountry"
+            [ngClass]="{ 'is-invalid': submited &&  validation.loadingCountry.errors }" type="text">
         </label>
         <label for="">Місто
           <input ngx-google-places-autocomplete="{ types: ['(cities)']}" #placesRef="ngx-places"
-            (onAddressChange)="loadingCityChange($event)" class="form-control" type="text">
+            (onAddressChange)="loadingCityChange($event)" formControlName="loadingCity" class="form-control"
+            [ngClass]="{ 'is-invalid': submited &&  validation.loadingCity.errors }" type="text">
         </label>
         <label for="">Дата
-          <input formControlName="loadingDate" class="form-control" type="date">
+          <input formControlName="loadingDate" class="form-control"
+            [ngClass]="{ 'is-invalid': submited &&  validation.loadingDate.errors }" type="date">
         </label>
       </div>
       <div class="block-container">
@@ -77,14 +89,17 @@
         </div>
         <label for="">Країна
           <input ngx-google-places-autocomplete="{ types:['(cities)'] }" #placesRef="ngx-places"
-            (onAddressChange)="unloadingCountryChange($event)" class="form-control" type="text">
+            (onAddressChange)="unloadingCountryChange($event)" class="form-control" formControlName="unloadingCountry"
+            [ngClass]="{ 'is-invalid': submited &&  validation.unloadingCountry.errors }" type="text">
         </label>
         <label for="">Місто
           <input ngx-google-places-autocomplete="{ types:['(cities)'] }" #placesRef="ngx-places"
-            (onAddressChange)="unloadingCityChange($event)" class="form-control" type="text">
+            formControlName="unloadingCity" (onAddressChange)="unloadingCityChange($event)" class="form-control"
+            [ngClass]="{ 'is-invalid': submited &&  validation.unloadingCity.errors }" type="text">
         </label>
         <label for="">Дата
-          <input formControlName="unloadingDate" class="form-control" type="date">
+          <input formControlName="unloadingDate" class="form-control"
+            [ngClass]="{ 'is-invalid': submited &&  validation.unloadingDate.errors }" type="date">
         </label>
       </div>
       <div class="block-container other-info">
@@ -92,15 +107,19 @@
           <span>Інша інформація</span>
         </div>
         <label for="">Виберіть автомобіль
-          <select [(ngModel)]="selectedValue" formControlName="car" name="car" id="" class="car" class="form-control">
+          <select [(ngModel)]="selectedValue" formControlName="car" name="car" id="" class="car" class="form-control"
+            [ngClass]="{ 'is-invalid': submited &&  validation.car.errors }">
             <option *ngFor="let car of carList" [ngValue]="car">{{ car.model }} {{ car.mark }} {{ car.EURO }}</option>
           </select>
         </label>
         <label for=""> Ціна
-          <input formControlName="price" class="form-control" type="text">
+          <input formControlName="price" class="form-control"
+            [ngClass]="{ 'is-invalid': submited &&  validation.price.errors }" type="text">
         </label>
         <button type="submit">Зберегти</button>
       </div>
     </form>
   </div>
 </ng-container>
+
+

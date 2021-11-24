@@ -12,6 +12,7 @@ import { ProfileSettingsService } from 'src/app/shared/services/settings/profile
 export class ProfileSettingsComponent implements OnInit {
   public profileSettingsForm!: FormGroup;
   public submited = false;
+  public pageReady = false;
   public imagePathCurrentUser: string = '';
   private currentUserid = JSON.parse(localStorage.getItem('user') as string).id;
   public imagePath !: string;
@@ -31,6 +32,8 @@ export class ProfileSettingsComponent implements OnInit {
       let profileData = data.data()?.user;
       this.profileSettingsForm.patchValue(profileData);
       this.imagePathCurrentUser = this.profileSettingsForm.controls['imagePath'].value;
+    }).then(() => {
+      this.pageReady = true;
     })
   }
 

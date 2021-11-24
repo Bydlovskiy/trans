@@ -11,6 +11,7 @@ export class ArchiveNotificationsComponent implements OnInit {
   private user = JSON.parse(localStorage.getItem('user') as string);
   private notificationsIdList !: any[];
   public notificationsList !: any[];
+  public pageReady = false;
   private collection !: string;
   public customerData: any;
   public offerDetailsData: any;
@@ -48,6 +49,8 @@ export class ArchiveNotificationsComponent implements OnInit {
       this.notificationsIdList = activeList;
     }).then(() => {
       this.initList()
+    }).then(() => {
+      this.pageReady = true
     })
   }
 
@@ -72,7 +75,7 @@ export class ArchiveNotificationsComponent implements OnInit {
           this.notificationsList = list;
         })
       })
-    } else { }
+    } 
   }
 
   public companyDetails(i: number) {

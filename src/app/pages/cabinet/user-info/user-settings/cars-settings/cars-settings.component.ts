@@ -13,8 +13,11 @@ export class CarsSettingsComponent implements OnInit {
   public carList: ICar[] = [];
   public carSettingsForm !: FormGroup;
   public submited = false;
+  public pageReady = false;
+  public deleteId !: string;
   public editStatus = false;
   public isAddCar = false;
+  public deleteCard = false;
   private currentUserid = JSON.parse(localStorage.getItem('user') as string).id;
 
   constructor(private carService: CarsSettingsService,
@@ -22,6 +25,7 @@ export class CarsSettingsComponent implements OnInit {
     private toastr: ToastrService) { }
 
   ngOnInit(): void {
+
     this.initForm();
     this.getCarsList();
   }
@@ -30,9 +34,9 @@ export class CarsSettingsComponent implements OnInit {
     this.carSettingsForm = this.fb.group({
       mark: [null, Validators.required],
       model: [null, Validators.required],
-      year: [null, Validators.required],
+      year: [null, [Validators.required, Validators.pattern(/^([1][9][5-9][0-9])|[2][0][0-9][0-9]$/)]],
       type: [null, Validators.required],
-      EURO: [null, Validators.required],
+      EURO: [null, [Validators.required, Validators.pattern(/^[1-6]{1}$/)]],
       userid: [this.currentUserid],
       id: [null]
     })
@@ -45,6 +49,8 @@ export class CarsSettingsComponent implements OnInit {
       data.forEach(el => {
         this.carList.push(el.data() as ICar)
       });
+    }).then(() => {
+      this.pageReady = true;
     })
   }
 
@@ -88,7 +94,17 @@ export class CarsSettingsComponent implements OnInit {
   }
 
   public deleteCar(id: string): void {
-    this.carService.deleteCar(id).then(() => {
+    this.deleteCard = true;
+    this.deleteId = id;
+  }
+
+  closeDeleteCard(): void {
+    this.deleteCard = false
+  }
+
+  public delete(): void {
+    this.deleteCard = false;
+    this.carService.deleteCar(this.deleteId).then(() => {
       this.getCarsList();
       this.toastr.success('Автомобіль успішно видалено')
     }).catch(() => {

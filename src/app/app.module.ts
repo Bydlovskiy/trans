@@ -40,6 +40,8 @@ import { ProfileSettingsComponent } from './pages/cabinet/user-info/user-setting
 import { ArchiveNotificationsComponent } from './pages/cabinet/messages/archive-notifications/archive-notifications.component';
 import { EmptyPageComponent } from './components/empty-page/empty-page.component';
 import { CheckSettingsComponent } from './components/check-settings/check-settings.component';
+import { ConfirmationComponent } from './components/confirmation/confirmation.component';
+import { LoadPageComponent } from './components/load-page/load-page.component';
 
 
 
@@ -76,7 +78,9 @@ import { CheckSettingsComponent } from './components/check-settings/check-settin
     ArchiveOffersComponent,
     ArchiveNotificationsComponent,
     EmptyPageComponent,
-    CheckSettingsComponent
+    CheckSettingsComponent,
+    ConfirmationComponent,
+    LoadPageComponent
   ],
   imports: [
     RouterModule,

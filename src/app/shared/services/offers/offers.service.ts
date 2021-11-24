@@ -31,9 +31,6 @@ export class OffersService {
     return updateDoc(doc(this.firestore, `${role}-offers`, offerId), { status: 'archive' })
   }
 
-  // changeNotificationStatus(offerId: string, role: string): Promise<void> {
-  //   return updateDoc(doc(this.firestore, `${role}-offers`, offerId), { status: 'archive' })
-  // }
 
   // Exchanges
 

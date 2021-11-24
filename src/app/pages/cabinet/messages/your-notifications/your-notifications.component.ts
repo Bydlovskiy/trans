@@ -13,6 +13,7 @@ export class YourNotificationsComponent implements OnInit {
   private user = JSON.parse(localStorage.getItem('user') as string);
   private notificationsIdList: IOfferResponde[] = [];
   public notificationsList !: any[];
+  public pageReady = false;
   public chat !: any[];
   public messageGroup !: FormGroup;
   public isEmpty = false;
@@ -56,6 +57,8 @@ export class YourNotificationsComponent implements OnInit {
       this.notificationsIdList = activeList;
     }).then(() => {
       this.initList()
+    }).then(() => {
+      this.pageReady = true;
     })
   }
 

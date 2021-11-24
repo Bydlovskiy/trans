@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { GooglePlaceDirective } from 'ngx-google-places-autocomplete';
 import { Address } from 'ngx-google-places-autocomplete/objects/address';
@@ -18,6 +18,7 @@ export class CreateOfferComponent implements OnInit {
   public offerTruckerForm !: FormGroup;
   public carList !: ICar[];
   public selectedValue = null;
+  public submited = false;
   public user = JSON.parse(localStorage.getItem('user') as string);
   constructor(private fb: FormBuilder,
     private offerService: OffersService,
@@ -174,9 +175,9 @@ export class CreateOfferComponent implements OnInit {
       car: [null, Validators.required],
       price: [null, Validators.required],
       userId: [this.user.id],
-      status: [null, Validators.required],
-      date: [null, Validators.required],
-      id: [null, Validators.required],
+      status: [null],
+      date: [null],
+      id: [null],
       respondedUsersId: [[]],
       notifitaionId: [null]
     })
@@ -212,7 +213,7 @@ export class CreateOfferComponent implements OnInit {
   }
 
   public saveOffer(): void {
-
+    this.submited = true;
     if (this.user.role == 'trucker') {
       if (this.offerTruckerForm.valid) {
         this.offerTruckerForm.patchValue({
@@ -243,6 +244,14 @@ export class CreateOfferComponent implements OnInit {
       } else {
         this.toastr.error('Заповніть правильно форму')
       }
+    }
+  }
+
+  get validation(): { [key: string]: AbstractControl } {
+    if (this.user.role == 'trucker') {
+      return this.offerTruckerForm.controls;
+    } else {
+      return this.offerConsignorForm.controls;
     }
   }
 

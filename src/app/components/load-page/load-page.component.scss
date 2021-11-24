@@ -1,0 +1,17 @@
+.main-container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .icon {
+      margin-top: 200px;
+    background: url(/assets/icons/e3c04cd5dea22a76b0995bdc7c829d30.apng);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: 50%;
+    height: 2.58em;
+    width: 4.18em;
+  }
+}

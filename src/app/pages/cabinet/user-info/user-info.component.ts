@@ -10,6 +10,7 @@ import { UserInfoService } from 'src/app/shared/services/user-info/user-info.ser
 })
 export class UserInfoComponent implements OnInit {
   private currentUserid = JSON.parse(localStorage.getItem('user') as string).id;
+  public pageReady = false;
   public userInfo !: any;
   constructor(private userService: UserInfoService,
     private authService : AuthService,
@@ -24,7 +25,8 @@ export class UserInfoComponent implements OnInit {
       data.forEach(data => {
         this.userInfo = data.data();
       });
-
+    }).then(() => {
+      this.pageReady = true;
     })
   }
 

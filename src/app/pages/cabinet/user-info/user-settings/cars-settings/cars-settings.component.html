@@ -1,3 +1,4 @@
+<ng-container *ngIf="pageReady">
 <div class="cars-settings-container" *ngIf="!isAddCar">
   <table class="table table-hover">
     <thead>
@@ -66,3 +67,12 @@
     </div>
   </form>
 </div>
+<app-confirmation *ngIf="deleteCard" (action)="delete()"
+(closeActionCard)="closeDeleteCard()" >
+  <span title>Підтвердіть видалення</span>
+  <span button>Видалити</span>
+</app-confirmation>
+</ng-container>
+<app-load-page *ngIf="!pageReady"></app-load-page>
+
+

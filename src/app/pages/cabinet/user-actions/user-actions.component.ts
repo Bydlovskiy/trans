@@ -10,7 +10,7 @@ import { UserInfoService } from 'src/app/shared/services/user-info/user-info.ser
 export class UserActionsComponent implements OnInit {
   private user = JSON.parse(localStorage.getItem('user') as string);
   public currentUser !: any;
-  public checkSettings !: boolean;
+  public checkSettings = true;
   public path: Array<any> = [];
   constructor(private userInfoService: UserInfoService) { }
 

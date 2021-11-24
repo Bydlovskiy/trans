@@ -9,6 +9,7 @@ import { OffersService } from 'src/app/shared/services/offers/offers.service';
   styleUrls: ['./archive-offers.component.scss']
 })
 export class ArchiveOffersComponent implements OnInit {
+  public pageReady = false;
   public archiveConsignorOffersList !: IConsignorOffer[];
   public archiveTruckerOffersList !: ITruckerOffer[];
   public isEmpty !:boolean;
@@ -42,6 +43,8 @@ export class ArchiveOffersComponent implements OnInit {
           this.isEmpty = true;
         }
       }
+    }).then(() => {
+    this.pageReady = true;
     })
   }
 

@@ -1,38 +1,41 @@
-<div class="profile-settings-container">
-  <form [formGroup]="profileSettingsForm" (ngSubmit)="saveData()">
-    <div class="profile-title">
-      <div class="foto">
-        <img [src]="!imagePathCurrentUser ?  '/assets/icons/photocameraoutline_80020.svg' : imagePathCurrentUser"
-          width="80px">
-        <input class="form-control" [ngClass]="{ 'is-invalid': submited &&  validation.name.errors }" type="file"
-          (change)="uploadImage($event)">
+<ng-container *ngIf="pageReady">
+  <div class="profile-settings-container">
+    <form [formGroup]="profileSettingsForm" (ngSubmit)="saveData()">
+      <div class="profile-title">
+        <div class="foto">
+          <img [src]="!imagePathCurrentUser ?  '/assets/icons/photocameraoutline_80020.svg' : imagePathCurrentUser"
+            width="80px">
+          <input class="form-control" [ngClass]="{ 'is-invalid': submited &&  validation.name.errors }" type="file"
+            (change)="uploadImage($event)">
+        </div>
       </div>
-    </div>
-    <div class="profile-block">
-      <label for="name">Ім'я
-        <input class="form-control" [ngClass]="{ 'is-invalid': submited &&  validation.name.errors }"
-          formControlName="name" id="name" type="text">
-      </label>
-      <label for="surname">Прізвище
-        <input class="form-control" [ngClass]="{ 'is-invalid': submited &&  validation.surname.errors }"
-          formControlName="surname" id="surname" type="text">
-      </label>
-    </div>
-    <div class="profile-block">
-      <label for="dateOfBirth">Дата народження
-        <input class="form-control" [ngClass]="{ 'is-invalid': submited &&  validation.dateOfBirth.errors }"
-          formControlName="dateOfBirth" id="dateOfBirth" type="date">
-      </label>
-      <div class="radio-container">
-        <input class="form-control" [ngClass]="{ 'is-invalid': submited &&  validation.sex.errors }"
-          class="form-check-input" formControlName="sex" name="sex" id type="radio" value="man">Чоловік
-        <input class="form-control" [ngClass]="{ 'is-invalid': submited &&  validation.sex.errors }"
-          class="form-check-input" formControlName="sex" name="sex" type="radio" value="woman">Жінка
+      <div class="profile-block">
+        <label for="name">Ім'я
+          <input class="form-control" [ngClass]="{ 'is-invalid': submited &&  validation.name.errors }"
+            formControlName="name" id="name" type="text">
+        </label>
+        <label for="surname">Прізвище
+          <input class="form-control" [ngClass]="{ 'is-invalid': submited &&  validation.surname.errors }"
+            formControlName="surname" id="surname" type="text">
+        </label>
       </div>
-    </div>
-    <div class="profile-buttons">
-      <button type="submit">Зберегти</button>
-      <button type="button" [routerLink]="['/cabinet/info']">Скасувати</button>
-    </div>
-  </form>
-</div>
+      <div class="profile-block">
+        <label for="dateOfBirth">Дата народження
+          <input class="form-control" [ngClass]="{ 'is-invalid': submited &&  validation.dateOfBirth.errors }"
+            formControlName="dateOfBirth" id="dateOfBirth" type="date">
+        </label>
+        <div class="radio-container">
+          <input class="form-control" [ngClass]="{ 'is-invalid': submited &&  validation.sex.errors }"
+            class="form-check-input" formControlName="sex" name="sex" id type="radio" value="man">Чоловік
+          <input class="form-control" [ngClass]="{ 'is-invalid': submited &&  validation.sex.errors }"
+            class="form-check-input" formControlName="sex" name="sex" type="radio" value="woman">Жінка
+        </div>
+      </div>
+      <div class="profile-buttons">
+        <button type="submit">Зберегти</button>
+        <button type="button" [routerLink]="['/cabinet/info']">Скасувати</button>
+      </div>
+    </form>
+  </div>
+</ng-container>
+<app-load-page *ngIf="!pageReady"></app-load-page>

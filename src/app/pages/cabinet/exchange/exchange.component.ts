@@ -16,6 +16,7 @@ import { ToastrService } from 'ngx-toastr';
 export class ExchangeComponent implements OnInit {
   public truckerOffersList !: ITruckerOffer[];
   public consignorOffersList !: IConsignorOffer[];
+  public pageReady = false;
   public truckerUsersData !: Array<any>;
   public consignorUsersData !: Array<any>;
   public respondToOfferForm !: FormGroup;
@@ -28,7 +29,7 @@ export class ExchangeComponent implements OnInit {
   public customerDataAboutConsignor !: any;
   public customerDataAboutTrucker !: any;
   public currentUser !: any;
-  public checkSettings !: boolean;
+  public checkSettings = true;
   public user = JSON.parse(localStorage.getItem('user') as string);
   constructor(private offersService: OffersService,
     private communicationService: CommunicationsService,
@@ -78,6 +79,8 @@ export class ExchangeComponent implements OnInit {
         this.isEmpty = true; 
       }
       this.getUserData(activeOffers as ITruckerOffer[] | IConsignorOffer[])
+
+      this.pageReady = true;
     })
   }
 

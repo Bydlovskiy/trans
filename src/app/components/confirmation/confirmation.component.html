@@ -1,0 +1,13 @@
+<div class="container-main">
+  <div class="card-container">
+    <span class="title">
+      <ng-content select="[title]"></ng-content>
+    </span>
+    <div class="buttons-container">
+      <button (click)="actionClick()" class="confirm">
+        <ng-content select="[button]"></ng-content>
+      </button>
+      <button (click)="actionCloseClick()" class="regect">Скасувати</button>
+    </div>
+  </div>
+</div>

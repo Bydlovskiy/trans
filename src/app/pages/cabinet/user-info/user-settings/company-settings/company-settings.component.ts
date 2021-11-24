@@ -12,6 +12,7 @@ import { CompanySettingsService } from 'src/app/shared/services/settings/company
 export class CompanySettingsComponent implements OnInit {
   public companySettingsForm !: FormGroup;
   public submited = false;
+  public pageReady = false;
   private currentUserId = JSON.parse(localStorage.getItem('user') as string).id;
   constructor(private fb: FormBuilder,
     private companyService: CompanySettingsService,
@@ -29,8 +30,8 @@ export class CompanySettingsComponent implements OnInit {
       country: [null, Validators.required],
       city: [null, Validators.required],
       street: [null, Validators.required],
-      IPN: [null, Validators.required],
-      EDRPOY: [null, Validators.required]
+      IPN: [null, [Validators.required,Validators.pattern(/^\d{10}$/)]],
+      EDRPOY: [null, [Validators.required,Validators.pattern(/^\d{8}$/)]]
     })
   }
 
@@ -54,6 +55,8 @@ export class CompanySettingsComponent implements OnInit {
         copmanyData = data.data().company
       })
       this.companySettingsForm.patchValue(copmanyData)
+    }).then(() => {
+      this.pageReady = true;
     })
   }
 
