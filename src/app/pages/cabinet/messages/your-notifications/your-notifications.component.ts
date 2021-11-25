@@ -82,7 +82,6 @@ export class YourNotificationsComponent implements OnInit {
         }).then(() => {
           list[index].message = notification.message;
           this.notificationsList = list;
-          console.log(this.notificationsList);
         })
       })
     }

@@ -43,10 +43,10 @@
               {{notification.date?.toDate() | date : 'short'}}
             </p>
           </td>
-          <td class="class-container">
-            <button type="button" class="btn btn-success btn-sm"
+          <td class="class-container buttons-container">
+            <button type="button" class="confirm-button"
               (click)="confirmRespond(i,notification.offerData.id,notification.id)">Прийняти</button>
-            <button type="button" class="btn btn-danger btn-sm"
+            <button type="button" class="reject-button"
               (click)="rejectRespond(i,notification.id)">Відхилити</button>
           </td>
         </tr>
@@ -211,4 +211,3 @@
   <app-empty-page *ngIf="isEmpty">Поки ще немає заявок</app-empty-page>
 </ng-container>
 <app-load-page *ngIf="!pageReady"></app-load-page>
-

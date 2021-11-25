@@ -17,7 +17,8 @@
       font-size: 20px;
       font-weight: bold;
     }
-    button{
+
+    button {
       margin-right: 50px;
       background-color: #fff;
       border: 1px solid #82acc4;
@@ -110,24 +111,84 @@
         span {
           font-weight: 500;
         }
-        p{
-            margin-bottom: 10px;
+
+        p {
+          margin-bottom: 10px;
         }
-        .contact-container{
-            padding: 10px 0 ;
-            display: flex;
-            align-items: center;
-            svg{
-                width: 15px;
-                height: 15px;
-                margin-right: 10px;
-            }
-            p{
-                margin-bottom: 0;
-            }
+
+        .contact-container {
+          padding: 10px 0;
+          display: flex;
+          align-items: center;
+
+          svg {
+            width: 15px;
+            height: 15px;
+            margin-right: 10px;
+          }
+
+          p {
+            margin-bottom: 0;
+          }
         }
       }
     }
   }
 }
 
+@media screen and (max-width:750px) {
+  .info-container {
+    .company-name-container {
+      svg {
+        display: none;
+      }
+    }
+  }
+}
+
+@media screen and (max-width:640px) {
+  .info-container {
+    section {
+      flex-direction: column;
+      align-items: center;
+
+      .info-block {
+        width: 70%;
+        margin-bottom: 20px;
+        text-align: center;
+
+        .info {
+          .contact-container {
+            display: flex;
+            justify-content: center;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width:400px) {
+  .info-container {
+    .title {
+      padding: 0 20px;
+
+      button {
+        margin-right: 0;
+      }
+    }
+
+    header {
+      padding: 0 20px;
+
+      .settings-button {
+        font-size: 12px;
+      }
+    }
+  }
+
+
+
+
+
+}

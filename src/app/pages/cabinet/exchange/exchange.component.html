@@ -48,11 +48,11 @@
           <tr *ngFor="let offer of truckerOffersList;let i = index">
             <td class="class-container">
               <p class="place">{{ offer.loadingCountry }}{{ offer.loadingCity}}</p>
-              <p>{{ offer.loadingDate }}</p>
+              <p class="place">{{ offer.loadingDate }}</p>
             </td>
             <td class="class-container">
               <p class="place">{{ offer.unloadingCountry}}{{ offer.unloadingCity}}</p>
-              <p> {{ offer.unloadingDate}}</p>
+              <p class="place"> {{ offer.unloadingDate}}</p>
             </td>
             <td class="class-container">
               <p class="place">{{ offer.car.type }}</p>
@@ -65,11 +65,11 @@
             </td>
             <td class="class-container">
               <button class="class-container info-button" (click)="customerInfoForConsignor = true"
-                (click)="getCustomerData(i)" type="button">Деталі
-                про замовника</button>
+                (click)="getCustomerData(i)" type="button">Детальніше</button>
             </td>
             <td class="class-container">
-              <button type="button" class="btn btn-warning" (click)="createRespondOffer(offer.userId,offer.id)"
+              <button type="button" class="respond-button" (click)="createRespondOffer(offer.userId,offer.id)"
+                [ngClass]="{'disabled': offer.respondedUsersId.includes(user.id)}"
                 [disabled]="offer.respondedUsersId.includes(user.id)">Вікликнутися</button>
             </td>
           </tr>
@@ -129,11 +129,11 @@
           <tr *ngFor="let offer of consignorOffersList;let i = index">
             <td class="class-container">
               <p class="place">{{ offer.loadingCountry}} {{ offer.loadingCity}}</p>
-              <p>{{ offer.loadingDate }}</p>
+              <p class="place">{{ offer.loadingDate }}</p>
             </td>
             <td class="class-container">
               <p class="place"> {{ offer.unloadingCountry }} {{ offer.unloadingCity}}</p>
-              <p>{{ offer.unloadingDate }}</p>
+              <p class="place">{{ offer.unloadingDate }}</p>
             </td>
             <td class="class-container">
               <p class="place">{{ offer.cargo }}</p>
@@ -148,12 +148,12 @@
               <p class="place">{{ offer.date.toDate()	| date: 'short' }}</p>
             </td>
             <td class="class-container">
-              <button class="class-container info-button" (click)="customerInfoForTrucker = true"
-                (click)="getCustomerData(i)" type="button">Деталі
-                про замовника</button>
+              <button class="info-button" (click)="customerInfoForTrucker = true" (click)="getCustomerData(i)"
+                type="button">Детальніше</button>
             </td>
             <td class="class-container">
-              <button type="button" class="btn btn-warning" (click)="createRespondOffer(offer.userId,offer.id)"
+              <button type="button" class="respond-button" (click)="createRespondOffer(offer.userId,offer.id)"
+                [ngClass]="{'disabled': offer.respondedUsersId.includes(user.id)}"
                 [disabled]="offer.respondedUsersId.includes(user.id)">Вікликнутися</button>
             </td>
           </tr>

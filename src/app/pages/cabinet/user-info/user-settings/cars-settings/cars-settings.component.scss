@@ -1,32 +1,77 @@
 .cars-settings-container {
   padding: 30px;
 
-  .table {
-    padding: 20px;
+  table {
+    margin-top: 10px;
     width: 100%;
 
     thead {
-      th {
-        text-align: center;
+      border-bottom: 2px solid;
+
+      tr {
+        margin-bottom: 10px;
+
+        th {
+          text-align: center;
+          vertical-align: middle;
+        }
       }
     }
 
     tbody {
-      td {
-        text-align: center;
-        vertical-align: middle;
-      }
+      tr {
+        border-bottom: 1px solid;
 
-      .actions {
-        display: flex;
+        .class-container {
+          text-align: center;
+          height: 100%;
 
-        button {
-          margin: 10px;
-          width: 100px;
-          height: 40px;
+          p {
+            margin: 3px;
+          }
+
+          td {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding-top: 10px;
+
+          }
+
+        }
+
+        .buttons-container {
           display: flex;
-          align-items: center;
-          justify-content: center;
+          justify-content: space-around;
+
+          .edit-button {
+            margin: 10px 0;
+            background-color: #f0a51b;
+            border: 1px solid #6c430e;
+            color: #fff;
+            padding: 8px 19px;
+            border-radius: 3px;
+            cursor: pointer;
+
+            &:hover {
+              background-color: #8a6b14;
+            }
+          }
+
+          .delete-button {
+            margin: 10px 0;
+            background-color: #da1e1e;
+            border: 1px solid #690a0a;
+            color: #fff;
+            padding: 8px 19px;
+            border-radius: 3px;
+            cursor: pointer;
+
+            &:hover {
+              background-color: #9a0606;
+            }
+          }
         }
       }
     }
@@ -53,6 +98,9 @@
   form {
     display: flex;
     flex-direction: column;
+    label{
+      margin: 10px 0 10px;
+    }
 
     [type=submit] {
       margin: 20px 20px 0 0;
@@ -79,6 +127,141 @@
 
       &:hover {
         background-color: rgb(182, 218, 241);
+      }
+    }
+  }
+}
+
+
+
+@media screen and (max-width:940px) {
+  .cars-settings-container {
+    table {
+      thead {
+        tr {
+          font-size: 12px;
+        }
+      }
+
+      tbody {
+        .class-container {
+          font-size: 10px;
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width:760px) {
+  .cars-settings-container {
+    padding: 15px;
+    table {
+      thead {
+        tr {
+          font-size: 10px;
+        }
+      }
+
+      tbody {
+        tr {
+          .class-container {
+            font-size: 8px;
+          }
+
+          .buttons-container {
+
+            .edit-button,
+            .delete-button {
+              padding: 3px;
+              font-size: 8px;
+            }
+          }
+        }
+      }
+    }
+
+    .add-car {
+      font-size: 12px;
+      padding: 5px;
+    }
+  }
+  .container{
+    form{
+      label{
+        input ,select{
+          height: 25px;
+          font-size: 10px;
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width:530px) {
+  .cars-settings-container {
+    table {
+      thead {
+        tr {
+          font-size: 8px;
+
+          .type {
+            display: none;
+          }
+        }
+      }
+
+      tbody {
+        .class-container {
+          font-size: 6px;
+        }
+
+        .buttons-container {
+
+          .edit-button,
+          .delete-button {
+            padding: 3px;
+            font-size: 6px;
+          }
+        }
+
+        .type {
+          display: none;
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width:420px) {
+  .cars-settings-container {
+    table {
+      thead {
+        tr {
+          font-size: 6px;
+        }
+      }
+
+      tbody {
+        tr {
+          .buttons-container {
+
+            .edit-button,
+            .delete-button {
+              padding: 2px;
+              font-size: 6px;
+            }
+          }
+        }
+      }
+    }
+  }
+  .container{
+    form{
+      [type=submit] , [type=button]{
+        padding: 5px;
+        font-size: 12px;
+      margin: 10px 10px 0 0;
+
       }
     }
   }

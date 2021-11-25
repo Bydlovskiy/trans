@@ -1,28 +1,28 @@
 <ng-container *ngIf="pageReady">
 <div class="cars-settings-container" *ngIf="!isAddCar">
-  <table class="table table-hover">
+  <table >
     <thead>
       <tr>
-        <th scope="col">#</th>
-        <th scope="col">Марка</th>
-        <th scope="col">Модель</th>
-        <th class="year" scope="col">Рік випуску</th>
-        <th class="type" scope="col">Тип Кузова</th>
-        <th class="euro" scope="col">Євро стандарт</th>
-        <th scope="col">Дії</th>
+        <th>#</th>
+        <th>Марка</th>
+        <th>Модель</th>
+        <th>Рік випуску</th>
+        <th class="type">Тип Кузова</th>
+        <th>Євро стандарт</th>
+        <th>Дії</th>
       </tr>
     </thead>
     <tbody>
       <tr *ngFor="let car of carList;let i = index">
-        <td style="font-weight: 700;" scope="row">{{ i + 1 }}</td>
-        <td scope="col">{{ car.mark }}</td>
-        <td scope="col">{{ car.model }}</td>
-        <td class="year" scope="col">{{ car.year }}</td>
-        <td class="type" scope="col">{{ car.type }}</td>
-        <td class="euro" scope="col">{{ car.EURO }}</td>
-        <td class="actions" scope="col">
-          <button (click)="updateCar(car)" type="button" class="btn btn-warning">Редагувати</button>
-          <button (click)="deleteCar(car.id)" type="button" class="btn btn-danger">Видалити</button>
+        <td class="class-container" style="font-weight: 700;" scope="row">{{ i + 1 }}</td>
+        <td class="class-container">{{ car.mark }}</td>
+        <td class="class-container">{{ car.model }}</td>
+        <td class="class-container">{{ car.year }}</td>
+        <td class="class-container type">{{ car.type }}</td>
+        <td class="class-container">{{ car.EURO }}</td>
+        <td class="buttons-container" scope="col">
+          <button (click)="updateCar(car)" type="button" class="edit-button">Редагувати</button>
+          <button (click)="deleteCar(car.id)" type="button" class="delete-button">Видалити</button>
         </td>
       </tr>
     </tbody>

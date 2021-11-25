@@ -84,3 +84,37 @@
     }
   }
 }
+
+@media screen and (max-width:600px) {
+  .profile-settings-container{
+    form{
+      .profile-block{
+        flex-direction: column;
+        label{
+          font-size: 14px;
+          width: 100%;
+          padding: 10px;
+          input{
+            height: 25px;
+            font-size: 12px;
+          }
+        }
+        .radio-container{
+          margin: 10px 0 0 10px;
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width:410px) {
+  .profile-settings-container{
+    form{
+      [type=submit] , [type=button] {
+        padding: 5px;
+        font-size: 12px;
+      }
+    }
+
+  }
+} 

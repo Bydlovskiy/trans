@@ -12,8 +12,6 @@
   }
 }
 
-
-
 .container-main {
   width: 100%;
   padding: 0;
@@ -22,13 +20,14 @@
   .buttons-container {
     height: 100px;
     display: flex;
+    justify-content: space-around;
 
 
     .button {
       height: 90%;
       width: 28%;
       background-color: white;
-      margin: 10px 0 0 20px;
+      margin: 10px 0 0;
       display: flex;
       justify-content: center;
       align-items: center;
@@ -49,12 +48,13 @@
           font-size: 25px;
           font-weight: 700;
         }
+
         background-color: #b9d7e9;
       }
     }
 
     .active {
-      border: 4px solid #5c93b2 ;
+      border: 4px solid #5c93b2;
     }
   }
 }
@@ -92,6 +92,37 @@
       &:hover {
         background-color: #608216;
       }
+    }
+  }
+}
+
+@media screen and (max-width:900px) {
+  .container-main {
+    .buttons-container {
+      height: 60px;
+
+      .button {
+        width: 25%;
+
+        span {
+          font-size: 15px;
+        }
+
+        &:hover {
+          span {
+            font-size: 17px;
+            font-weight: 700;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width:450px) {
+  .title-container{
+    b{
+      font-size: 15px;
     }
   }
 }

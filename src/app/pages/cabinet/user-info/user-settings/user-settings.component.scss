@@ -13,7 +13,7 @@
     border-radius: 10px;
     border: 1px solid grey;
     width: 90%;
-    min-height: 90%;
+    min-height: 450px;
     background-color: rgb(255, 255, 255);
     box-shadow: 0 0 300px black;
   }
@@ -72,6 +72,7 @@
       color: #5c93b2;
       font-size: 12px;
       background-color: #eff4f7;
+      text-align: center;
 
       &:active {
         background-color: white;
@@ -79,11 +80,26 @@
     }
 
   }
-
   .settings-info {
     width: 80%;
     height: 100%;
   }
+}
 
-
+@media screen and (max-width:540px) {
+  .settings-container{
+    .user-settings{
+      section{
+        .settings-menu{
+          span{
+            font-size: 8px;
+            padding: 0 3px;
+          }
+        }
+        .settings-info{
+          padding: 0;
+        }
+      }
+    }
+  }
 }

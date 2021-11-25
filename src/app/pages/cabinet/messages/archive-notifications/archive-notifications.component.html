@@ -35,8 +35,8 @@
           </td>
           <td class="class-container">
             <p class="place">
-              {{notification?.message[0].performer}}<br>
-              {{notification?.message[1].customer}}
+              {{notification.message[0]?.performer}}<br>
+              {{notification.message[1]?.customer}}
             </p>
           </td>
           <td class="class-container">
@@ -87,7 +87,7 @@
     <div class="info-container">
       <div class="info-modal">
         <header>
-          <div class="title">Про замовника </div>
+          <div class="title">Про замовлення</div>
           <div (click)="offerConsignorInfo = false">
             <svg class="_1567t1_i_g" x="0px" y="0px" viewBox="0 0 8 8" xml:space="preserve">
               <polygon
@@ -152,7 +152,7 @@
     </div>
   </ng-container>
 
-  <app-empty-page *ngIf="isEmpty">Поки ще немає архівованих пропозицій</app-empty-page>
+  <app-empty-page style="text-align: center;" *ngIf="isEmpty">Поки ще немає архівованих пропозицій</app-empty-page>
 
 </ng-container>
 <app-load-page *ngIf="!pageReady"></app-load-page>

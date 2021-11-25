@@ -2,6 +2,9 @@ form {
   display: flex;
   flex-direction: column;
   padding: 30px;
+  label{
+    padding-bottom: 10px;
+  }
 
   [type=submit] {
     margin: 20px 20px 0 0;
@@ -25,8 +28,31 @@ form {
     padding: 8px 19px;
     border-radius: 3px;
     cursor: pointer;
-    &:hover{
-        background-color: rgb(182, 218, 241); 
+
+    &:hover {
+      background-color: rgb(182, 218, 241);
+    }
+  }
+}
+
+@media screen and (max-width:450px) {
+  .company-settings-container {
+    form {
+      padding: 15px;
+      label {
+        font-size: 11px;
+
+        input {
+          height: 25px;
+          font-size: 12px;
+        }
+      }
+
+      [type=submit],
+      [type=button] {
+        padding: 6px ;
+        font-size: 12px;
+      }
     }
   }
 }

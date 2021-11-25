@@ -50,8 +50,37 @@
         background-color: #b9d7e9;
       }
     }
-    .active{
-      border:4px solid #5c93b2 ;
+
+    .active {
+      border: 4px solid #5c93b2;
+    }
+  }
+}
+
+@media screen and (max-width:750px) {
+  .container-main {
+    .buttons-container {
+      height: 70px;
+
+    }
+  }
+}
+
+@media screen and (max-width:470px) {
+  .container-main {
+    .buttons-container {
+      .button {
+        span {
+          font-size: 12px;
+        }
+
+        &:hover {
+          span {
+            font-size: 14px;
+            font-weight: 500;
+          }
+        }
+      }
     }
   }
 }

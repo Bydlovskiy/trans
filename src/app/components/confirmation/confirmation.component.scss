@@ -11,8 +11,8 @@
   .card-container {
     border-radius: 7px;
     border: 1px solid grey;
-    width: 30%;
-    height: 15%;
+    width: 300px;
+    height:  150px;
     background-color: rgb(255, 255, 255);
     box-shadow: 0 0 300px black;
     display: flex;
@@ -27,15 +27,14 @@
     }
 
     .buttons-container {
-      width: 70%;
+      width: 80%;
       display: flex;
       justify-content: center;
       align-items: center;
       justify-content: space-between;
-      margin-top: 10%;
+      margin-top: 50px;
 
       .confirm {
-        // margin: 20px 20px 0 0;
         background-color: #95bd41;
         border: 1px solid #749138;
         color: #fff;
@@ -47,8 +46,7 @@
           background-color: #608216;
         }
       }
-      .regect{
-        // margin-top: 20px;
+      .reject{
         background-color: #fff;
         border: 1px solid #82acc4;
         color: #5c93b2;

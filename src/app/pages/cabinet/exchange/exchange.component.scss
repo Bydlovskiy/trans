@@ -12,8 +12,6 @@
   }
 }
 
-
-
 .main-container {
 
   table {
@@ -22,10 +20,12 @@
 
     thead {
       border-bottom: 2px solid;
-
-      th {
-        text-align: center;
-        vertical-align: middle;
+      tr{
+        margin-bottom: 10px;
+        th {
+          text-align: center;
+          vertical-align: middle;
+        }
       }
     }
 
@@ -53,6 +53,27 @@
             text-align: center;
             padding-top: 10px;
 
+          }
+
+          .respond-button {
+            background-color: #95bd41;
+            border: 1px solid #749138;
+            color: #fff;
+            padding: 8px 19px;
+            border-radius: 3px;
+            cursor: pointer;
+
+            &:hover {
+              background-color: #608216;
+            }
+          }
+
+          .disabled {
+            background-color: #c6e77d;
+
+            &:hover {
+              background-color: #c6e77d;
+            }
           }
         }
       }
@@ -98,7 +119,7 @@
     border-radius: 10px;
     border: 1px solid grey;
     width: 90%;
-    min-height: 50%;
+    min-height: 30%;
     background-color: rgb(255, 255, 255);
     box-shadow: 0 0 300px black;
 
@@ -144,6 +165,123 @@
           font-weight: 600;
           font-size: 17px;
           border-bottom: 1px solid black;
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width:800px) {
+  .main-container {
+    table {
+      thead {
+        tr {
+          font-size: 14px;
+        }
+      }
+
+      tbody {
+        tr {
+          .class-container {
+            .place {
+              font-size: 10px;
+            }
+
+            .info-button,
+            .respond-button {
+              font-size: 12px;
+              padding: 5px;
+            }
+          }
+
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width:600px) {
+  .main-container {
+    table {
+      thead {
+        tr {
+          font-size: 10px;
+        }
+      }
+
+      tbody {
+        tr {
+          .class-container {
+            .place {
+              font-size: 8px;
+            }
+
+            .info-button,
+            .respond-button {
+              font-size: 10px;
+
+            }
+          }
+
+        }
+      }
+    }
+  }
+  .info-container{
+    .info-modal{
+      .data-container{
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-around;
+        .title-card-container{
+          width: 80%;
+          margin-top: 10px;
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width:462px) {
+  .title-container{
+    b{
+      font-size: 15px;
+    }
+  }
+  .main-container {
+    table {
+      thead {
+        tr {
+          font-size: 8px;
+        }
+      }
+
+      tbody {
+        tr {
+          .class-container {
+            .place {
+              font-size: 6px;
+            }
+
+            .info-button,
+            .respond-button {
+              font-size: 8px;
+              padding: 2px;
+            }
+          }
+
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width:360px) {
+  .main-container {
+    table {
+      thead {
+        tr {
+          font-size: 6px;
         }
       }
     }

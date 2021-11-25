@@ -1,6 +1,4 @@
 <ng-container *ngIf="pageReady">
-
-
   <ng-container *ngIf="!isEmpty && user.role == 'consignor'">
     <div class="table-container">
       <table>
@@ -37,11 +35,11 @@
           <tr *ngFor="let offer of archiveConsignorOffersList ;let i = index">
             <td class="class-container">
               <p class="place">{{offer.loadingCountry}} {{offer.loadingCity}}</p>
-              <p>{{offer.loadingDate}}</p>
+              <p class="place">{{offer.loadingDate}}</p>
             </td>
             <td class="class-container">
               <p class="place">{{offer.unloadingCountry}}{{offer.unloadingCity}}</p>
-              <p>{{offer.unloadingDate}}</p>
+              <p class="place">{{offer.unloadingDate}}</p>
             </td>
             <td class="class-container">
               <p class="place">{{ offer.cargo }}</p>
@@ -94,11 +92,11 @@
           <tr *ngFor="let offer of archiveTruckerOffersList ;let i = index">
             <td class="class-container">
               <p class="place">{{offer.loadingCountry}}{{offer.loadingCity}}</p>
-              <p>{{offer.loadingDate}}</p>
+              <p class="place">{{offer.loadingDate}}</p>
             </td>
             <td class="class-container">
               <p class="place">{{offer.unloadingCountry}}{{offer.unloadingCity}}</p>
-              <p>{{offer.unloadingDate}}</p>
+              <p class="place">{{offer.unloadingDate}}</p>
             </td>
             <td class="class-container">
               <p class="place">{{ offer.car.mark }}{{ offer.car.model }}</p>

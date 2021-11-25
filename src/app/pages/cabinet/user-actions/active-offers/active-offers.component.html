@@ -45,11 +45,11 @@
           <tr *ngFor="let offer of activeConsignorOffersList ;let i = index">
             <td class="class-container">
               <p class="place">{{offer.loadingCountry}}{{offer.loadingCity}}</p>
-              <p>{{offer.loadingDate}}</p>
+              <p class="place">{{offer.loadingDate}}</p>
             </td>
             <td class="class-container">
               <p class="place">{{offer.unloadingCountry}}{{offer.unloadingCity}}</p>
-              <p>{{offer.unloadingDate}}</p>
+              <p class="place">{{offer.unloadingDate}}</p>
             </td>
             <td class="class-container">
               <p class="place">{{ offer.cargo}}</p>
@@ -124,14 +124,14 @@
           <tr *ngFor="let offer of activeTruckerOffersList ;let i = index">
             <td class="class-container">
               <p class="place">{{offer.loadingCountry}} {{offer.loadingCity}}</p>
-              <p>{{offer.loadingDate}}</p>
+              <p class="place">{{offer.loadingDate}}</p>
             </td>
             <td class="class-container">
               <p class="place">{{offer.unloadingCountry}} {{offer.unloadingCity}}</p>
-              <p class="data">{{offer.unloadingDate}}</p>
+              <p class="place">{{offer.unloadingDate}}</p>
             </td>
             <td class="class-container">
-              <p class="place">{{ offer.car.mark }}{{ offer.car.model }}</p>
+              <p class="place">{{ offer.car.mark }}  {{ offer.car.model }}</p>
             </td>
             <td class="class-container">
               <p class="place">{{offer.price}}</p>
