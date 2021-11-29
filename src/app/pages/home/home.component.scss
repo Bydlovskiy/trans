@@ -1,11 +1,8 @@
 .home-page-container {
   width: 100vw;
   height: 100vh;
-  background: transparent url(/assets/images/hero-frontpage.png) top center no-repeat;
-  background-size: cover;
-
   display: flex;
-
+  
   .trucker-page,
   .consignor-page {
     width: 50%;
