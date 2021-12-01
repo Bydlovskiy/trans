@@ -7,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class UserSettingsComponent implements OnInit {
   public points : Array<any> = [];
- 
+
   constructor() { }
 
   ngOnInit(): void {

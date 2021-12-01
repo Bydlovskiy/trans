@@ -24,7 +24,7 @@
           <circle cx="62.5" cy="33.8" r=".9"></circle>
           <path d="m54 16.5h-1.7c-.3 0-.5.2-.5.5v1.7c0 .3.2.5.5.5h1.7c.3 0 .5-.2.5-.5v-1.7c0-.3-.2-.5-.5-.5z"></path>
         </svg>
-        <div class="company-name">"{{ userInfo?.company.name }}"</div>
+        <div *ngIf="userInfo.company.name" class="company-name">"{{ userInfo?.company.name }}"</div>
       </div>
       <button class="settings-button" [routerLink]="['/cabinet/info/settings']">Редагувати профіль</button>
     </header>
@@ -69,13 +69,13 @@
         <div class="info">
           <span>ІПН</span>
           <p>{{ userInfo?.company.IPN }}</p>
-          <span>ЄДРПОУ</span>
-          <p>{{ userInfo?.company.EDRPOY }}</p>
+          <span *ngIf="userInfo.company.EDRPOY" >ЄДРПОУ</span>
+          <p *ngIf="userInfo.company.EDRPOY">{{ userInfo?.company.EDRPOY }}</p>
         </div>
       </div>
     </section>
   </div>
-  <router-outlet></router-outlet>
+  <router-outlet (deactivate)="getUserInfo()"></router-outlet>
 </ng-container>
 <app-load-page *ngIf="!pageReady"></app-load-page>
 

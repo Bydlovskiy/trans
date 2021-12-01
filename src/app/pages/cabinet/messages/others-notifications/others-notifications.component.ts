@@ -70,7 +70,7 @@ export class OthersNotificationsComponent implements OnInit {
           list.push({ performerData: performer.data() })
         })
         this.CommunicationService.getUserFromId(notification.customerId).then(customer => {
-          list[index].customerData = customer.data()
+          list[index].customerData = customer.data();
         })
         this.CommunicationService.getOfferFromId(notification.offerId, this.collection).then(data => {
           list[index].offerData = data.data();
@@ -80,13 +80,14 @@ export class OthersNotificationsComponent implements OnInit {
         }).then(() => {
           list[index].message = notification.message
           this.notificationsList = list;
+          console.log(this.notificationsList)
         })
       })
     } else { }
   }
 
   public companyDetails(i: number) {
-    this.customerData = this.notificationsList[i].performerData;
+    this.customerData = this.notificationsList[i].customerData;
     this.customerInfo = true;
   }
 

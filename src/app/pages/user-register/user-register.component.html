@@ -6,7 +6,7 @@
     <div class="title">
       <p>Вітаємо на логістичній Платформі Trans.eu</p>
     </div>
-    <form [formGroup]="registerForm" (ngSubmit)="registerConsignor()">
+    <form [formGroup]="registerForm" (ngSubmit)="register()">
       <div class="input-container">
         <label  for="email">email
           <input class="form-control" [ngClass]="{ 'is-invalid': submited &&  validation.email.errors }" formControlName="email" type="email" placeholder="email" id="email">
@@ -14,7 +14,7 @@
       </div>
       <div class="input-container">
         <label for="fhoneNumber">Номер телефону
-          <input class="form-control" [ngClass]="{ 'is-invalid': submited &&  validation.phoneNumber.errors }" type="number" placeholder="phone number" formControlName="phoneNumber" id="fhoneNumber">
+          <input maxlength="15" mask="(000)-000-00-00" class="form-control" [ngClass]="{ 'is-invalid': submited &&  validation.phoneNumber.errors }" type="string" placeholder="phone number" formControlName="phoneNumber" id="fhoneNumber">
         </label>
       </div>
       <div class="input-container">

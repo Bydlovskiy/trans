@@ -42,7 +42,7 @@ import { EmptyPageComponent } from './components/empty-page/empty-page.component
 import { CheckSettingsComponent } from './components/check-settings/check-settings.component';
 import { ConfirmationComponent } from './components/confirmation/confirmation.component';
 import { LoadPageComponent } from './components/load-page/load-page.component';
-
+import { NgxMaskModule } from 'ngx-mask'
 
 
 
@@ -95,7 +95,7 @@ import { LoadPageComponent } from './components/load-page/load-page.component';
     provideStorage(() => getStorage()),
     provideAuth(() => getAuth()),
     GooglePlaceModule,
-
+    NgxMaskModule.forRoot(),
   ],
   providers: [],
   bootstrap: [AppComponent],

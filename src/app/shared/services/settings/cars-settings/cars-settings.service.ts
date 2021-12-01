@@ -22,7 +22,7 @@ export class CarsSettingsService {
     })
   }
 
-  updateCar(car: ICar) {
+  updateCar(car: ICar)  {
     return setDoc(doc(this.firestore, "cars", car.id), car);
   }
 

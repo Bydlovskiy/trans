@@ -31,7 +31,7 @@ export class CompanySettingsComponent implements OnInit {
       city: [null, Validators.required],
       street: [null, Validators.required],
       IPN: [null, [Validators.required,Validators.pattern(/^\d{10}$/)]],
-      EDRPOY: [null, [Validators.required,Validators.pattern(/^\d{8}$/)]]
+      EDRPOY: [null, [Validators.pattern(/^\d{8}$/)]]
     })
   }
 

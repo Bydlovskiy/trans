@@ -36,12 +36,13 @@ export class UserRegisterComponent implements OnInit ,OnDestroy {
     this.registerForm = this.fb.group({
       email: [null, Validators.required],
       password: [null, Validators.required],
-      phoneNumber: [null, Validators.required],
+      phoneNumber: [null, [Validators.required, Validators.pattern(/^\d{10,12}$/)]],
       role: [this.role]
     })
   }
 
-  public registerConsignor(): void {
+  public register(): void {
+    console.log(this.validation.email.errors)
     this.submited = true;
     if (!this.registerForm.valid) {
       this.toastr.error('Введіть правильно дані');
@@ -77,7 +78,7 @@ export class UserRegisterComponent implements OnInit ,OnDestroy {
       this.toastr.error('Неправильно введені дані')
     })
   }
-  get validation(): { [key: string]: AbstractControl } {    
+  get validation(): { [key: string]: AbstractControl } {
     return this.registerForm.controls;
   }
 

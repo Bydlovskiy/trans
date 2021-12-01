@@ -75,11 +75,11 @@ export class ArchiveNotificationsComponent implements OnInit {
           this.notificationsList = list;
         })
       })
-    } 
+    }
   }
 
   public companyDetails(i: number) {
-    this.customerData = this.notificationsList[i].performerData;
+    this.customerData = this.notificationsList[i].customerData;
     this.customerInfo = true;
   }
 
