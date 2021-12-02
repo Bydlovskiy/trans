@@ -3,6 +3,7 @@ import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/fo
 import { ToastrService } from 'ngx-toastr';
 import { ICompany } from 'src/app/shared/interfaces/company-interface';
 import { CompanySettingsService } from 'src/app/shared/services/settings/company-settings/company-settings.service';
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-company-settings',
@@ -11,12 +12,13 @@ import { CompanySettingsService } from 'src/app/shared/services/settings/company
 })
 export class CompanySettingsComponent implements OnInit {
   public companySettingsForm !: FormGroup;
-  public submited = false;
+  public submitted = false;
   public pageReady = false;
   private currentUserId = JSON.parse(localStorage.getItem('user') as string).id;
   constructor(private fb: FormBuilder,
     private companyService: CompanySettingsService,
-    private toastr: ToastrService) { }
+    private toastr: ToastrService,
+              private router : Router) { }
 
   ngOnInit(): void {
     this.initForm();
@@ -25,21 +27,22 @@ export class CompanySettingsComponent implements OnInit {
 
   private initForm(): void {
     this.companySettingsForm = this.fb.group({
-      name: [null, Validators.required],
-      activity: [null, Validators.required],
-      country: [null, Validators.required],
-      city: [null, Validators.required],
-      street: [null, Validators.required],
+      name: [null, [Validators.required, Validators.pattern(/^[a-zA-Zа-яА-ЯЁЇїІіЄєҐґ\s]{2,}$/)]],
+      activity: [null,[Validators.required, Validators.pattern(/^[a-zA-Zа-яА-ЯЁЇїІіЄєҐґ\s]{2,}$/)]],
+      country: [null, [Validators.required, Validators.pattern(/^[a-zA-Zа-яА-ЯЁЇїІіЄєҐґ]{2,}$/)]],
+      city: [null, [Validators.required, Validators.pattern(/^[a-zA-Zа-яА-ЯЁЇїІіЄєҐґ]{2,}$/)]],
+      street: [null, [Validators.required, Validators.pattern(/^[a-zA-Zа-яА-ЯЁЇїІіЄєҐґ\s]{2,}$/)]],
       IPN: [null, [Validators.required,Validators.pattern(/^\d{10}$/)]],
       EDRPOY: [null, [Validators.pattern(/^\d{8}$/)]]
     })
   }
 
   public saveData(): void {
-    this.submited = true;
+    this.submitted = true;
     if (this.companySettingsForm.valid) {
       this.companyService.setCompanyData(this.companySettingsForm.value, this.currentUserId).then(() => {
-        this.toastr.success('Дані успішно редаговані')
+        this.toastr.success('Дані успішно збережені')
+        this.router.navigate(['/cabinet/info'])
       }).catch(() => {
         this.toastr.error('Щось пішло не так')
       })

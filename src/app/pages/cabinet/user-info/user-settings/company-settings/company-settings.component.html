@@ -1,27 +1,48 @@
 <ng-container *ngIf="pageReady">
 <div class="company-settings-container">
     <form [formGroup]="companySettingsForm" (ngSubmit)="saveData()">
-      <label for="name">Назва компанії
-        <input class="form-control" [ngClass]="{ 'is-invalid': submited &&  validation.name.errors }" formControlName="name" id="name" type="text">
+      <label for="name">Назва компанії *
+        <input class="form-control" [ngClass]="{ 'is-invalid': submitted &&  validation.name.errors }" formControlName="name" id="name" type="text">
       </label>
-      <label for="activity">Діяльність компанії
-        <input class="form-control"  [ngClass]="{ 'is-invalid': submited &&  validation.activity.errors }" formControlName="activity" id="activity" type="text">
+      <div *ngIf="submitted && validation.name.errors" class="invalid">
+        <div *ngIf="validation.name.errors">Назва повинна містити тільки букви або пробіли (мінімум 2)</div>
+      </div>
+      <label for="activity">Діяльність компанії *
+        <input class="form-control" [ngClass]="{ 'is-invalid': submitted &&  validation.activity.errors }" formControlName="activity" id="activity" type="text">
       </label>
-      <label for="country">Країна
-        <input class="form-control"  [ngClass]="{ 'is-invalid': submited &&  validation.country.errors }" formControlName="country" id="country" type="text">
+      <div *ngIf="submitted && validation.activity.errors" class="invalid">
+        <div *ngIf="validation.activity.errors">Діяльність повинна містити тільки букви або пробіли (мінімум 2)</div>
+      </div>
+      <label for="country">Країна *
+        <input class="form-control" [ngClass]="{ 'is-invalid': submitted &&  validation.country.errors }" formControlName="country" id="country" type="text">
       </label>
-      <label for="city">Місто
-        <input class="form-control" [ngClass]="{ 'is-invalid': submited &&  validation.city.errors }" formControlName="city" id="city" type="text">
+      <div *ngIf="submitted && validation.country.errors" class="invalid">
+        <div *ngIf="validation.country.errors">Країна повинна містити тільки букви (мінімум 2)</div>
+      </div>
+      <label for="city">Місто *
+        <input class="form-control" [ngClass]="{ 'is-invalid': submitted &&  validation.city.errors }" formControlName="city" id="city" type="text">
       </label>
-      <label for="street">вулиця
-        <input class="form-control" [ngClass]="{ 'is-invalid': submited &&  validation.street.errors }" formControlName="street" id="street" type="text">
+      <div *ngIf="submitted && validation.city.errors" class="invalid">
+        <div *ngIf="validation.city.errors">Місто повинна містити тільки букви (мінімум 2)</div>
+      </div>
+      <label for="street">вулиця *
+        <input class="form-control" [ngClass]="{ 'is-invalid': submitted &&  validation.street.errors }" formControlName="street" id="street" type="text">
       </label>
-      <label for="IPN">ІПН
-        <input class="form-control" [ngClass]="{ 'is-invalid': submited &&  validation.IPN.errors }" formControlName="IPN" id="IPN" type="number">
+      <div *ngIf="submitted && validation.street.errors" class="invalid">
+        <div *ngIf="validation.street.errors">Вулиця повинна містити тільки букви або пробіли (мінімум 2)</div>
+      </div>
+      <label for="IPN">ІПН *
+        <input class="form-control" [ngClass]="{ 'is-invalid': submitted &&  validation.IPN.errors }" formControlName="IPN" id="IPN" type="string">
       </label>
+      <div *ngIf="submitted && validation.IPN.errors" class="invalid">
+        <div *ngIf="validation.IPN.errors">ІПН повинен містити 10 цифр</div>
+      </div>
       <label for="EDRPOY">ЄДРПОУ
-        <input class="form-control" [ngClass]="{ 'is-invalid': submited &&  validation.EDRPOY.errors }" formControlName="EDRPOY" id="EDRPOY" type="number">
+        <input class="form-control" [ngClass]="{ 'is-invalid': submitted &&  validation.EDRPOY.errors }" formControlName="EDRPOY" id="EDRPOY" type="string">
       </label>
+      <div *ngIf="submitted && validation.EDRPOY.errors" class="invalid">
+        <div *ngIf="validation.EDRPOY.errors">ЄДРПОУ повинно містити 8 цифр</div>
+      </div>
       <div class="profile-buttons">
         <button type="submit">Зберегти</button>
         <button type="button" [routerLink]="['/cabinet/info']">Скасувати</button>
@@ -32,4 +53,4 @@
 <app-load-page *ngIf="!pageReady"></app-load-page>
 
 
-  
+

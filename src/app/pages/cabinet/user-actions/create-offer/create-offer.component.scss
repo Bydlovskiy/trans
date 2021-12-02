@@ -8,6 +8,13 @@
     width: 100%;
     padding-bottom: 50px;
 
+    .invalid{
+      font-size: 12px;
+      color: red;
+      width: 60%;
+      text-align: center;
+    }
+
     .block-container {
       width: 30%;
       height: 320px;

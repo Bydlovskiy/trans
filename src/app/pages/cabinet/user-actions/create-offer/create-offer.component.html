@@ -7,18 +7,27 @@
         </div>
         <label for="">Країна
           <input ngx-google-places-autocomplete="{ types: ['(cities)']}" #placesRef="ngx-places"
-            (onAddressChange)="loadingCountryChange($event)" class="form-control" formControlName="loadingCountry"
-            [ngClass]="{ 'is-invalid': submited &&  validation.loadingCountry.errors }" type="text">
+                 (onAddressChange)="loadingCountryChange($event)" class="form-control" formControlName="loadingCountry"
+                 [ngClass]="{ 'is-invalid': submitted &&  validation.loadingCountry.errors }" type="text">
         </label>
+        <div *ngIf="submitted && validation.loadingCountry.errors" class="invalid">
+          <div *ngIf="validation.loadingCountry.errors">Країна повинна містити букви або пробіл (мінімум 2)</div>
+        </div>
         <label for="">Місто
           <input ngx-google-places-autocomplete="{ types: ['(cities)']}" #placesRef="ngx-places"
-            (onAddressChange)="loadingCityChange($event)" class="form-control" formControlName="loadingCity"
-            [ngClass]="{ 'is-invalid': submited &&  validation.loadingCity.errors }" type="text">
+                 (onAddressChange)="loadingCityChange($event)" class="form-control" formControlName="loadingCity"
+                 [ngClass]="{ 'is-invalid': submitted &&  validation.loadingCity.errors }" type="text">
         </label>
+        <div *ngIf="submitted && validation.loadingCity.errors" class="invalid">
+          <div *ngIf="validation.loadingCity.errors">Місто повинно містити букви або пробіл (мінімум 2)</div>
+        </div>
         <label for="">Дата
           <input formControlName="loadingDate" class="form-control"
-            [ngClass]="{ 'is-invalid': submited &&  validation.loadingDate.errors }" type="date">
+                 [ngClass]="{ 'is-invalid': submitted &&  validation.loadingDate.errors }" type="date">
         </label>
+        <div *ngIf="submitted && validation.loadingDate.errors" class="invalid">
+          <div *ngIf="validation.loadingDate.errors">Заповніть правильно дату</div>
+        </div>
       </div>
       <div class="block-container">
         <div class="title">
@@ -26,18 +35,27 @@
         </div>
         <label for="">Країна
           <input ngx-google-places-autocomplete="{ types:['(cities)'] }" #placesRef="ngx-places"
-            (onAddressChange)="unloadingCountryChange($event)" class="form-control" formControlName="unloadingCountry"
-            [ngClass]="{ 'is-invalid': submited &&  validation.unloadingCountry.errors }" type="text">
+                 (onAddressChange)="unloadingCountryChange($event)" class="form-control" formControlName="unloadingCountry"
+                 [ngClass]="{ 'is-invalid': submitted &&  validation.unloadingCountry.errors }" type="text">
         </label>
+        <div *ngIf="submitted && validation.unloadingCountry.errors" class="invalid">
+          <div *ngIf="validation.unloadingCountry.errors">Країна повинна містити букви або пробіл (мінімум 2)</div>
+        </div>
         <label for="">Місто
           <input ngx-google-places-autocomplete="{ types:['(cities)'] }" #placesRef="ngx-places"
-            (onAddressChange)="unloadingCityChange($event)" class="form-control" formControlName="unloadingCity"
-            [ngClass]="{ 'is-invalid': submited &&  validation.unloadingCity.errors }" type="text">
+                 (onAddressChange)="unloadingCityChange($event)" class="form-control" formControlName="unloadingCity"
+                 [ngClass]="{ 'is-invalid': submitted &&  validation.unloadingCity.errors }" type="text">
         </label>
+        <div *ngIf="submitted && validation.unloadingCity.errors" class="invalid">
+          <div *ngIf="validation.unloadingCity.errors">Місто повинно містити букви або пробіл (мінімум 2)</div>
+        </div>
         <label for="">Дата
           <input formControlName="unloadingDate" class="form-control"
-            [ngClass]="{ 'is-invalid': submited &&  validation.unloadingDate.errors }" type="date">
+                 [ngClass]="{ 'is-invalid': submitted &&  validation.unloadingDate.errors }" type="date">
         </label>
+        <div *ngIf="submitted && validation.unloadingDate.errors" class="invalid">
+          <div *ngIf="validation.unloadingDate.errors">Заповніть правильно дату</div>
+        </div>
       </div>
       <div class="block-container">
         <div class="title">
@@ -45,16 +63,25 @@
         </div>
         <label for=""> Вантаж
           <input type="text" formControlName="cargo" class="form-control"
-            [ngClass]="{ 'is-invalid': submited &&  validation.cargo.errors }">
+            [ngClass]="{ 'is-invalid': submitted &&  validation.cargo.errors }">
         </label>
+        <div *ngIf="submitted && validation.cargo.errors" class="invalid">
+          <div *ngIf="validation.cargo.errors">Вантаж повинен містити букви або пробіл (мінімум 2)</div>
+        </div>
         <label for=""> Вага
           <input type="number" formControlName="weight" class="form-control"
-            [ngClass]="{ 'is-invalid': submited &&  validation.weight.errors }">
+            [ngClass]="{ 'is-invalid': submitted &&  validation.weight.errors }">
         </label>
+        <div *ngIf="submitted && validation.weight.errors" class="invalid">
+          <div *ngIf="validation.weight.errors">Вага повинна містити тільки цифри</div>
+        </div>
         <label for=""> Ціна
           <input formControlName="price" class="form-control"
-            [ngClass]="{ 'is-invalid': submited &&  validation.price.errors }" type="text">
+                 [ngClass]="{ 'is-invalid': submitted &&  validation.price.errors }" type="text">
         </label>
+        <div *ngIf="submitted && validation.price.errors" class="invalid">
+          <div *ngIf="validation.price.errors">Ціна повинна містити тільки цифри</div>
+        </div>
         <button type="submit">Зберегти</button>
       </div>
     </form>
@@ -70,18 +97,27 @@
         </div>
         <label for="">Країна
           <input ngx-google-places-autocomplete="{ types: ['(cities)']}" #placesRef="ngx-places"
-            (onAddressChange)="loadingCountryChange($event)" class="form-control" formControlName="loadingCountry"
-            [ngClass]="{ 'is-invalid': submited &&  validation.loadingCountry.errors }" type="text">
+                 (onAddressChange)="loadingCountryChange($event)" class="form-control" formControlName="loadingCountry"
+                 [ngClass]="{ 'is-invalid': submitted &&  validation.loadingCountry.errors }" type="text">
         </label>
+        <div *ngIf="submitted && validation.loadingCountry.errors" class="invalid">
+          <div *ngIf="validation.loadingCountry.errors">Країна повинна містити букви або пробіл (мінімум 2)</div>
+        </div>
         <label for="">Місто
           <input ngx-google-places-autocomplete="{ types: ['(cities)']}" #placesRef="ngx-places"
-            (onAddressChange)="loadingCityChange($event)" formControlName="loadingCity" class="form-control"
-            [ngClass]="{ 'is-invalid': submited &&  validation.loadingCity.errors }" type="text">
+                 (onAddressChange)="loadingCityChange($event)" formControlName="loadingCity" class="form-control"
+                 [ngClass]="{ 'is-invalid': submitted &&  validation.loadingCity.errors }" type="text">
         </label>
+        <div *ngIf="submitted && validation.loadingCity.errors" class="invalid">
+          <div *ngIf="validation.loadingCity.errors">Місто повинно містити букви або пробіл (мінімум 2)</div>
+        </div>
         <label for="">Дата
           <input formControlName="loadingDate" class="form-control"
-            [ngClass]="{ 'is-invalid': submited &&  validation.loadingDate.errors }" type="date">
+                 [ngClass]="{ 'is-invalid': submitted &&  validation.loadingDate.errors }" type="date">
         </label>
+        <div *ngIf="submitted && validation.loadingDate.errors" class="invalid">
+          <div *ngIf="validation.loadingDate.errors">Заповніть правильно дату</div>
+        </div>
       </div>
       <div class="block-container">
         <div class="title">
@@ -89,18 +125,27 @@
         </div>
         <label for="">Країна
           <input ngx-google-places-autocomplete="{ types:['(cities)'] }" #placesRef="ngx-places"
-            (onAddressChange)="unloadingCountryChange($event)" class="form-control" formControlName="unloadingCountry"
-            [ngClass]="{ 'is-invalid': submited &&  validation.unloadingCountry.errors }" type="text">
+                 (onAddressChange)="unloadingCountryChange($event)" class="form-control" formControlName="unloadingCountry"
+                 [ngClass]="{ 'is-invalid': submitted &&  validation.unloadingCountry.errors }" type="text">
         </label>
+        <div *ngIf="submitted && validation.unloadingCountry.errors" class="invalid">
+          <div *ngIf="validation.unloadingCountry.errors">Країна повинна містити букви або пробіл (мінімум 2)</div>
+        </div>
         <label for="">Місто
           <input ngx-google-places-autocomplete="{ types:['(cities)'] }" #placesRef="ngx-places"
-            formControlName="unloadingCity" (onAddressChange)="unloadingCityChange($event)" class="form-control"
-            [ngClass]="{ 'is-invalid': submited &&  validation.unloadingCity.errors }" type="text">
+                 formControlName="unloadingCity" (onAddressChange)="unloadingCityChange($event)" class="form-control"
+                 [ngClass]="{ 'is-invalid': submitted &&  validation.unloadingCity.errors }" type="text">
         </label>
+        <div *ngIf="submitted && validation.unloadingCity.errors" class="invalid">
+          <div *ngIf="validation.unloadingCity.errors">Місто повинно містити букви або пробіл (мінімум 2)</div>
+        </div>
         <label for="">Дата
           <input formControlName="unloadingDate" class="form-control"
-            [ngClass]="{ 'is-invalid': submited &&  validation.unloadingDate.errors }" type="date">
+                 [ngClass]="{ 'is-invalid': submitted &&  validation.unloadingDate.errors }" type="date">
         </label>
+        <div *ngIf="submitted && validation.unloadingDate.errors" class="invalid">
+          <div *ngIf="validation.unloadingDate.errors">Заповніть правильно дату</div>
+        </div>
       </div>
       <div class="block-container other-info">
         <div class="title">
@@ -108,14 +153,20 @@
         </div>
         <label for="">Виберіть автомобіль
           <select [(ngModel)]="selectedValue" formControlName="car" name="car" id="" class="car" class="form-control"
-            [ngClass]="{ 'is-invalid': submited &&  validation.car.errors }">
+            [ngClass]="{ 'is-invalid': submitted &&  validation.car.errors }">
             <option *ngFor="let car of carList" [ngValue]="car">{{ car.model }} {{ car.mark }} {{ car.EURO }}</option>
           </select>
         </label>
+        <div *ngIf="submitted && validation.car.errors" class="invalid">
+          <div *ngIf="validation.car.errors">Виберіть автомобіль (якшо ви ще його не створили перейдіть у налаштування профілю)</div>
+        </div>
         <label for=""> Ціна
           <input formControlName="price" class="form-control"
-            [ngClass]="{ 'is-invalid': submited &&  validation.price.errors }" type="text">
+                 [ngClass]="{ 'is-invalid': submitted &&  validation.price.errors }" type="text">
         </label>
+        <div *ngIf="submitted && validation.price.errors" class="invalid">
+          <div *ngIf="validation.price.errors">Ціна повинна містити тільки цифри</div>
+        </div>
         <button type="submit">Зберегти</button>
       </div>
     </form>

@@ -18,7 +18,7 @@ export class CreateOfferComponent implements OnInit {
   public offerTruckerForm !: FormGroup;
   public carList !: ICar[];
   public selectedValue = null;
-  public submited = false;
+  public submitted = false;
   public user = JSON.parse(localStorage.getItem('user') as string);
   constructor(private fb: FormBuilder,
     private offerService: OffersService,
@@ -166,14 +166,14 @@ export class CreateOfferComponent implements OnInit {
 
   private initTruckerForm(): void {
     this.offerTruckerForm = this.fb.group({
-      loadingCountry: [null, Validators.required],
-      loadingCity: [null, Validators.required],
+      loadingCountry: [null, [Validators.required,Validators.pattern(/^[a-zA-Zа-яА-ЯЁЇїІіЄєҐґ\s]{2,}$/)]],
+      loadingCity: [null, [Validators.required, Validators.pattern(/^[a-zA-Zа-яА-ЯЁЇїІіЄєҐґ\s]{2,}$/)]],
       loadingDate: [null, Validators.required],
-      unloadingCountry: [null, Validators.required],
-      unloadingCity: [null, Validators.required],
+      unloadingCountry: [null, [Validators.required, Validators.pattern(/^[a-zA-Zа-яА-ЯЁЇїІіЄєҐґ\s]{2,}$/)]],
+      unloadingCity: [null, [Validators.required, Validators.pattern(/^[a-zA-Zа-яА-ЯЁЇїІіЄєҐґ\s]{2,}$/)]],
       unloadingDate: [null, Validators.required],
       car: [null, Validators.required],
-      price: [null, Validators.required],
+      price: [null, [Validators.required, Validators.pattern(/^\d+$/)]],
       userId: [this.user.id],
       status: [null],
       date: [null],
@@ -185,15 +185,15 @@ export class CreateOfferComponent implements OnInit {
 
   private initConsignorForm(): void {
     this.offerConsignorForm = this.fb.group({
-      loadingCountry: [null, Validators.required],
-      loadingCity: [null, Validators.required],
+      loadingCountry: [null, [Validators.required,Validators.pattern(/^[a-zA-Zа-яА-ЯЁЇїІіЄєҐґ\s]{2,}$/)]],
+      loadingCity: [null, [Validators.required, Validators.pattern(/^[a-zA-Zа-яА-ЯЁЇїІіЄєҐґ\s]{2,}$/)]],
       loadingDate: [null, Validators.required],
-      unloadingCountry: [null, Validators.required],
-      unloadingCity: [null, Validators.required],
+      unloadingCountry: [null, [Validators.required, Validators.pattern(/^[a-zA-Zа-яА-ЯЁЇїІіЄєҐґ\s]{2,}$/)]],
+      unloadingCity: [null, [Validators.required, Validators.pattern(/^[a-zA-Zа-яА-ЯЁЇїІіЄєҐґ\s]{2,}$/)]],
       unloadingDate: [null, Validators.required],
-      cargo: [null, Validators.required],
-      price: [null, Validators.required],
-      weight: [null, Validators.required],
+      cargo: [null, [Validators.required, Validators.pattern(/^[a-zA-Zа-яА-ЯЁЇїІіЄєҐґ\s]{2,}$/)]],
+      price: [null, [Validators.required, Validators.pattern(/^\d+$/)]],
+      weight: [null, [Validators.required, Validators.pattern(/^\d+$/)]],
       userId: [this.user.id],
       status: [null],
       date: [null],
@@ -213,7 +213,7 @@ export class CreateOfferComponent implements OnInit {
   }
 
   public saveOffer(): void {
-    this.submited = true;
+    this.submitted = true;
     if (this.user.role == 'trucker') {
       if (this.offerTruckerForm.valid) {
         this.offerTruckerForm.patchValue({

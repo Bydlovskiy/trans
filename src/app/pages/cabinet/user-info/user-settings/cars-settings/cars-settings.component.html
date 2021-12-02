@@ -33,16 +33,25 @@
 <div class="container" *ngIf="isAddCar">
   <form [formGroup]="carSettingsForm" (ngSubmit)="editStatus ? saveCar() : addCar()">
     <label for="mark">Марка
-      <input class="form-control" [ngClass]="{ 'is-invalid': submited &&  validation.mark.errors }"  formControlName="mark" id="mark" type="text">
+      <input class="form-control" [ngClass]="{ 'is-invalid': submitted &&  validation.mark.errors }" formControlName="mark" id="mark" type="text">
     </label>
+    <div *ngIf="submitted && validation.mark.errors" class="invalid">
+      <div *ngIf="validation.mark.errors">Марка повинна містити тільки букви (мінімум 2)</div>
+    </div>
     <label for="model">Модель
-      <input class="form-control" [ngClass]="{ 'is-invalid': submited &&  validation.model.errors }"  formControlName="model" id="model" type="text">
+      <input class="form-control" [ngClass]="{ 'is-invalid': submitted &&  validation.model.errors }" formControlName="model" id="model" type="text">
     </label>
+    <div *ngIf="submitted && validation.model.errors" class="invalid">
+      <div *ngIf="validation.model.errors">Модель повинна містити букви,цифри або пробіли (мінімум 2)</div>
+    </div>
     <label for="year">Рік випуску
-      <input class="form-control" [ngClass]="{ 'is-invalid': submited &&  validation.year.errors }"  formControlName="year" id="year" type="text">
+      <input class="form-control" [ngClass]="{ 'is-invalid': submitted &&  validation.year.errors }" formControlName="year" id="year" type="text">
     </label>
+    <div *ngIf="submitted && validation.year.errors" class="invalid">
+      <div *ngIf="validation.year.errors">Вкажіть правильно рік</div>
+    </div>
     <label for="type">Тип автомобіля
-      <select class="form-control" [ngClass]="{ 'is-invalid': submited &&  validation.type.errors }"   formControlName="type" id="type" placeholder="Виберіть тип">
+      <select class="form-control" [ngClass]="{ 'is-invalid': submitted &&  validation.type.errors }" formControlName="type" id="type" placeholder="Виберіть тип">
         <option value="Напівпричіп Тент">Напівпричіп Тент</option>
         <option value="Рефрижератор">Рефрижератор</option>
         <option value="Ізотерм">Ізотерм</option>
@@ -58,9 +67,15 @@
         <option value="Бортова Газель">Бортова Газель</option>
       </select>
     </label>
+    <div *ngIf="submitted && validation.type.errors" class="invalid">
+      <div *ngIf="validation.type.errors">Вкажіть тип автомобіля</div>
+    </div>
     <label for="EURO">Євро стандарт
-      <input class="form-control" [ngClass]="{ 'is-invalid': submited &&  validation.EURO.errors }"  formControlName="EURO" type="number" id="EURO">
+      <input class="form-control" [ngClass]="{ 'is-invalid': submitted &&  validation.EURO.errors }" formControlName="EURO" type="number" id="EURO">
     </label>
+    <div *ngIf="submitted && validation.EURO.errors" class="invalid">
+      <div *ngIf="validation.EURO.errors">Євростандарт повинен містити лише одну цифру</div>
+    </div>
     <div class="crs-buttons">
       <button type="submit">{{ editStatus ? 'редагувати' : 'створити' }}</button>
       <button type="button" (click)="isAddCar = false">Скасувати</button>

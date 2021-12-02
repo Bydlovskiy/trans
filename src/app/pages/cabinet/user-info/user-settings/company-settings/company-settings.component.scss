@@ -5,6 +5,10 @@ form {
   label{
     padding-bottom: 10px;
   }
+  .invalid{
+    font-size: 12px;
+    color: red;
+  }
 
   [type=submit] {
     margin: 20px 20px 0 0;

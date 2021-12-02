@@ -3,6 +3,7 @@ import { getDownloadURL, ref, Storage, uploadBytes } from '@angular/fire/storage
 import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { ProfileSettingsService } from 'src/app/shared/services/settings/profile-settings/profile-settings.service';
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-profile-settings',
@@ -11,7 +12,7 @@ import { ProfileSettingsService } from 'src/app/shared/services/settings/profile
 })
 export class ProfileSettingsComponent implements OnInit {
   public profileSettingsForm!: FormGroup;
-  public submited = false;
+  public submitted = false;
   public pageReady = false;
   public imagePathCurrentUser: string = '';
   private currentUserid = JSON.parse(localStorage.getItem('user') as string).id;
@@ -20,7 +21,7 @@ export class ProfileSettingsComponent implements OnInit {
   constructor(private fb: FormBuilder,
     private profileService: ProfileSettingsService,
     private storage: Storage,
-    private toastr: ToastrService) { }
+    private toastr: ToastrService, private router : Router) { }
 
   ngOnInit(): void {
     this.initForm();
@@ -39,19 +40,20 @@ export class ProfileSettingsComponent implements OnInit {
 
   private initForm(): void {
     this.profileSettingsForm = this.fb.group({
-      name: [null, Validators.required],
-      surname: [null, Validators.required],
+      name: [null, [Validators.required,Validators.pattern(/^[a-zA-Zа-яА-ЯЁЇїІіЄєҐґ]{2,}$/)]],
+      surname: [null, [Validators.required,Validators.pattern(/^[a-zA-Zа-яА-ЯЁЇїІіЄєҐґ]{2,}$/) ]],
       dateOfBirth: [null, Validators.required],
       sex: [null, Validators.required],
-      imagePath: [null, Validators.required]
+      imagePath: [null]
     })
   }
 
   public saveData(): void {
-    this.submited = true;
+    this.submitted = true;
     if (this.profileSettingsForm.valid) {
       this.profileService.setUserData(this.profileSettingsForm.value, this.currentUserid).then(() => {
-        this.toastr.success('Дані успішно змінені')
+        this.toastr.success('Дані успішно змінені');
+        this.router.navigate(['/cabinet/info'])
       }).catch(() => {
         this.toastr.error('Щось пішло не так')
       })

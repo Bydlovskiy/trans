@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { OthersOffersComponent } from './others-notifications.component';
+import { OthersNotificationsComponent } from './others-notifications.component';
 
 describe('OthersConsignorOffersComponent', () => {
-  let component: OthersOffersComponent;
-  let fixture: ComponentFixture<OthersOffersComponent>;
+  let component: OthersNotificationsComponent;
+  let fixture: ComponentFixture<OthersNotificationsComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ OthersOffersComponent ]
+      declarations: [ OthersNotificationsComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(OthersOffersComponent);
+    fixture = TestBed.createComponent(OthersNotificationsComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

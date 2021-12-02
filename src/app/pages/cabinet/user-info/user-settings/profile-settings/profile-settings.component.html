@@ -5,30 +5,42 @@
         <div class="foto">
           <img [src]="!imagePathCurrentUser ?  '/assets/icons/photocameraoutline_80020.svg' : imagePathCurrentUser"
             width="80px">
-          <input class="form-control" [ngClass]="{ 'is-invalid': submited &&  validation.name.errors }" type="file"
-            (change)="uploadImage($event)">
+          <input class="form-control" [ngClass]="{ 'is-invalid': submitted &&  validation.name.errors }" type="file"
+                 (change)="uploadImage($event)">
         </div>
       </div>
       <div class="profile-block">
-        <label for="name">Ім'я
-          <input class="form-control" [ngClass]="{ 'is-invalid': submited &&  validation.name.errors }"
+        <label for="name">Ім'я *
+          <input class="form-control" [ngClass]="{ 'is-invalid': submitted &&  validation.name.errors }"
             formControlName="name" id="name" type="text">
+        <div *ngIf="submitted && validation.name.errors" class="invalid">
+          <div *ngIf="validation.name.errors">Імя повинно містити тільки букви (мінімум 2)</div>
+        </div>
         </label>
-        <label for="surname">Прізвище
-          <input class="form-control" [ngClass]="{ 'is-invalid': submited &&  validation.surname.errors }"
+        <label for="surname">Прізвище *
+          <input class="form-control" [ngClass]="{ 'is-invalid': submitted &&  validation.surname.errors }"
             formControlName="surname" id="surname" type="text">
+        <div *ngIf="submitted && validation.surname.errors" class="invalid">
+          <div *ngIf="validation.surname.errors">Прізвище повинно містити тільки букви (мінімум 2)</div>
+        </div>
         </label>
       </div>
       <div class="profile-block">
-        <label for="dateOfBirth">Дата народження
-          <input class="form-control" [ngClass]="{ 'is-invalid': submited &&  validation.dateOfBirth.errors }"
+        <label for="dateOfBirth">Дата народження *
+          <input class="form-control" [ngClass]="{ 'is-invalid': submitted &&  validation.dateOfBirth.errors }"
             formControlName="dateOfBirth" id="dateOfBirth" type="date">
+        <div *ngIf="submitted && validation.dateOfBirth.errors" class="invalid">
+          <div *ngIf="validation.dateOfBirth.errors">Введіть дату народження</div>
+        </div>
         </label>
         <div class="radio-container">
-          <input class="form-control" [ngClass]="{ 'is-invalid': submited &&  validation.sex.errors }"
-            class="form-check-input" formControlName="sex" name="sex" id type="radio" value="man">Чоловік
-          <input class="form-control" [ngClass]="{ 'is-invalid': submited &&  validation.sex.errors }"
+          <input class="form-control" [ngClass]="{ 'is-invalid': submitted &&  validation.sex.errors }"
+            class="form-check-input" formControlName="sex" name="sex"  type="radio" value="man">Чоловік
+          <input class="form-control"  [ngClass]="{ 'is-invalid': submitted &&  validation.sex.errors }"
             class="form-check-input" formControlName="sex" name="sex" type="radio" value="woman">Жінка
+        <div *ngIf="submitted && validation.sex.errors" class="invalid">
+          <div *ngIf="validation.sex.errors">Виберіть стать</div>
+        </div>
         </div>
       </div>
       <div class="profile-buttons">

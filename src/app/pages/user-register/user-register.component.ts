@@ -11,7 +11,7 @@ import { AuthService } from 'src/app/shared/services/auth/auth.service';
 })
 export class UserRegisterComponent implements OnInit ,OnDestroy {
   private role: string = JSON.parse(localStorage.getItem('register-role') as string)
-  public submited = false;
+  public submitted = false;
   public registerForm !: FormGroup;
   constructor(private fb: FormBuilder,
     private authService: AuthService,
@@ -34,8 +34,8 @@ export class UserRegisterComponent implements OnInit ,OnDestroy {
 
   private initSignForm(): void {
     this.registerForm = this.fb.group({
-      email: [null, Validators.required],
-      password: [null, Validators.required],
+      email: [null, [Validators.required,Validators.pattern(/^[a-zA-Z0-9]+@[a-zA-Z0-9]+\.[a-zA-Z0-9]+$/)]],
+      password: [null, [Validators.required, Validators.pattern(/^(?=.*[0-9a-zA-Z]).{6,}$/)]],
       phoneNumber: [null, [Validators.required, Validators.pattern(/^\d{10,12}$/)]],
       role: [this.role]
     })
@@ -43,7 +43,7 @@ export class UserRegisterComponent implements OnInit ,OnDestroy {
 
   public register(): void {
     console.log(this.validation.email.errors)
-    this.submited = true;
+    this.submitted = true;
     if (!this.registerForm.valid) {
       this.toastr.error('Введіть правильно дані');
     } else {

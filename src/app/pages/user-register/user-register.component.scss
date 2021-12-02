@@ -7,7 +7,7 @@
     justify-content: space-between;
     border-top: 20px solid #1b9edf;
     background-color: #045888;
-  
+
     .content {
       display: flex;
       flex-direction: column;
@@ -15,12 +15,12 @@
       align-items: center;
       width: 100%;
       height: 95%;
-  
+
       .logo-container {
         width: 400px;
         cursor: pointer;
       }
-  
+
       .title {
         p {
           font-size: 28px;
@@ -29,7 +29,7 @@
           color: #fff;
         }
       }
-  
+
       form {
         max-width: 35.41666em;
         width: 100%;
@@ -39,19 +39,19 @@
         overflow: hidden;
         position: relative;
         margin: 0 auto;
-  
+
         .input-container {
-          margin: 20px 30px 0;
+          margin: 10px 30px 0;
           display: flex;
           flex-direction: column;
-  
+
           label {
             font-size: 14px;
             color: #808a96;
             display: block;
-            margin-bottom: 20px;
+            margin-bottom: 10px;
           }
-  
+
           input {
             display: block;
             width: 100%;
@@ -62,7 +62,7 @@
             font-size: 20px;
             padding: 0 0.5em;
             box-sizing: border-box;
-  
+
             &:hover {
               border-color: #3793ff;
             }
@@ -70,8 +70,12 @@
           .is-invalid{
             border: 2px solid red;
           }
+          .invalid{
+            color: red;
+            font-size: 12px;
+          }
         }
-  
+
         button {
           background-color: #31b35e;
           width: 100%;
@@ -80,7 +84,7 @@
           font-family: inherit;
           font-size: 20px;
           color: #fff;
-          margin: 0;
+          margin-top: 10px;
           cursor: pointer;
           &:hover {
             background-color: #19a147
@@ -88,7 +92,7 @@
         }
       }
     }
-  
+
     footer {
       height: 5%;
       font-size: 20px;
@@ -96,7 +100,7 @@
       color: #fff;
     }
   }
-  
+
   @media screen and (max-width : 632px) {
     .login-container {
       .content {
@@ -114,7 +118,7 @@
       }
     }
   }
-  
+
   @media screen and (max-width : 520px) {
     .login-container {
       .content {
@@ -129,7 +133,7 @@
       }
     }
   }
-  
+
   @media screen and (max-width : 420px) {
     .login-container {
       .content {
@@ -141,4 +145,3 @@
       }
     }
   }
-  

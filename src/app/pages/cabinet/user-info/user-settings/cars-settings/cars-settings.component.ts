@@ -12,7 +12,7 @@ import { CarsSettingsService } from 'src/app/shared/services/settings/cars-setti
 export class CarsSettingsComponent implements OnInit {
   public carList: ICar[] = [];
   public carSettingsForm !: FormGroup;
-  public submited = false;
+  public submitted = false;
   public pageReady = false;
   public deleteId !: string;
   public editStatus = false;
@@ -32,8 +32,8 @@ export class CarsSettingsComponent implements OnInit {
 
   private initForm(): void {
     this.carSettingsForm = this.fb.group({
-      mark: [null, Validators.required],
-      model: [null, Validators.required],
+      mark: [null, [Validators.required,Validators.pattern(/^[a-zA-Zа-яА-ЯЁЇїІіЄєҐґ]{2,}$/)]],
+      model: [null, [Validators.required, Validators.pattern(/^[a-zA-Zа-яА-ЯЁЇїІіЄєҐґ\d]{2,}$/)]],
       year: [null, [Validators.required, Validators.pattern(/^([1][9][5-9][0-9])|[2][0][0-9][0-9]$/)]],
       type: [null, Validators.required],
       EURO: [null, [Validators.required, Validators.pattern(/^[1-6]{1}$/)]],
@@ -55,7 +55,7 @@ export class CarsSettingsComponent implements OnInit {
   }
 
   public addCar() {
-    this.submited = true;
+    this.submitted = true;
     if (this.carSettingsForm.valid) {
       this.carService.setCar(this.carSettingsForm.value).then(() => {
         this.getCarsList();
@@ -77,7 +77,7 @@ export class CarsSettingsComponent implements OnInit {
   }
 
   public saveCar(): void {
-    this.submited = true;
+    this.submitted = true;
     if (this.carSettingsForm.valid) {
       this.carService.updateCar(this.carSettingsForm.value).then(() => {
         this.toastr.success('Автомобіль успішно редаговано')

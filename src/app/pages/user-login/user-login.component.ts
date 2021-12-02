@@ -11,7 +11,7 @@ import { AuthService } from 'src/app/shared/services/auth/auth.service';
 })
 export class UserLoginComponent implements OnInit , OnDestroy {
   private role : string = JSON.parse(localStorage.getItem('login-role') as string)
-  public submited = false;
+  public submitted = false;
   public loginForm !: FormGroup;
   constructor(private fb: FormBuilder,
     private authService : AuthService,
@@ -23,24 +23,24 @@ export class UserLoginComponent implements OnInit , OnDestroy {
     this.checkChoosingRole();
     this.initLoginForm()
   }
-  
+
   checkChoosingRole ()  {
     if(localStorage.getItem('login-role') == null){
       this.router.navigate(['/login'])
     } else {
-      
+
     }
   }
 
   initLoginForm(): void {
     this.loginForm = this.fb.group({
-      email: [null, [Validators.required, Validators.email]],
-      password: [null, Validators.required ]
+      email: [null, [Validators.required, Validators.pattern(/^[a-zA-Z0-9]+@[a-zA-Z0-9]+\.[a-zA-Z0-9]+$/)]],
+      password: [null, [Validators.required, Validators.pattern(/^(?=.*[0-9a-zA-Z]).{6,}$/) ]]
     })
   }
 
   loginConsignor(): void {
-    this.submited = true;
+    this.submitted = true;
     if (!this.loginForm.valid) {
       this.toastr.error('Заповніть форму')
     } else {
@@ -50,7 +50,7 @@ export class UserLoginComponent implements OnInit , OnDestroy {
   }
 
   login(email: string, password: string) {
-    
+
     this.authService.logIn(email,password).then(credential => {
       this.authService.getUserData(credential.user.uid).then(user => {
         const currentUser : any = user.data();
@@ -72,17 +72,17 @@ export class UserLoginComponent implements OnInit , OnDestroy {
             role = 'перевізник'
           }
           this.toastr.error(`Увійдіть як ${role}`)
-        } 
+        }
       });
     }).catch(() => {
       this.toastr.error('Неправильний email чи пароль')
     })
   }
-  
-  get validation(): { [key: string]: AbstractControl } {    
+
+  get validation(): { [key: string]: AbstractControl } {
     return this.loginForm.controls;
   }
-  
+
   ngOnDestroy(): void {
     localStorage.removeItem('login-role')
   }

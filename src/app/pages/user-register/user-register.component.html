@@ -9,18 +9,27 @@
     <form [formGroup]="registerForm" (ngSubmit)="register()">
       <div class="input-container">
         <label  for="email">email
-          <input class="form-control" [ngClass]="{ 'is-invalid': submited &&  validation.email.errors }" formControlName="email" type="email" placeholder="email" id="email">
+          <input class="form-control" [ngClass]="{ 'is-invalid': submitted &&  validation.email.errors }" formControlName="email" type="email" placeholder="email" id="email">
         </label>
+        <div *ngIf="submitted && validation.email.errors" class="invalid">
+          <div *ngIf="validation.email.errors">Email введено невірно</div>
+        </div>
       </div>
       <div class="input-container">
         <label for="fhoneNumber">Номер телефону
-          <input maxlength="15" mask="(000)-000-00-00" class="form-control" [ngClass]="{ 'is-invalid': submited &&  validation.phoneNumber.errors }" type="string" placeholder="phone number" formControlName="phoneNumber" id="fhoneNumber">
+          <input maxlength="15" mask="(000)-000-00-00" class="form-control" [ngClass]="{ 'is-invalid': submitted &&  validation.phoneNumber.errors }" type="string" placeholder="phone number" formControlName="phoneNumber" id="fhoneNumber">
         </label>
+        <div *ngIf="submitted && validation.phoneNumber.errors" class="invalid">
+          <div *ngIf="validation.phoneNumber.errors">Номер телефону повинен містити 10 цифр</div>
+        </div>
       </div>
       <div class="input-container">
         <label for="password">Пароль
-          <input class="form-control" [ngClass]="{ 'is-invalid': submited &&  validation.password.errors }" formControlName="password" type="password" placeholder="password" id="password">
+          <input class="form-control" [ngClass]="{ 'is-invalid': submitted &&  validation.password.errors }" formControlName="password" type="password" placeholder="password" id="password">
         </label>
+        <div *ngIf="submitted && validation.password.errors" class="invalid">
+          <div *ngIf="validation.password.errors">Введіть мінімум 6 символів латиницею</div>
+        </div>
       </div>
       <button type="submit">Зареєструватися</button>
     </form>
